@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mamoot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mamoot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/JoinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JoinController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/join/join.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/join/join.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="ajout du formulaire dans rejoindre" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -185,11 +176,24 @@
       <workItem from="1703142686029" duration="10642000" />
       <workItem from="1704901361767" duration="10000" />
       <workItem from="1704957568918" duration="10327000" />
-      <workItem from="1706101786141" duration="5286000" />
+      <workItem from="1706101786141" duration="5785000" />
     </task>
+    <task id="LOCAL-00001" summary="ajout du formulaire dans rejoindre">
+      <option name="closed" value="true" />
+      <created>1706109563813</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706109563813</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ajout du formulaire dans rejoindre" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du formulaire dans rejoindre" />
   </component>
 </project>
