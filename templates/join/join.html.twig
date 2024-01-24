@@ -7,5 +7,18 @@
 {% block main %}
 
     <h2>{% trans %}Rejoindre{% endtrans %}</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {# code de la session à indiquer #}
+    <label for="sessionCode">Code de la session</label>
+    <input type="text" name="sessionCode" placeholder="Code de la session">
+
+    <br>
+
+    {# Bouton envoyer #}
+    <button type="submit">Join</button>
+
+
+    {{ form_end(form) }}
 
 {% endblock %}
