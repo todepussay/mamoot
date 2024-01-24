@@ -1,0 +1,74 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    background-color: #dedfde;
+    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    color: var(--medium-green);
+    width: 250px;
+    margin: 10px;
+}
+
+.card-header,
+.card-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.title {
+    font-size: 1.2em;
+    color: var(--medium-green);
+    text-align: center;
+}
+
+.date, .number {
+    font-size: 0.9em;
+    color: var(--medium-green);
+}
+
+.edit-link, .play-link, .delete-link {
+    color: black;
+}
+
+svg {
+    width: 30px;
+    height: 30px;
+}
+
+.card:hover {
+    background-color: #d3d3d3;
+    transition: background-color 0.2s;
+    transform: scale(1.05);
+}
+
+.afficher-plus {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #dedfde;
+    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    color: var(--medium-green);
+    width: 250px;
+    border: none;
+    font-size: 1.2em;
+}
+
+.afficher-plus:hover {
+    background-color: #c3c3c3;
+    transition: background-color 0.2s;
+}
+

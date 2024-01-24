@@ -1,0 +1,57 @@
+<nav>
+
+    <div class="background-nav">
+    </div>
+
+    <div class="content-nav">
+
+        <div class="title">
+            <a href="{{ path("index") }}"><img src="{{ asset("img/logo.png") }}" alt="Logo"></a>
+
+            <a href="{{ path("index") }}"><h1>Mamoot</h1></a>
+        </div>
+
+        <ul>
+            <li>
+                <a href="{{ path("index") }}" class="{{ (activeTab is defined and activeTab == "index") ? "active" : "" }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                        <path d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212" fill="none" stroke="white    " stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                        <path d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                    </svg>
+                    <span>{% trans %}Accueil{% endtrans %}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path("bibliotheque_index") }}" class="{{ (activeTab is defined and activeTab == "bibliotheque") ? "active" : "" }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                        <rect x="32" y="96" width="64" height="368" rx="16" ry="16" fill="none" stroke="white" stroke-linejoin="round" stroke-width="32"/>
+                        <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M112 224h128M112 400h128"/>
+                        <rect x="112" y="160" width="128" height="304" rx="16" ry="16" fill="none" stroke="white" stroke-linejoin="round" stroke-width="32"/>
+                        <rect x="256" y="48" width="96" height="416" rx="16" ry="16" fill="none" stroke="white" stroke-linejoin="round" stroke-width="32"/>
+                        <path d="M422.46 96.11l-40.4 4.25c-11.12 1.17-19.18 11.57-17.93 23.1l34.92 321.59c1.26 11.53 11.37 20 22.49 18.84l40.4-4.25c11.12-1.17 19.18-11.57 17.93-23.1L445 115c-1.31-11.58-11.42-20.06-22.54-18.89z" fill="none" stroke="white" stroke-linejoin="round" stroke-width="32"/>
+                    </svg>
+                    <span>{% trans %}Bibliothèque{% endtrans %}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path("historique_index") }}" class="{{ (activeTab is defined and activeTab == "historique") ? "active" : "" }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                        <path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64z" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="32"/>
+                        <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 128v144h96"/>
+                    </svg>
+                    <span>{% trans %}Historique{% endtrans %}</span>
+                </a>
+            </li>
+            <li>
+                {% if app.user is null %}
+                    <a href="{{ path("login") }}">{% trans %}Se connecter{% endtrans %}</a>
+                {% else %}
+                    <a href="{{ path("logout") }}">{% trans %}Déconnexion{% endtrans %}</a>
+                {% endif %}
+            </li>
+        </ul>
+
+        <p id="welcome_message">{% trans %}Bonjour{% endtrans %} {{ app.user.username }}</p>
+
+    </div>
+</nav>

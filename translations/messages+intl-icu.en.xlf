@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="WCfxvUn" resname="Réponse ">
+        <source>Réponse </source>
+        <target>Response </target>
+      </trans-unit>
+      <trans-unit id="thEpWgJ" resname="Le titre du quiz ne peut pas être vide">
+        <source>Le titre du quiz ne peut pas être vide</source>
+        <target>Quiz title cannot be empty</target>
+      </trans-unit>
+      <trans-unit id="l3aSqr8" resname="La question ">
+        <source>La question </source>
+        <target>The question </target>
+      </trans-unit>
+      <trans-unit id="D.wmQdl" resname=" n'est pas valide">
+        <source> n'est pas valide</source>
+        <target> is not valid</target>
+      </trans-unit>
+      <trans-unit id="e7ooD2_" resname="Titre du quiz">
+        <source>Titre du quiz</source>
+        <target>Quiz title</target>
+      </trans-unit>
+      <trans-unit id="cJrMnvV" resname="Bibliothèque">
+        <source>Bibliothèque</source>
+        <target>Library</target>
+      </trans-unit>
+      <trans-unit id="9jNuwnb" resname="Ajouter une question">
+        <source>Ajouter une question</source>
+        <target>Add question</target>
+      </trans-unit>
+      <trans-unit id="A6p9wWe" resname="Quiz">
+        <source>Quiz</source>
+        <target>Quiz</target>
+      </trans-unit>
+      <trans-unit id="ZlqiDr9" resname="Vrai ou faux">
+        <source>Vrai ou faux</source>
+        <target>True or false</target>
+      </trans-unit>
+      <trans-unit id="Pz.aPfA" resname="Curseur">
+        <source>Curseur</source>
+        <target>Cursor</target>
+      </trans-unit>
+      <trans-unit id="udzKawN" resname="Valeur minimum :">
+        <source>Valeur minimum :</source>
+        <target>Minimum value :</target>
+      </trans-unit>
+      <trans-unit id="MBcf4Sg" resname="Valeur maximum :">
+        <source>Valeur maximum :</source>
+        <target>Maximum value :</target>
+      </trans-unit>
+      <trans-unit id="rKaY6dV" resname="Incrémentation :">
+        <source>Incrémentation :</source>
+        <target>Increment :</target>
+      </trans-unit>
+      <trans-unit id="4tKDH1D" resname="Paramètre avancé">
+        <source>Paramètre avancé</source>
+        <target>Advanced setting</target>
+      </trans-unit>
+      <trans-unit id="R7FQEMy" resname="Temps">
+        <source>Temps</source>
+        <target>Time</target>
+      </trans-unit>
+      <trans-unit id="Rq05Fva" resname="Annuler">
+        <source>Annuler</source>
+        <target>Cancel</target>
+      </trans-unit>
+      <trans-unit id="APnFM0V" resname="Ajouter">
+        <source>Ajouter</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="zTY0utS" resname="&quot;Vous devez choisir une catégorie pour votre question&quot;">
+        <source>"Vous devez choisir une catégorie pour votre question"</source>
+        <target>"You must choose a category for your question"</target>
+      </trans-unit>
+      <trans-unit id="G1_UMRe" resname="&quot;Vous devez rentrer une valeur minimum, maximum et un interval&quot;">
+        <source>"Vous devez rentrer une valeur minimum, maximum et un interval"</source>
+        <target>"You must enter a minimum, maximum value and an interval"</target>
+      </trans-unit>
+      <trans-unit id="pMEJ4sc" resname="&quot;La valeur minimum ne peut pas être plus grande que le maximum&quot;">
+        <source>"La valeur minimum ne peut pas être plus grande que le maximum"</source>
+        <target>"The minimum value cannot be greater than the maximum"</target>
+      </trans-unit>
+      <trans-unit id="8dfZcQj" resname="Création">
+        <source>Création</source>
+        <target>Creation</target>
+      </trans-unit>
+      <trans-unit id="SXQWHdh" resname="Quitter">
+        <source>Quitter</source>
+        <target>Exit</target>
+      </trans-unit>
+      <trans-unit id="cdx0hz4" resname="Enregistrer">
+        <source>Enregistrer</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="ersFQx1" resname="&quot;danger&quot;">
+        <source>"danger"</source>
+        <target>"hazard"</target>
+      </trans-unit>
+      <trans-unit id="Xn9L3ec" resname="&quot;Le quiz a bien été créé&quot;, &quot;success&quot;">
+        <source>"Le quiz a bien été créé", "success"</source>
+        <target>"The quiz has been created successfully", "success"</target>
+      </trans-unit>
+      <trans-unit id="F0xZcMw" resname="La valeur sera bonne entre :">
+        <source>La valeur sera bonne entre :</source>
+        <target>The value will be good between :</target>
+      </trans-unit>
+      <trans-unit id="8Fa4yuN" resname="et">
+        <source>et</source>
+        <target>and</target>
+      </trans-unit>
+      <trans-unit id="_R3HZOu" resname="Valeur minimum de validité :">
+        <source>Valeur minimum de validité :</source>
+        <target>Minimum validity value :</target>
+      </trans-unit>
+      <trans-unit id="Xz31leH" resname="Valeur maximum de validité :">
+        <source>Valeur maximum de validité :</source>
+        <target>Maximum validity value :</target>
+      </trans-unit>
+      <trans-unit id="E0ozwfc" resname="Vrai">
+        <source>Vrai</source>
+        <target>True</target>
+      </trans-unit>
+      <trans-unit id="0HXtlm_" resname="Faux">
+        <source>Faux</source>
+        <target>False</target>
+      </trans-unit>
+      <trans-unit id="Q_aK.kX" resname="Appliquer les changements">
+        <source>Appliquer les changements</source>
+        <target>Apply changes</target>
+      </trans-unit>
+      <trans-unit id="jbij_wy" resname="&quot;Réponse `">
+        <source>"Réponse `</source>
+        <target>"Answer `</target>
+      </trans-unit>
+      <trans-unit id="I5rKkCa" resname="&quot;La valeur sera bonne entre : &quot;">
+        <source>"La valeur sera bonne entre : "</source>
+        <target>"The value will be good between : "</target>
+      </trans-unit>
+      <trans-unit id="mCXSpj5" resname="&quot;La question ne peux pas être vide&quot;">
+        <source>"La question ne peux pas être vide"</source>
+        <target>"The question cannot be empty"</target>
+      </trans-unit>
+      <trans-unit id="eErJA2g" resname="&quot;Vous devez au moins avoir une bonne réponse&quot;">
+        <source>"Vous devez au moins avoir une bonne réponse"</source>
+        <target>"You must have at least one correct answer"</target>
+      </trans-unit>
+      <trans-unit id="I5pVG0T" resname="&quot;La question ne peut pas être vide&quot;">
+        <source>"La question ne peut pas être vide"</source>
+        <target>"The question cannot be empty"</target>
+      </trans-unit>
+      <trans-unit id="TS8_5Ec" resname="&quot;La valeur minimum de validité ne peut pas être supérieur à la valeur maximum de validité&quot;">
+        <source>"La valeur minimum de validité ne peut pas être supérieur à la valeur maximum de validité"</source>
+        <target>"The minimum validity value cannot be greater than the maximum validity value"</target>
+      </trans-unit>
+      <trans-unit id="tqatRB8" resname="&quot;La question a bien été modifiée&quot;, &quot;success&quot;">
+        <source>"La question a bien été modifiée", "success"</source>
+        <target>"The question has been modified", "success"</target>
+      </trans-unit>
+      <trans-unit id="zTPESRn" resname="&quot;La question a été supprimée&quot;, &quot;success&quot;">
+        <source>"La question a été supprimée", "success"</source>
+        <target>"The question was deleted", "success"</target>
+      </trans-unit>
+      <trans-unit id="Zd9EC9v" resname="&quot;La question a été dupliquée&quot;, &quot;success&quot;">
+        <source>"La question a été dupliquée", "success"</source>
+        <target>"Question was duplicated", "success"</target>
+      </trans-unit>
+      <trans-unit id="HAtuuEP" resname="Etes-vous sûr de vouloir quitter sans sauvegarder ?">
+        <source>Etes-vous sûr de vouloir quitter sans sauvegarder ?</source>
+        <target>Are you sure you want to exit without saving ?</target>
+      </trans-unit>
+      <trans-unit id="CpBAdjn" resname="Oui">
+        <source>Oui</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="f2JJawy" resname="Non">
+        <source>Non</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="5rIBQGT" resname="Choisir le titre du quiz">
+        <source>Choisir le titre du quiz</source>
+        <target>Choose the quiz title</target>
+      </trans-unit>
+      <trans-unit id="Drmv.bf" resname="&quot;Confirmer&quot;">
+        <source>"Confirmer"</source>
+        <target>"Confirm"</target>
+      </trans-unit>
+      <trans-unit id="hl3zMkr" resname="Historique">
+        <source>Historique</source>
+        <target>Historical</target>
+      </trans-unit>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="CsPSyzA" resname="Se connecter">
+        <source>Se connecter</source>
+        <target>Log In</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Log Out</target>
+      </trans-unit>
+      <trans-unit id="3zCJo5o" resname="Rejoindre">
+        <source>Rejoindre</source>
+        <target>JOIN</target>
+      </trans-unit>
+      <trans-unit id="uia1U70" resname="&quot;Succès ✅&quot;">
+        <source>"Succès ✅"</source>
+        <target>"Success ✅"</target>
+      </trans-unit>
+      <trans-unit id="yHxZLOh" resname="&quot;Erreur ⛔&quot;">
+        <source>"Erreur ⛔"</source>
+        <target>"Error ⛔"</target>
+      </trans-unit>
+      <trans-unit id="n8WhlWu" resname="CREER">
+        <source>CREER</source>
+        <target>CREATE</target>
+      </trans-unit>
+      <trans-unit id="oC.TcKA" resname="REJOINDRE">
+        <source>REJOINDRE</source>
+        <target>JOIN</target>
+      </trans-unit>
+      <trans-unit id="kXLo7sm" resname="Bonjour">
+        <source>Bonjour</source>
+        <target>Hello</target>
+      </trans-unit>
+      <trans-unit id="s7ef0lo" resname="question(s)">
+        <source>question(s)</source>
+        <target>question</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

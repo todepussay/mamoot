@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/index.css") }}">{% endblock %}
+
+{% block main %}
+
+    <div class="btns">
+
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path("create") }}" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <path fill="#1f5f1f" stroke="#1f5f1f" stroke-linecap="round" stroke-linejoin="round" stroke-width="50" d="M256 112v288M400 256H112"/>
+                </svg>
+                <span>{% trans %}CREER{% endtrans %}</span>
+            </a>
+        {% endif %}
+
+        <a href="{{ path("join") }}" class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <path d="M112 111v290c0 17.44 17 28.52 31 20.16l247.9-148.37c12.12-7.25 12.12-26.33 0-33.58L143 90.84c-14-8.36-31 2.72-31 20.16z" fill="#1f5f1f" stroke="#1f5f1f" stroke-miterlimit="10" stroke-width="32"/>
+            </svg>
+            <span>{% trans %}REJOINDRE{% endtrans %}</span>
+        </a>
+
+        <div class="drag">
+            <a href="{{ path('change_locale', {"locale": (app.request.locale == "fr") ? "en" : "fr"}) }}">
+                <img src="{{ asset('img/drapeau/' ~ (app.request.locale == "fr" ? "english.png" : "france.jpg")) }}" alt="Drapeau">
+            </a>
+        </div>
+
+    </div>
+
+{% endblock %}

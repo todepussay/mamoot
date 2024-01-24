@@ -1,0 +1,95 @@
+<ul id="sortable">
+    <li class="non-sortable">
+        {{ quiz.title }}
+    </li>
+
+    {% set i = 0 %}
+    {% for question in questions %}
+        {% set i = i + 1 %}
+        <li class="element-liste" id="{{ i }}">
+            <div class="question" id="{{ i }}">
+                <p>Question {{ i }}</p>
+                <p>{{ question.label }}</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon ionicon_delete" viewBox="0 0 512 512">
+                <path d="M112 112l20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M80 112h352"/>
+                <path d="M192 112V72h0a23.93 23.93 0 0124-24h80a23.93 23.93 0 0124 24h0v40M256 176v224M184 176l8 224M328 176l-8 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon ionicon_copy" viewBox="0 0 512 512">
+                <rect x="128" y="128" width="336" height="336" rx="57" ry="57" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/>
+                <path d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon ionicon-up" viewBox="0 0 512 512">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/>
+            </svg>
+        </li>
+    {% endfor %}
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // $(function() {
+        //     $("#sortable" ).sortable({
+        //         items: ".element-liste",
+        //         cancel: ".non-sortable"
+        //     });
+        // });
+
+        $('.question').click(function(e){
+            $.ajax({
+                url: "{{ path("detail_question") }}",
+                method: "POST",
+                contentType: "application/javascript",
+                data: JSON.stringify({id: $(this).attr("id") - 1}),
+                success: function(data){
+                    $("#modal").html(data);
+                }
+            })
+        })
+
+        $('.ionicon_delete').click(function(e){
+            var id = $(e.target).closest('li').attr("id");
+            $.ajax({
+                url: "{{ path("delete_question") }}",
+                method: "POST",
+                contentType: "application/javascript",
+                data: JSON.stringify({id: id}),
+                success: function(data){
+                    showFlashMessage({% trans %}"La question a été supprimée", "success"{% endtrans %});
+                    reloadListe();
+                    $('#modal').html("");
+                }
+            })
+        })
+
+        $('.ionicon_copy').click(function(e){
+            var id = $(e.target).closest("li").attr('id');
+            $.ajax({
+                url: "{{ path("copy_question") }}",
+                method: "POST",
+                contentType: "application/javascript",
+                data: JSON.stringify({id: id}),
+                success: function(data){
+                    showFlashMessage({% trans %}"La question a été dupliquée", "success"{% endtrans %});
+                    reloadListe();
+                    $('#modal').html("");
+                }
+            })
+        })
+
+        $('.ionicon-up').click(function(e){
+            var id = $(e.target).closest('li').attr("id");
+            $.ajax({
+                url: "{{ path("up_question") }}",
+                method: "POST",
+                contentType: "application/javascript",
+                data: JSON.stringify({id: id}),
+                success: function(data){
+                    reloadListe();
+                    $('#modal').html("");
+                }
+            })
+        })
+    })
+</script>

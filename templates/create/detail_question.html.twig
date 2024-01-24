@@ -1,0 +1,217 @@
+<div class="content-modal" id="content">
+    <input type="text" name="label" id="label" value="{{ question.label }}" }>
+
+    {# MEDIA #}
+
+    {% if question.curseur == 1 %}
+        <div class="reponses">
+            <span id="valeur">{% trans %}La valeur sera bonne entre : {% endtrans %}{{ question.minimumValide }} {% trans %} et {% endtrans %} {{ question.maximumValide }}</span>
+            <div>
+                <label for="mini">{% trans %}Valeur minimum de validité :{% endtrans %}</label><br>
+                <input type="range" name="mini" id="mini" min="{{ question.minimumCurseur }}" max="{{ question.maximumCurseur }}" step="{{ question.intervalCurseur }}" value="{{ question.minimumValide }}">
+            </div>
+            <div>
+                <label for="maxi">{% trans %}Valeur maximum de validité :{% endtrans %}</label><br>
+                <input type="range" name="maxi" id="maxi" min="{{ question.minimumCurseur }}" max="{{ question.maximumCurseur }}" step="{{ question.intervalCurseur }}" value="{{ question.maximumValide }}">
+            </div>
+        </div>
+    {% elseif question.vraifaux == 1 %}
+        <div class="reponses">
+            <div class="reponse" id="vrai-reponse">
+                <span>{% trans %}Vrai{% endtrans %}</span>
+                <input type="radio" name="vrai" id="vrai" {% if question.valeurvraifaux %}checked{% endif %}>
+            </div>
+            <div class="reponse" id="faux-reponse">
+                <span>{% trans %}Faux{% endtrans %}</span>
+                <input type="radio" name="vrai" id="faux" {% if not(question.valeurvraifaux) %}checked{% endif %}>
+            </div>
+        </div>
+    {% else %}
+        <div class="reponses">
+            {% set i = 0 %}
+            {% for reponse in question.reponses %}
+                <div id="reponse-{{ i }}" class="reponse">
+                    <input type="text" name="reponse" class="reponse_input" value="{{ reponse.reponse }}">
+                    <input type="checkbox" name="good" class="good" {% if reponse.good == 1 %}checked{% endif %}>
+                </div>
+                {% set i = i + 1 %}
+            {% endfor %}
+        </div>
+        <div class="btns">
+            <button class="btn" id="add_reponse">+</button>
+            <button class="btn" id="remove_reponse">-</button>
+        </div>
+    {% endif %}
+
+    <div>
+        <p id="error"></p>
+    </div>
+
+
+    <div class="btns">
+        <button id="btn_annuler" class="btn">{% trans %}Annuler{% endtrans %}</button>
+        <button id="btn_appliquer" class="btn">{% trans %}Appliquer les changements{% endtrans %}</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#valeur').text($("#curseur").val());
+        $('#btn_annuler').click(function(){
+            $('#modal').html("");
+        });
+        var id = {{ id }};
+        let data;
+        var length = $('.reponses').children('.reponse').length;
+        if(length == 2){
+            $('#remove_reponse').hide();
+        } else {
+            $('#remove_reponse').show();
+        }
+
+        $('#add_reponse').click(function(){
+            if(length === 8){
+                return;
+            }
+            $('.reponses').append(
+                `<div id="reponse-`+ (length) +`" class="reponse">
+                    <input type="text" name="reponse[]" class="reponse_input" value={% trans %}"Réponse `{% endtrans %}+ (length + 1) +`">
+                    <input type="checkbox" name="good[]" class="good">
+                </div>`
+            );
+            length++;
+            if(length === 8){
+                $('#add_reponse').hide();
+            }
+            if(length > 2){
+                $('#remove_reponse').show();
+            }
+        })
+
+        $('#remove_reponse').click(function(){
+            if(length === 2){
+                return;
+            }
+            $('.reponses .reponse:last  ').remove();
+            length--;
+            if(length === 2){
+                $('#remove_reponse').hide();
+            }
+            if(length === 8){
+                $('#add_reponse').show();
+            }
+        })
+
+        $('#mini').on("input", function(){
+            $('#valeur').text({% trans %}"La valeur sera bonne entre : "{% endtrans %} + $('#mini').val() + " - " + $('#maxi').val());
+        })
+
+        $('#maxi').on("input", function(){
+            $('#valeur').text({% trans %}"La valeur sera bonne entre : "{% endtrans %} + $('#mini').val() + " - " + $('#maxi').val());
+        })
+
+        $('#btn_appliquer').click(function(){
+            var label = $('#label').val();
+            var category = "";
+
+            if({{ question.vraifaux }}){
+                category = "vraifaux";
+            } else if({{ question.curseur }}){
+                category = "curseur";
+            } else {
+                category = "quiz";
+            }
+
+            if(category === "quiz") {
+
+                var reponses = [];
+                var count = 0;
+
+                for(let i = 0; i < length; i++){
+                    var reponse = {};
+
+                    reponse["label"] = $("#reponse-" + i + " .reponse_input").val();
+                    reponse["good"] = $('#reponse-' + i + " .good").prop("checked");
+                    if(reponse.good){
+                        count++;
+                    }
+                    reponses.push(reponse);
+                }
+
+                if(label === "") {
+                    $('#error').text({% trans %}"La question ne peux pas être vide"{% endtrans %});
+                    return;
+                } else {
+                    if(count === 0){
+                        $('#error').text({% trans %}"Vous devez au moins avoir une bonne réponse"{% endtrans %});
+                        return;
+                    } else {
+                        $('#error').text("");
+                    }
+                }
+
+                data = {
+                    id: {{ id }},
+                    label: label,
+                    category: category,
+                    reponses: reponses
+                };
+
+            } else if(category === "curseur"){
+
+                var mini = $('#mini').val();
+                var maxi = $('#maxi').val();
+
+                if(label === ""){
+                    $('#error').text({% trans %}"La question ne peut pas être vide"{% endtrans %});
+                    return;
+                } else {
+                    if(mini > maxi){
+                        $('#error').text({% trans %}"La valeur minimum de validité ne peut pas être supérieur à la valeur maximum de validité"{% endtrans %});
+                        return;
+                    } else {
+                        $('#error').text("");
+                    }
+                }
+
+                data = {
+                    id: {{ id }},
+                    label: label,
+                    category: category,
+                    mini: mini,
+                    maxi: maxi
+                };
+                
+            } else {
+
+                if(label === "") {
+                    $('#error').text({% trans %}"La question ne peut pas être vide"{% endtrans %});
+                    return;
+                } else {
+                    $('#error').text("");
+                }
+
+                data = {
+                    id: {{ id }},
+                    label: label,
+                    category: category,
+                    vrai: $('#vrai').prop('checked')
+                };
+            }
+
+            $.ajax({
+                url: "{{ path("change_question") }}",
+                method: "POST",
+                contentType: "application/javascript",
+                data: JSON.stringify(data),
+                success: function(){
+                    showFlashMessage({% trans %}"La question a bien été modifiée", "success"{% endtrans %});
+                    reloadListe();
+                    $('#modal').html("");
+                }
+            })
+        })
+    })
+
+</script>

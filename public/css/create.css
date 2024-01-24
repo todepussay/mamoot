@@ -1,0 +1,309 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+/* modals contient la fenêtre pour ajouter une question la fenêtre de message d'alerte et flash */
+.modals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+/* message flash  */
+#alert {
+    position: absolute;
+    top: 2%;
+    left: 25%;
+    right: 25%;
+    height: fit-content;
+}
+
+/* message alerte */
+#modal-alert {
+}
+
+.quitter-content {
+
+
+    background-color: lightgrey;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px;
+}
+.quitter-content > p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#modal-alert-question {
+    display: flex;
+    flex-direction: row;
+}
+.quitter-content > #modal-alert-question > a {
+    padding: 5px;
+    margin: 5px;
+    color: black;
+    font-size: 1.5em;
+    text-decoration: none;
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
+#modal-alert-question-oui{
+    background-color: white;
+    font-weight: bold;
+}
+
+.modal {
+    position: relative;
+    min-width: fit-content;
+    max-width: 80%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.content-modal {
+    background-color: #cccccc;
+
+    padding: 40px;
+
+    border-radius: 10px;
+}
+.modal h2 {
+    text-align: center;
+    color: var(--medium-green);
+    font-size: 2.5em;
+    padding-bottom: 20px;
+}
+.modal > .content-modal > .onglets{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.modal > .content-modal > .onglets > .onglet > span  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid var(--medium-green);
+    border-radius: 10px;
+    background-color: var(--light-green);
+
+    /*taille du texte*/
+    font-size: 1.4em;
+
+    /* espace interieur du span */
+
+    margin: 5px 10px;
+}
+.content-modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.content-modal label {
+    font-size: 1.3em;
+}
+.modal > .content-modal > .onglets > .onglet > span:hover {
+    cursor: pointer;
+    color: white;
+}
+.modal > .content-modal > .onglets > .actif {
+    /*couleur du texte*/
+    font-weight: bold;
+    font-size: 1.2em;
+
+}
+
+.modal > .content-modal > .advanced-container > .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    padding-top: 5px;
+}
+.modal > .content-modal > .advanced-container > .btns > button{
+    padding: 5px 10px;
+    border: 1px solid var(--medium-green);
+    border-radius: 10px;
+    background-color: var(--light-green);
+
+    font-size: 1.4em;
+}
+#close_modal_add_question {
+    background-color: lightgrey;
+}
+
+
+/* sidebar */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+
+    /*coller sur la droite de la page de facon à ce que le menu soit à droite*/
+    margin-left: auto;
+    margin-right: 0;
+    width: 30%;
+
+    background-color: white;
+}
+.sidebar li {
+    /* centrer le texte*/
+    text-align: center;
+    list-style-type: none;
+    padding: 20px;
+    font-size: 1.3em;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    /* couleur des bord*/
+    border-bottom: black 1px solid;
+}
+
+#liste {
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 100%;
+    min-height: 75vh;
+}
+/* Bouton pour ajouter, quitter ou enregistrer */
+.sidebar .btn {
+    width: 80%;
+    min-height: 50px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+
+    box-shadow: 0 5px 3px;
+}
+.sidebar .btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+.btn:hover {
+    cursor: pointer;
+}
+.sidebar button#add_question {
+    background-color: var(--light-green);
+    /*tailler le bouton*/
+    width: 85%;
+    margin: 10px;
+}
+.sidebar > .btns > button {
+    margin-bottom: 10px;
+
+}
+.sidebar button#quitter {
+    background-color: lightgrey;
+}
+.sidebar button#enregistrer {
+    background-color: var(--light-green);
+}
+
+
+
+
+
+/*Fenêtre pour ajout du titre*/
+.formulaire {
+    /*centrer le formulaire au centre du contenu*/
+    margin: auto;
+    width: 50%;
+
+    background-color: #cccccc;
+    border-radius: 10px;
+
+    padding: 40px;
+
+
+    /* se centrer au milieu du div content*/
+    position: relative;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+
+}
+
+.formulaire h2 {
+    text-align: center;
+    color: var(--medium-green);
+    font-size: 2em;
+    padding-bottom: 20px;
+}
+
+.formulaire form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulaire label {
+    font-size: 2em;
+    /*centrage*/
+
+    position: relative;
+    left: 22.5%;
+
+
+}
+
+.formulaire input {
+    display: block;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    width: 80%;
+    height: 50px;
+    border-radius: 8px;
+
+    /*ombre vers le bas*/
+    box-shadow: 0 5px 3px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+
+    /*texte*/
+    color: black;
+    font-size: 1.5em;
+
+    /*décoration*/
+    border: 1px solid grey;
+
+}
+
+.formulaire input[type="submit"] {
+    background-color: var(--light-green);
+    height: 80px;
+    font-size: 2em;
+}
+
+.formulaire p {
+    text-align: center;
+}
+
+.formulaire a {
+    color: var(--medium-green);
+}
+

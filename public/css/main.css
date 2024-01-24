@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --light-green: #00bc13;
+    --medium-green: #1f5f1f;
+    --dark-green: #163315;
+    font-family: "Roboto Slab", sans-serif;
+    color: black;
+}
+.ionicon {
+    width: 40px;
+    color: white;
+}
+
+body {
+    max-width: 100vw;
+    background-color: var(--dark-green);
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+}
+
+.content {
+    width: 100vw;
+}
+
+#alert {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#alert p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.alert-success {
+    background: #4aa252;
+}
+
+.alert-danger {
+    background-color: #c4392a;
+}
+
+.alert-danger p, .alert-danger span {
+    color: white;
+}
+
+/* NAVBAR */
+
+nav {
+    width: 300px;
+    height: 100vh;
+    padding: 60px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+nav .background-nav {
+    position: absolute;
+    top: calc((100vh * 0.5) * -1);
+    border-radius: 100%;
+    left: -100%;
+    z-index: -1;
+    width: 200%;
+    height: 200%;
+    background: rgb(1,148,15);
+    background: linear-gradient(0deg, rgba(1,148,15,1) 30%, rgba(16,119,23,1) 100%);
+}
+
+.content-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+nav .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -30px;
+}
+
+nav .title a img {
+    height: 100px;
+    width: 100px;
+}
+
+nav .title a {
+    text-decoration: none;
+}
+
+nav .title a h1 {
+    color: white;
+    font-size: 2.5em;
+    font-family: "Roboto Slab", sans-serif;
+}
+
+nav ul {
+    list-style: none;
+    margin: auto;
+    width: 100%;
+}
+
+nav ul li {
+    margin-bottom: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li .active {
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
+nav ul li a .ionicon {
+    width: 40px;
+    color: white;
+}
+
+nav ul li a span {
+    color: white;
+    margin-left: 10px;
+    font-size: 1.5em;
+}
+
+nav ul li:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+#welcome_message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+    color: white;
+}
+
+nav ul li:last-child a {
+    border: solid white 2px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+nav ul li:last-child a:hover {
+    scale: 1.1;
+    transition: scale 0.2s;
+}
+
+/* BACKGROUND */
+
+.circles {
+    position: absolute;
+    z-index: -1;
+    width: calc(100vw - 250px);
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    background: rgb(45,208,42);
+    background: linear-gradient(180deg, rgba(45,208,42,0.7) 0%, rgba(7,96,5,0) 100%);
+    border-radius: 100%;
+    position: absolute;
+    -o-animation: slide;
+    animation: slide;
+}
+
+.circle{
+    -webkit-animation:slide-tr 20s cubic-bezier(.455,.03,.515,.955) infinite alternate forwards;
+    animation:slide-tr 20s cubic-bezier(.455,.03,.515,.955) infinite alternate forwards
+}
+
+.circle:nth-child(1){
+    top: 4%;
+    left: 15%;
+}
+
+.circle:nth-child(2){
+    top: 35%;
+    left: 50%;
+}
+
+.circle:nth-child(3){
+    top: 90%;
+    left: 10%;
+}
+
+.circle:nth-child(4){
+    top: 15%;
+    left: 90%;
+}
+
+.circle:nth-child(5){
+    top: 70%;
+    left: 70%;
+}
+
+.circle:nth-child(6){
+    top: 3%;
+    left: 60%;
+}
+
+.circle:nth-child(7){
+    top: 45%;
+    left: 1%;
+}
+
+.circle:nth-child(8){
+    top: 60%;
+    left: 30%;
+}
+
+@-webkit-keyframes slide-tr{
+    0%{
+        -webkit-transform:translateY(0) translateX(0);
+        transform:translateY(0) translateX(0)
+    }
+    100%{
+        -webkit-transform:translateY(-50px) translateX(0px);
+        transform:translateY(-50px) translateX(0px)
+    }
+}
+
+@keyframes slide-tr{
+    0%{
+        -webkit-transform:translateY(0) translateX(0);
+        transform:translateY(0) translateX(0)
+    }
+    100%{
+        -webkit-transform:translateY(-50px) translateX(0px);
+        transform:translateY(-50px) translateX(0px)
+    }
+}

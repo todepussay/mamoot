@@ -1,0 +1,47 @@
+.btns {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #dedfde;
+    padding: 20px;
+    text-decoration: none;
+    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.btn .ionicon {
+    width: 60px;
+}
+
+.btn span {
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--medium-green);
+}
+
+.btn:hover {
+    background: #d3d3d3;
+}
+
+.drag {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+}
+
+.drag img {
+    width: 50px;
+    border-radius: 8px;
+}

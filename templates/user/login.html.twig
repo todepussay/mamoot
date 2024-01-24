@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}S'identifier{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/login.css") }}">{% endblock %}
+
+{% block main %}
+
+    <div class="formulaire">
+        <h2>Veuillez vous connecter</h2>
+
+        <form method="post">
+            <label for="username">Identifiant</label>
+            <input type="text" name="_username" id="username" class="input">
+
+            <label for="password">Mot de passe</label>
+            <input type="password" name="_password" id="password" class="input">
+
+            <input type="submit" value="Se connecter">
+        </form>
+
+        <p>Vous n'avez pas de compte ? <a href="{{ path("register") }}">Inscrivez-vous</a></p>
+    </div>
+
+{% endblock %}

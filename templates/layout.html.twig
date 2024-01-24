@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Mamoot</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="shortcut icon" href="{{ asset("img/favicon.ico") }}" type="image/x-icon">
+        <link rel="stylesheet" href="{{ asset("css/main.css") }}">
+        <script src="{{ asset("js/jquery.js") }}"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        {% block css %}{% endblock %}
+        {% block js %}{% endblock %}
+        <script>
+            function showFlashMessage(message, type) {
+                var header = document.createElement("p");
+                header.innerText = type === "success" ? {% trans %}"Succès ✅"{% endtrans %} : {% trans %}"Erreur ⛔"{% endtrans %};
+
+                var content = document.createElement("span");
+                content.innerText = message;
+
+                var flashContainer = document.getElementById('alert');
+                flashContainer.className = "alert-" + type;
+                flashContainer.appendChild(header);
+                flashContainer.appendChild(content);
+
+                setTimeout(function () {
+                    flashContainer.innerHTML = "";
+                    flashContainer.className = "";
+                }, 10000);
+            }
+        </script>
+    </head>
+    <body>
+
+        <main>
+            {% include "inc/nav.html.twig" %}
+
+            <div class="content">
+
+                <div id="alert"></div>
+
+                <div class="circles">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+
+                {% block main %}{% endblock %}
+            </div>
+        </main>
+
+    </body>
+</html>

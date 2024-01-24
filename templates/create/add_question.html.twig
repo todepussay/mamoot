@@ -1,0 +1,173 @@
+<div class="content-modal" id="content">
+    <h2>{% trans %}Ajouter une question{% endtrans %}</h2>
+
+    <div class="onglets">
+        <div id="quiz" class="onglet">
+            <span>{% trans %}Quiz{% endtrans %}</span>
+        </div>
+        <div id="vraifaux" class="onglet">
+            <span>{% trans %}Vrai ou faux{% endtrans %}</span>
+        </div>
+        <div id="curseur" class="onglet">
+            <span>{% trans %}Curseur{% endtrans %}</span>
+        </div>
+    </div>
+
+    <div id="advanced-quiz" style="display: none;"></div>
+
+    <div id="advanced-vraifaux" style="display: none;"></div>
+
+    <div id="advanced-curseur" style="display: none;">
+        <div>
+            <label for="minimum">{% trans %}Valeur minimum :{% endtrans %}</label>
+            <input type="number" name="minimum" id="minimum">
+        </div>
+        <div>
+            <label for="maximum">{% trans %}Valeur maximum :{% endtrans %}</label>
+            <input type="number" name="maximum" id="maximum">
+        </div>
+        <div>
+            <label for="interval">{% trans %}Incrémentation :{% endtrans %}</label>
+            <input type="number" name="interval" id="interval">
+        </div>
+    </div>
+
+    <div class="advanced-container">
+        <label for="advanced">{% trans %}Paramètre avancé{% endtrans %}</label>
+        <input type="checkbox" name="advanced" id="advanced">
+
+        <div id="advanced-content">
+            <label for="isTemps">{% trans %}Temps{% endtrans %}</label>
+            <input type="checkbox" name="isTemps" id="isTemps">
+
+            <div id="advanced-temps">
+                <input type="range" name="temps" id="temps" min="10" max="60" value="30">
+                <span id="temps-affichage">0:30</span>
+            </div>
+        </div>
+
+        <div>
+            <p id="error"></p>
+        </div>
+
+        <div class="btns">
+            <button id="close_modal_add_question" class="btn">{% trans %}Annuler{% endtrans %}</button>
+            <button id="btn_add_question" class="btn">{% trans %}Ajouter{% endtrans %}</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#close_modal_add_question').click(function(){
+            $('#modal').html("");
+        })
+
+        let onglets = $(".onglet");
+        let onglet_actif = null;
+        let categorie_ok = false;
+        let min, max, interval = null;
+        let temps = $('#temps').val();
+
+        onglets.click(function(){
+            if(onglet_actif != null){
+                onglet_actif.removeClass("actif");
+                $('#advanced-' + onglet_actif.attr("id")).hide();
+            }
+            $(this).addClass("actif");
+            $('#advanced-' + this.id).show();
+            onglet_actif = $(this);
+            categorie_ok = false;
+        })
+
+        let advanced = false;
+        $("#advanced-content").hide();
+        $('#advanced').click(function(){
+            advanced = !advanced;
+            $("#advanced-content").toggle(advanced);
+        })
+
+        let isTemps = false;
+        $("#advanced-temps").hide();
+        $('#isTemps').click(function(){
+            isTemps = !isTemps;
+            $("#advanced-temps").toggle(isTemps);
+        })
+
+        $('#temps').on("input", function(){
+            temps = $(this).val();
+            $('#temps-affichage').text(temps);
+        })
+
+        $('#btn_add_question').click(function(){
+            if(onglet_actif === null){
+                $('#error').text({% trans %}"Vous devez choisir une catégorie pour votre question"{% endtrans %});
+            } else {
+                $('#error').text("");
+
+                let id_onglet = onglet_actif.attr("id");
+
+                switch(id_onglet){
+                    case "quiz":
+                        categorie_ok = true;
+                        break;
+                    case "vraifaux":
+                        categorie_ok = true;
+                        break;
+                    case "curseur":
+                        min = $('#minimum').val();
+                        max = $('#maximum').val();
+                        interval = $('#interval').val();
+
+                        if(min === "" || max === "" || interval === ""){
+                            $("#error").text({% trans %}"Vous devez rentrer une valeur minimum, maximum et un interval"{% endtrans %});
+                        } else {
+                            $('#error').text("");
+
+                            if(min >= max || min + interval >= max){
+                                $("#error").text({% trans %}"La valeur minimum ne peut pas être plus grande que le maximum"{% endtrans %});
+                            } else {
+                                $('#error').text("");
+
+                                categorie_ok = true;
+                            }
+                        }
+                        break;
+                }
+
+                if(categorie_ok){
+                    if(!isTemps) {
+                        temps = 30;
+                    }
+
+                    let data = JSON.stringify({
+                        "categorie": onglet_actif.attr("id"),
+                        "min": min,
+                        "max": max,
+                        "interval": interval,
+                        "temps": temps
+                    });
+
+                    $.ajax({
+                        url: "{{ path('add_question') }}",
+                        type: "POST",
+                        contentType: "application/javascript",
+                        data: data,
+                        success: function(response){
+                            $.ajax({
+                                url: "{{ path('detail_question') }}",
+                                type: "POST",
+                                contentType: "application/javascript",
+                                data: JSON.stringify({id : response}),
+                                success: function(data){
+                                    $('#content').html(data);
+                                    reloadListe();
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    })
+</script>

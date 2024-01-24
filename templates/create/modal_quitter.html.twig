@@ -1,0 +1,9 @@
+<div class="quitter-content">
+    <p>{% trans %}Etes-vous sûr de vouloir quitter sans sauvegarder ?{% endtrans %}</p>
+
+    <!-- div pour la questions -->
+    <div id="modal-alert-question">
+        <a class="btn" id="modal-alert-question-oui" href="{{ path("quitter_quiz") }}">{% trans %}Oui{% endtrans %}</a>
+        <a class="btn" href="{{ path("pas_quitter_quiz") }}">{% trans %}Non{% endtrans %}</a>
+    </div>
+</div>
