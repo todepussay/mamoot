@@ -51,7 +51,9 @@
             </li>
         </ul>
 
-        <p id="welcome_message">{% trans %}Bonjour{% endtrans %} {{ app.user.username }}</p>
+        {% if app.user is not null %}
+            <p id="welcome_message">{% trans %}Bonjour{% endtrans %} {{ app.user.username }}</p>
+        {% endif %}
 
     </div>
 </nav>
