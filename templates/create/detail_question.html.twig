@@ -5,15 +5,13 @@
 
     {% if question.curseur == 1 %}
         <div class="reponses">
-            <span id="valeur">{% trans %}La valeur sera bonne entre : {% endtrans %}{{ question.minimumValide }} {% trans %} et {% endtrans %} {{ question.maximumValide }}</span>
-            <div>
-                <label for="mini">{% trans %}Valeur minimum de validité :{% endtrans %}</label><br>
-                <input type="range" name="mini" id="mini" min="{{ question.minimumCurseur }}" max="{{ question.maximumCurseur }}" step="{{ question.intervalCurseur }}" value="{{ question.minimumValide }}">
-            </div>
-            <div>
-                <label for="maxi">{% trans %}Valeur maximum de validité :{% endtrans %}</label><br>
-                <input type="range" name="maxi" id="maxi" min="{{ question.minimumCurseur }}" max="{{ question.maximumCurseur }}" step="{{ question.intervalCurseur }}" value="{{ question.maximumValide }}">
-            </div>
+            <span id="valeur">{% trans %}La valeur sera bonne entre : {% endtrans %}
+                <span id="valeur-minimum">{{ question.minimumValide }}</span>
+                {% trans %} et {% endtrans %}
+                <span id="valeur-maximum">{{ question.maximumValide }}</span>
+            </span>
+
+            <div id="slider"></div>
         </div>
     {% elseif question.vraifaux == 1 %}
         <div class="reponses">
@@ -57,18 +55,34 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
+
         $('#valeur').text($("#curseur").val());
         $('#btn_annuler').click(function(){
             $('#modal').html("");
         });
         var id = {{ id }};
         let data;
+        var mini;
+        var maxi;
         var length = $('.reponses').children('.reponse').length;
         if(length == 2){
             $('#remove_reponse').hide();
         } else {
             $('#remove_reponse').show();
         }
+
+        $('#slider').slider({
+            min: {{ question.minimumCurseur }},
+            max: {{ question.maximumCurseur }},
+            step: {{ question.intervalCurseur }},
+            values: [{{ question.minimumValide }}, {{ question.maximumValide }}],
+            slide: function(event, ui){
+                $("#valeur-minimum").html(ui.values[0]);
+                $("#valeur-maximum").html(ui.values[1]);
+                mini = ui.values[0];
+                maxi = ui.values[1];
+            }
+        })
 
         $('#add_reponse').click(function(){
             if(length === 8){
@@ -159,9 +173,6 @@
                 };
 
             } else if(category === "curseur"){
-
-                var mini = $('#mini').val();
-                var maxi = $('#maxi').val();
 
                 if(label === ""){
                     $('#error').text({% trans %}"La question ne peut pas être vide"{% endtrans %});

@@ -147,6 +147,7 @@ nav ul li:last-child {
 #welcome_message {
     text-align: center;
     margin-top: 20px;
+    margin-left: -20px;
     font-size: 25px;
     color: white;
 }
