@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Changement navbar message &quot;Bonjour user&quot;">
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Ajout d'un double slider dans detail_question.html.twig">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/create/detail_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/detail_question.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create/liste.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/liste.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +184,7 @@
       <workItem from="1703142686029" duration="10642000" />
       <workItem from="1704901361767" duration="10000" />
       <workItem from="1704957568918" duration="10327000" />
-      <workItem from="1706102022558" duration="5178000" />
+      <workItem from="1706102022558" duration="8266000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
@@ -218,7 +218,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706103078905</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajout d'un double slider dans detail_question.html.twig">
+      <option name="closed" value="true" />
+      <created>1706107429888</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706107429888</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajout d'un double slider dans detail_question.html.twig">
+      <option name="closed" value="true" />
+      <created>1706107446831</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706107446831</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +247,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="Changement navbar message &quot;Bonjour user&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changement navbar message &quot;Bonjour user&quot;" />
+    <MESSAGE value="Ajout d'un double slider dans detail_question.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'un double slider dans detail_question.html.twig" />
   </component>
 </project>

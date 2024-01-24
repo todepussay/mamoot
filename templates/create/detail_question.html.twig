@@ -72,10 +72,10 @@
         }
 
         $('#slider').slider({
-            min: {{ question.minimumCurseur }},
-            max: {{ question.maximumCurseur }},
-            step: {{ question.intervalCurseur }},
-            values: [{{ question.minimumValide }}, {{ question.maximumValide }}],
+            min: {{ question.minimumCurseur | default(0)}},
+            max: {{ question.maximumCurseur | default(0) }},
+            step: {{ question.intervalCurseur | default(0)}},
+            values: [{{ question.minimumValide | default(0) }}, {{ question.maximumValide | default(0) }}],
             slide: function(event, ui){
                 $("#valeur-minimum").html(ui.values[0]);
                 $("#valeur-maximum").html(ui.values[1]);
@@ -112,7 +112,7 @@
             if(length === 2){
                 $('#remove_reponse').hide();
             }
-            if(length === 8){
+            if(length < 8){
                 $('#add_reponse').show();
             }
         })
