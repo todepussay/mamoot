@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Ajout d'un double slider dans detail_question.html.twig">
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Debug detail_question.html.twig et liste.html.twig">
+      <change afterPath="$PROJECT_DIR$/public/css/play.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mamoot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mamoot.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create/detail_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/detail_question.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create/liste.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/liste.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/join/join.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/join/join.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,18 +31,19 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "todepussay"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;todepussay&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -129,6 +139,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/wisembly/elephant.io" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -140,20 +151,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Tom",
-    "last_opened_file_path": "C:/wamp64/www/mamoot",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Tom&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.17.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.17.1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/mamoot&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\mamoot\public\img\drapeau" />
@@ -184,7 +199,9 @@
       <workItem from="1703142686029" duration="10642000" />
       <workItem from="1704901361767" duration="10000" />
       <workItem from="1704957568918" duration="10327000" />
-      <workItem from="1706102022558" duration="8266000" />
+      <workItem from="1706102022558" duration="11596000" />
+      <workItem from="1706166954933" duration="13803000" />
+      <workItem from="1706270488364" duration="5396000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
@@ -234,7 +251,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706107446831</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Debug detail_question.html.twig et liste.html.twig">
+      <option name="closed" value="true" />
+      <created>1706110582368</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706110582368</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Debug detail_question.html.twig et liste.html.twig">
+      <option name="closed" value="true" />
+      <created>1706110591680</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706110591680</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +281,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="Changement navbar message &quot;Bonjour user&quot;" />
     <MESSAGE value="Ajout d'un double slider dans detail_question.html.twig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'un double slider dans detail_question.html.twig" />
+    <MESSAGE value="Debug detail_question.html.twig et liste.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug detail_question.html.twig et liste.html.twig" />
   </component>
 </project>

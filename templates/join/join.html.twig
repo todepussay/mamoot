@@ -6,6 +6,20 @@
 
 {% block main %}
 
-    <h2>{% trans %}Rejoindre{% endtrans %}</h2>
+    <div class="rejoindre">
+        <h2>{% trans %}Rejoindre{% endtrans %}</h2>
+
+        <form action="" method="POST">
+            <div class="input-group">
+                <label for="username">Pseudonyme</label>
+                <input type="text" id="username" name="username">
+            </div>
+
+            <div class="input-group">
+                <label for="code">Code du jeu</label>
+                <input type="text" id="code" name="code">
+            </div>
+        </form>
+    </div>
 
 {% endblock %}

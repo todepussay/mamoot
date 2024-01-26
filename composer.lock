@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f98cc719edbb4ed8a14551f31247074",
+    "content-hash": "b7ebf1a43dfaecc38b9fe13c9c6faa27",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6253,6 +6253,51 @@
                 }
             ],
             "time": "2023-11-21T18:54:41+00:00"
+        },
+        {
+            "name": "wisembly/elephant.io",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Wisembly/elephant.io.git",
+                "reference": "f52135c217cb26d9f9f51952aac452b92de455be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Wisembly/elephant.io/zipball/f52135c217cb26d9f9f51952aac452b92de455be",
+                "reference": "f52135c217cb26d9f9f51952aac452b92de455be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "lib",
+            "autoload": {
+                "psr-0": {
+                    "ElephantIO": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ludovic Barreca"
+                }
+            ],
+            "description": "Send events to socket.io though PHP",
+            "keywords": [
+                "Socket.io",
+                "nodejs",
+                "websocket"
+            ],
+            "support": {
+                "issues": "https://github.com/Wisembly/elephant.io/issues",
+                "source": "https://github.com/Wisembly/elephant.io/tree/master"
+            },
+            "abandoned": true,
+            "time": "2014-06-11T19:55:01+00:00"
         }
     ],
     "packages-dev": [
