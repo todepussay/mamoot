@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Debug detail_question.html.twig et liste.html.twig">
-      <change afterPath="$PROJECT_DIR$/public/css/play.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mamoot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mamoot.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Récupération des données du quiz">
+      <change afterPath="$PROJECT_DIR$/templates/play/play.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/join/join.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/join/join.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +192,7 @@
       <workItem from="1704957568918" duration="10327000" />
       <workItem from="1706102022558" duration="11596000" />
       <workItem from="1706166954933" duration="13803000" />
-      <workItem from="1706270488364" duration="5396000" />
+      <workItem from="1706270488364" duration="13301000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
@@ -267,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706110591680</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Récupération des données du quiz">
+      <option name="closed" value="true" />
+      <created>1706276116608</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706276116608</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +281,7 @@
     <MESSAGE value="Changement navbar message &quot;Bonjour user&quot;" />
     <MESSAGE value="Ajout d'un double slider dans detail_question.html.twig" />
     <MESSAGE value="Debug detail_question.html.twig et liste.html.twig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug detail_question.html.twig et liste.html.twig" />
+    <MESSAGE value="Récupération des données du quiz" />
+    <option name="LAST_COMMIT_MESSAGE" value="Récupération des données du quiz" />
   </component>
 </project>
