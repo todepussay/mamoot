@@ -35,11 +35,27 @@ io.on('connection', (socket) => {
         rooms[id_user] = {
             id: socket.id,
             quiz: quiz,
-            code: code
+            code: code,
+            players: []
         };
         console.log("Création d'une nouvelle room");
 
         io.to(socket.id).emit("room", { quiz, code });
+    })
+
+    socket.on("connectedUser", ({ username, code }) => {
+
+        for(let room in rooms){
+            if(rooms[room].code === code){
+                rooms[room].players.push({
+                    username: username,
+                    score: 0
+                });
+            }
+        }
+
+        console.log(rooms);
+
     })
 
 });
@@ -66,5 +82,17 @@ function createCode(){
 
     }
 }
+
+app.post('/party_exist', (req, res) => {
+    let code = req.body.code;
+
+    for(let room in rooms){
+        if(code === rooms[room].code){
+            return res.send({ exist: true });
+        }
+    }
+
+    return res.send({ exist: false });
+})
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

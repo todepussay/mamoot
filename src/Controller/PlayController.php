@@ -84,8 +84,14 @@ class PlayController extends AbstractController
 
     }
 
-    #[Route("/code", name: "play_code")]
-    public function play_code(){
-        return $this->render("play/play.html.twig");
+    #[Route("/{code}", name: "play_code")]
+    public function play_code($code, Request $request){
+        $username = $request->getSession()->get("username");
+        $code = $request->getSession()->get("code");
+
+        return $this->render("play/play.html.twig", [
+            "username" => $username,
+            "code" => $code
+        ]);
     }
 }

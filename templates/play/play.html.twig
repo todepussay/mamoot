@@ -1,0 +1,18 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/play.css") }}">{% endblock %}
+
+{% block main %}
+
+    <script>
+        var socket = io("http://localhost:5000");
+
+        socket.emit("connectedUser", {
+            username: "{{ username }}",
+            code: {{ code }}
+        });
+    </script>
+
+{% endblock %}
