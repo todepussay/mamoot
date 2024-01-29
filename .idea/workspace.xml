@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Récupération des données du quiz">
-      <change afterPath="$PROJECT_DIR$/templates/play/play.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,7 +188,7 @@
       <workItem from="1704957568918" duration="10327000" />
       <workItem from="1706102022558" duration="11596000" />
       <workItem from="1706166954933" duration="13803000" />
-      <workItem from="1706270488364" duration="13301000" />
+      <workItem from="1706270488364" duration="13515000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
@@ -266,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706276116608</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Page création du jeu">
+      <option name="closed" value="true" />
+      <created>1706284160254</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706284160254</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +286,7 @@
     <MESSAGE value="Ajout d'un double slider dans detail_question.html.twig" />
     <MESSAGE value="Debug detail_question.html.twig et liste.html.twig" />
     <MESSAGE value="Récupération des données du quiz" />
-    <option name="LAST_COMMIT_MESSAGE" value="Récupération des données du quiz" />
+    <MESSAGE value="Page création du jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page création du jeu" />
   </component>
 </project>
