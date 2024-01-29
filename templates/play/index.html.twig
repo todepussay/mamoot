@@ -1,0 +1,57 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/play.css") }}">{% endblock %}
+
+{% block main %}
+
+    <script>
+        var socket = io("http://localhost:5000");
+
+        socket.on("room", ({ quiz, code }) => {
+            console.log("Nouvelle salle créée, code de la salle :", code);
+            $('#quiz_name').html(quiz.title);
+            $('#question_number').html(quiz.questions.length);
+            $('#code').html(code);
+        });
+
+        $(document).ready(function(){
+
+            $(window).on('beforeunload', function(){
+                socket.emit("disconnecting", { userId: {{ id_user }} });
+                socket.close();
+            });
+
+            $.ajax({
+                url: "{{ path("get_data") }}",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "id_user": {{ id_user }},
+                    "id_quiz": {{ id_quiz }}
+                }),
+                success: function(res){
+                    console.log(res.quiz);
+                    socket.emit("createdRoom", {
+                        id_user: {{ id_user }},
+                        quiz: res.quiz
+                    })
+                }
+            })
+        })
+    </script>
+
+    <div class="game-container">
+        <div class="header">
+            <h2 id="quiz_name">Nom du quiz</h2>
+            <span id="question_number">999</span>
+            <span id="code">999999</span>
+        </div>
+
+        <div class="participants">
+
+        </div>
+    </div>
+
+{% endblock %}
