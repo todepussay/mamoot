@@ -6,13 +6,195 @@
 
 {% block main %}
 
+    <div class="game-player">
+
+        <div class="pending">
+            <div class="loader">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div class="bar4"></div>
+                <div class="bar5"></div>
+                <div class="bar6"></div>
+                <div class="bar7"></div>
+                <div class="bar8"></div>
+                <div class="bar9"></div>
+                <div class="bar10"></div>
+                <div class="bar11"></div>
+                <div class="bar12"></div>
+            </div>
+            <h2>En attente de l'hôte</h2>
+            <p id="resultat"></p>
+        </div>
+
+        <div class="progress" style="display: none">
+            <div class="header">
+                <span id="timer">30</span>
+                <span><span id="progression">30</span>/<span id="total_questions"></span></span>
+            </div>
+
+            <div class="reponses">
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
     <script>
         var socket = io("http://localhost:5000");
+        var current_question = 0;
+        var quiz = null;
+        var countdown;
+        var reponse_select = null;
+        var id_user;
 
         socket.emit("connectedUser", {
             username: "{{ username }}",
-            code: {{ code }}
+            code: "{{ code }}"
         });
+
+        socket.on("kicked", () => {
+            console.log("kicked !")
+            window.location.href = "{{ path("kicked_player") }}";
+        })
+
+        socket.on("start", ({ quiz_player, id }) => {
+
+            console.log(quiz_player)
+            id_user = id;
+
+            quiz = quiz_player;
+
+            newQuestion();
+        })
+
+        socket.on("skip", () => {
+            if(countdown > 1){
+                countdown = 1;
+            }
+        })
+
+        socket.on("resultatJoueur", ({ position, derriere, score }) => {
+            $("#resultat").show();
+            let place = position === 1 ? "1er" : position + "ème";
+
+            $('#resultat').text(
+                `Vous êtes ${place}${position !== 1 ? ` derrière ${derriere}.` : "."} Avec un score de ${score}`
+            );
+        })
+
+        socket.on("next", () => {
+            console.log("next")
+            newQuestion();
+        })
+
+        $(document).ready(function() {
+
+            $(window).on('beforeunload', function () {
+                socket.emit("disconnectingUser", {
+                    code: "{{ code }}"
+                });
+                socket.close();
+
+            });
+        });
+
+        function newQuestion(){
+            $('#resultat').hide();
+            $('.pending').hide();
+            $('.progress').show();
+            current_question++;
+            console.log(current_question);
+            $('#timer').text(quiz[current_question -1].temps);
+            $('#total_questions').text(quiz.length);
+            $('#progression').text(current_question);
+            countdown = quiz[current_question - 1].temps
+
+            let number_reponse = 0;
+
+            if(quiz[current_question - 1].type === "vraifaux"){
+                number_reponse = 2;
+            } else if(quiz[current_question - 1].type === "quiz") {
+                number_reponse = quiz[current_question - 1].number;
+            }
+
+            $('.reponses').html("");
+
+            if(quiz[current_question - 1].type === "curseur"){
+                $(".reponses")
+                    .append(
+                        $("<p>")
+                            .text("Valeur : ")
+                    )
+                    .append(
+                        $("<input>")
+                            .attr("min", quiz[current_question].minimumCurseur)
+                            .attr("max", quiz[current_question].maximumCurseur)
+                            .attr("step", quiz[current_question].interval)
+                    )
+            }
+
+            if(quiz[current_question - 1].type !== "curseur"){
+                for(let i = 0; i < number_reponse; i++){
+                    $('.reponses').append(
+                        $('<button>')
+                            .addClass('reponse')
+                            .data("n", i)
+                            .text(i + 1)
+                            .click((e) => {
+                                $('.progress').hide();
+                                $('.pending').show();
+
+                                let reponse;
+
+                                if(quiz[current_question - 1].type === "vraifaux"){
+                                    reponse = $(e.target).data("n") === "1";
+                                } else if(quiz[current_question - 1].type === "quiz"){
+                                    reponse = $(e.target).data("n");
+                                } else {
+
+                                }
+
+                                socket.emit("reponse", {
+                                    current_question: current_question - 1,
+                                    reponse: reponse,
+                                    id: id_user,
+                                    time: countdown
+                                })
+
+                                clearInterval(interval);
+                            })
+                    );
+                }
+            }
+
+
+            function updateCountdown() {
+
+                $('#timer').text(countdown);
+
+                if (countdown === 0) {
+                    clearInterval(interval);
+                    $('.progress').hide();
+                    $('.pending').show();
+
+                    socket.emit("reponse", {
+                        current_question: current_question - 1,
+                        reponse: null,
+                        id: id_user
+                    })
+
+
+                } else {
+                    countdown--;
+                }
+            }
+
+            let interval = setInterval(updateCountdown, 1000);
+        }
     </script>
 
 {% endblock %}

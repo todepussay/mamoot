@@ -158,6 +158,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    border-radius: 20px 0 0 20px;
 
     /*coller sur la droite de la page de facon à ce que le menu soit à droite*/
     margin-left: auto;

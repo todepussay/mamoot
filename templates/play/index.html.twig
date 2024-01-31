@@ -6,17 +6,120 @@
 
 {% block main %}
 
+    <div class="game-container">
+        <div class="pending">
+            <div class="header">
+                <h2 id="quiz_name">Nom du quiz</h2>
+                <span id="question_number">999</span>
+                <span id="code">999999</span>
+            </div>
+
+            <ul id="participants">
+
+            </ul>
+
+            <button id="start">Lancer le quiz</button>
+        </div>
+
+        <div class="timer-start" style="display: none">
+            <span id="timer-start-time">5</span>
+        </div>
+
+        <div class="progress" style="display: none">
+            <div class="header">
+                <span id="timer">30</span>
+                <span><span id="progression">30</span>/<span id="total_questions"></span></span>
+            </div>
+
+            <div class="question-content">
+                <p id="question"></p>
+            </div>
+
+            <div class="questions">
+
+            </div>
+
+            <div class="btns">
+                <button class="btn" id="next">Passer la question</button>
+            </div>
+        </div>
+
+        <div class="resultat" style="display: none">
+            <div class="hidden-resultat">
+                <button class="btn" id="afficher_resultat">Afficher les resultats</button>
+            </div>
+
+            <div class="content-resutlat" style="display: none">
+                <div class="liste">
+
+                </div>
+
+                <div class="btns">
+                    <button class="btn" onclick="nextQuestion()">Question suivante</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script>
         var socket = io("http://localhost:5000");
+        var participantsHTML = $('#participants');
+        var codeRoom = 0;
+        var current_question = 0;
+        var quiz;
+        let timer_countdown;
 
-        socket.on("room", ({ quiz, code }) => {
+        socket.on("room", ({ quiz_reponse, code }) => {
             console.log("Nouvelle salle créée, code de la salle :", code);
-            $('#quiz_name').html(quiz.title);
-            $('#question_number').html(quiz.questions.length);
+            $('#quiz_name').html(quiz_reponse.title);
+            $('#question_number').html(quiz_reponse.questions.length);
             $('#code').html(code);
+            codeRoom = code;
+            quiz = quiz_reponse;
+            console.log(quiz);
         });
 
+        socket.on("newConnected", ({ id, username }) => {
+            console.log("Nouvelle connexion : ", id);
+
+            participantsHTML.append($("<li>")
+                .attr("id", id)
+                .addClass("participant")
+                .append(
+                    $("<span>")
+                        .text(username)
+                )
+                .append(
+                    $("<button>")
+                        .click(function () {
+                            $("#" + id).remove();
+                            socket.emit("kickedPlayer", {
+                                id: id,
+                                code: codeRoom
+                            })
+                        })
+                        .text("Virer le joueur")
+                )
+            );
+        })
+
+        socket.on("newDisconnected", ({ id }) => {
+            console.log("Deconnexion : ", id);
+            $("#" + id).remove();
+        })
+
         $(document).ready(function(){
+
+            $('#next').click(function(){
+                if(timer_countdown > 1){
+                    timer_countdown = 1;
+                    socket.emit("skipQuestion", {
+                        current_question: current_question - 1,
+                        id: {{ id_user }}
+                    })
+                }
+            })
 
             $(window).on('beforeunload', function(){
                 socket.emit("disconnecting", { userId: {{ id_user }} });
@@ -39,19 +142,165 @@
                     })
                 }
             })
+
+            $('#start').click(function(){
+
+                $('.pending').hide();
+
+                $('.timer-start').show();
+
+                let countdown = 4;
+
+                function updateCountdown() {
+
+                    $('#timer-start-time').text(countdown);
+
+                    if (countdown === 0) {
+                        clearInterval(interval);
+                        socket.emit("startGame", {
+                            id: {{ id_user }}
+                        })
+                        $('#timer-start-time').hide();
+                        nextQuestion();
+                    } else {
+                        countdown--;
+                    }
+                }
+
+                let interval = setInterval(updateCountdown, 1000);
+
+            })
+
+            $('#afficher_resultat').click(function(){
+                $('.hidden-resultat').hide();
+                $('.content-resutlat').show();
+            })
         })
+
+        function nextQuestion(){
+            $('.progress').show();
+            $('.resultat').hide();
+            $('.hidden-resultat').show();
+            $('.content-resutlat').hide();
+            current_question++;
+
+            if(current_question !== 1){
+                socket.emit("nextQuestion", {
+                    id: {{ id_user }}
+                })
+            }
+
+            let question = quiz.questions[current_question - 1];
+
+            $('#timer').text(question.temps);
+            $('#total_questions').text(quiz.questions.length);
+            $('#progression').text(current_question);
+            $('#question').text(question.label);
+            timer_countdown = question.temps;
+
+            console.log(question);
+
+            $('.questions').html("");
+
+            if(question.vraifaux){
+                $('.questions')
+                    .append(
+                        $('<div>')
+                            .addClass("reponse")
+                            .text("Vrai")
+                    )
+                    .append(
+                        $("<div>")
+                            .addClass('reponse')
+                            .text("Faux")
+                    )
+            } else if(question.curseur){
+
+            } else {
+                for(let i = 0; i < question.reponses.length; i++){
+                    $('.questions')
+                        .append(
+                            $('<div>')
+                                .addClass("reponse")
+                                .text(question.reponses[i].reponse)
+                        )
+                }
+            }
+
+            function updateCountdown() {
+
+                $('#timer').text(timer_countdown);
+
+                if (timer_countdown === 0) {
+                    clearInterval(interval);
+                    $('.progress').hide();
+                    afficherResultat();
+                } else {
+                    timer_countdown--;
+                }
+            }
+
+            let interval = setInterval(updateCountdown, 1000);
+        }
+
+        function afficherResultat(){
+            $('.resultat').show();
+
+            $.ajax({
+                url: "http://localhost:5000/get_resultat",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    current_question: current_question - 1,
+                    id: {{ id_user }}
+                }),
+                success: function(res){
+                    let resultat = res.resultat;
+
+                    socket.emit("afficherResultat", {
+                        resultat: resultat
+                    });
+
+                    $('.liste').html("");
+
+                    let ul = $("<ul>")
+                        .addClass("liste_resultat")
+
+                    for(let i = 0; i < resultat.length; i++){
+                        let li = $('<li>')
+                            .addClass("ligne_resultat")
+                            .append(
+                                $("<span>")
+                                    .text(i + 1)
+                            )
+                            .append(
+                                $('<span>')
+                                    .text(" - ")
+                            )
+                            .append(
+                                $('<span>')
+                                    .text(resultat[i].username)
+                            )
+                            .append(
+                                $('<span>')
+                                    .text(" - ")
+                            )
+                            .append(
+                                $('<span>')
+                                    .text(resultat[i].score)
+                            )
+                            .append(
+                                $("<span>")
+                                    .text(resultat[i].good ? "✅" : "❌")
+                            )
+
+                        ul.append(li);
+                    }
+
+                    $('.liste').append(ul);
+                }
+            })
+        }
     </script>
-
-    <div class="game-container">
-        <div class="header">
-            <h2 id="quiz_name">Nom du quiz</h2>
-            <span id="question_number">999</span>
-            <span id="code">999999</span>
-        </div>
-
-        <div class="participants">
-
-        </div>
-    </div>
 
 {% endblock %}

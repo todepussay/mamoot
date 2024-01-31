@@ -84,10 +84,21 @@ class PlayController extends AbstractController
 
     }
 
+    #[Route("/virer", name: "kicked_player")]
+    public function kicked(Request $request){
+        $request->getSession()->clear();
+        return $this->render("play/kicked.html.twig");
+    }
+
     #[Route("/{code}", name: "play_code")]
     public function play_code($code, Request $request){
+
+        if(!$request->getSession()->get("username")){
+            return $this->redirectToRoute("join");
+        }
+
         $username = $request->getSession()->get("username");
-        $code = $request->getSession()->get("code");
+        $request->getSession()->set("code", $code);
 
         return $this->render("play/play.html.twig", [
             "username" => $username,

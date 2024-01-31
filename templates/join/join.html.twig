@@ -56,6 +56,8 @@
                             success: function(res){
                                 if(res.exist){
 
+                                    console.log(username)
+
                                     $.ajax({
                                         url: "{{ path("set_session_username_code") }}",
                                         type: "POST",
@@ -64,14 +66,13 @@
                                             username: username,
                                             code: code
                                         }),
-                                        success: function(res){
-                                            console.log(res);
+                                        success: function(){
+                                            window.location.href = playCodeUrl.replace("__code_placeholder__", code);
                                         }
                                     })
 
-                                    window.location.href = playCodeUrl.replace("__code_placeholder__", code);
                                 } else {
-                                    setError("La partie n'existe pas");
+                                    setError(res.message);
                                 }
                             },
                             error: function(res){
