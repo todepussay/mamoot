@@ -42,10 +42,6 @@
     color: black;
 }
 
-svg {
-    width: 30px;
-    height: 30px;
-}
 
 .card:hover {
     background-color: #d3d3d3;

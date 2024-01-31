@@ -36,7 +36,6 @@ class CreateController extends AbstractController
             $this->quiz = new Quiz();
             return $this->change_title($request);
         }
-
     }
 
     #[Route("/quitter", name: "quitter_quiz_modal")]
@@ -316,46 +315,100 @@ class CreateController extends AbstractController
         }
 
         $quiz = $request->getSession()->get("quiz");
-        $quiz->setCreatedDate(new DateTime());
         $questions = $request->getSession()->get("questions");
 
-        $user = $em->getRepository(User::class)->find($this->getUser()->getId());
-        $quiz->setUser($user);
+        // Check if the quiz already exists in the database
+        if ($quiz->getId()) {
+            // If the quiz exists, fetch it from the database to ensure we have the latest version
+            $existingQuiz = $em->getRepository(Quiz::class)->find($quiz->getId());
 
-        if($quiz->getTitle() == ""){
-            return new JsonResponse(["success" => false, "message" => $translation->trans("Le titre du quiz ne peut pas être vide")]);
-        } else {
-            for($i = count($questions) - 1; $i >= 0; $i--){
-                $question = $questions[$i];
-                if($question->getLabel() == ""){
-                    return new JsonResponse(["success" => false, "message" => $translation->trans("La question ") . ($i + 1) . $translation->trans(" n'est pas valide")]);
-                }
+            if (!$existingQuiz || $existingQuiz->getUser() !== $this->getUser()) {
+                throw $this->createNotFoundException('Quiz not found or unauthorized access');
+            }
 
-                if($question->getCurseur() &&
-                    $question->getMinimumCurseur() == "" &&
-                    $question->getMaximumCurseur() == "" &&
-                    $question->getMinimumValide() == "" &&
-                    $question->getMaximumValide() == ""){
-                    return new JsonResponse(["success" => false, "message" => $translation->trans("La question ") . ($i + 1) . $translation->trans(" n'est pas valide")]);
-                }
+            // Update the existing quiz with the modified details
+            $existingQuiz->setTitle($quiz->getTitle());
+            // ... update other fields as needed
 
-                if($question->getReponses()){
-                    for($j = count($question->getReponses()) - 1; $j >= 0; $j--){
-                        $em->persist($question->getReponses()[$j]);
-                    }
-                }
+            // Remove all existing questions associated with the quiz
+            foreach ($existingQuiz->getQuestions() as $question) {
+                $em->remove($question);
+            }
 
+            // Add the modified questions to the existing quiz
+            foreach ($questions as $question) {
+                $question->setQuiz($existingQuiz);
                 $em->persist($question);
             }
+
+            $em->flush();
+
+            $request->getSession()->remove("quiz");
+            $request->getSession()->remove("questions");
+
+            return new JsonResponse(["success" => true]);
+        } else {
+            // If the quiz doesn't have an ID, it means it's a new quiz, so proceed as before
+            $quiz->setCreatedDate(new DateTime());
+            $user = $em->getRepository(User::class)->find($this->getUser()->getId());
+            $quiz->setUser($user);
+
+            if ($quiz->getTitle() == "") {
+                return new JsonResponse(["success" => false, "message" => $translation->trans("Le titre du quiz ne peut pas être vide")]);
+            } else {
+                foreach ($questions as $question) {
+                    if ($question->getLabel() == "") {
+                        return new JsonResponse(["success" => false, "message" => $translation->trans("La question n'est pas valide")]);
+                    }
+
+                    if ($question->getCurseur() &&
+                        $question->getMinimumCurseur() == "" &&
+                        $question->getMaximumCurseur() == "" &&
+                        $question->getMinimumValide() == "" &&
+                        $question->getMaximumValide() == "") {
+                        return new JsonResponse(["success" => false, "message" => $translation->trans("La question n'est pas valide")]);
+                    }
+
+                    if ($question->getReponses()) {
+                        foreach ($question->getReponses() as $reponse) {
+                            $em->persist($reponse);
+                        }
+                    }
+
+                    $em->persist($question);
+                }
+            }
+
+            $em->persist($quiz);
+
+            $em->flush();
+
+            $request->getSession()->remove("quiz");
+            $request->getSession()->remove("questions");
+
+            return new JsonResponse(["success" => true]);
+        }
+    }
+
+    #[Route("/edit/{id}", name: "edit_quiz")]
+    public function edit(Request $request, int $id, EntityManagerInterface $em)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $quiz = $em->getRepository(Quiz::class)->find($id);
+
+        if (!$quiz || $quiz->getUser() !== $this->getUser()) {
+            throw $this->createNotFoundException('Quiz not found or unauthorized access');
         }
 
-        $em->persist($quiz);
+        // Fetch questions associated with the quiz from the database
+        $questions = $em->getRepository(Question::class)->findBy(['quiz' => $quiz]);
 
-        $em->flush();
+        // Set the quiz and questions in the session
+        $request->getSession()->set('quiz', $quiz);
+        $request->getSession()->set('questions', $questions);
 
-        $request->getSession()->remove("quiz");
-        $request->getSession()->remove("questions");
-
-        return new JsonResponse(["success" => true]);
+        return $this->dashboard($request);
     }
+
 }

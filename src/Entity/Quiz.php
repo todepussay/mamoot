@@ -27,6 +27,9 @@ class Quiz
     #[ORM\Column(type: "date")]
     private $createdDate;
 
+    #[ORM\Column(type: "varbinary", nullable: true)]
+    private $quizz_image;
+
     /**
      * @return mixed
      */
@@ -88,6 +91,23 @@ class Quiz
     public function setUser($user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->quizz_image;
+    }
+
+    /**
+     * @param mixed $quizz_image
+     */
+
+    public function setImage($quizz_image): void
+    {
+        $this->quizz_image = $quizz_image;
     }
 
 
