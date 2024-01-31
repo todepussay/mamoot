@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route("/bibliotheque")]
 class BibliothequeController extends AbstractController
 {
+
+    //
     #[Route('/', name: 'bibliotheque_index')]
     public function index(EntityManagerInterface $em): Response
     {
