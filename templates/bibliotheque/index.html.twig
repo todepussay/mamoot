@@ -22,6 +22,9 @@
                         <h3 class="number">{{ quiz.number }} {% trans %}question(s){% endtrans %}</h3>
                     </div>
                     <div class="card-body">
+                        {% if quiz.image %}
+                            <img src="{{ asset('img/quiz/' ~ quiz.image) }}" class="quiz-image">
+                        {% endif %}
                         <h2 class="title">{{ quiz.title }}</h2>
                     </div>
                     <div class="card-footer">
@@ -35,7 +38,7 @@
         {% endfor %}
     </div>
 
-    {% if liste|length > 20 and displayedCount == 20 %}
+    {% if liste|length > 15 and displayedCount == 15 %}
         <button id="afficher-plus" class="afficher-plus">Afficher plus</button>
     {% endif %}
 {% endblock %}

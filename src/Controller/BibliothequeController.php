@@ -30,13 +30,14 @@ class BibliothequeController extends AbstractController
                 "id" => $item->getId(),
                 "title" => $item->getTitle(),
                 "number" => count($item->getQuestions()),
-                "created" => $item->getCreatedDate()
+                "created" => $item->getCreatedDate(),
+                "image" => $item->getImage() ? $item->getImage() : "logo.png",
             ];
         }
 
         return $this->render('bibliotheque/index.html.twig', [
             "activeTab" => "bibliotheque",
-            "liste" => $liste
+            "liste" => $liste,
         ]);
     }
 

@@ -17,6 +17,9 @@ class Quiz
     #[ORM\Column(type: "string", length: 255)]
     private $title;
 
+    #[ORM\Column(type: "string", nullable: true)]
+    private $image;
+
     #[ORM\OneToMany(mappedBy : "quiz", targetEntity : Question::class, cascade: ["persist", "remove"])]
     private Collection $questions;
 
@@ -26,9 +29,6 @@ class Quiz
 
     #[ORM\Column(type: "date")]
     private $createdDate;
-
-    #[ORM\Column(type: "varbinary", nullable: true)]
-    private $quizz_image;
 
     /**
      * @return mixed
@@ -98,18 +98,16 @@ class Quiz
      */
     public function getImage()
     {
-        return $this->quizz_image;
+        return $this->image;
     }
 
     /**
-     * @param mixed $quizz_image
+     * @param mixed $image
      */
-
-    public function setImage($quizz_image): void
+    public function setImage($image): void
     {
-        $this->quizz_image = $quizz_image;
+        $this->image = $image;
     }
-
 
 
 }

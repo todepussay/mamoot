@@ -151,9 +151,27 @@ class CreateController extends AbstractController
         $questions = $request->getSession()->get("questions");
         $question = $questions[$id];
 
+        if ($question->getVraifaux() == false) {
+            $question->setVraifaux(0);
+        } else {
+            $question->setVraifaux(1);
+        }
+
+        if ($question->getCurseur() == false) {
+            $question->setCurseur(0);
+        } else {
+            $question->setCurseur(1);
+        }
+
+        if ($question->getValeurvraifaux() == false) {
+            $question->setValeurvraifaux(0);
+        } else {
+            $question->setValeurvraifaux(1);
+        }
+
         return $this->render("create/detail_question.html.twig", [
             "question" => $question,
-            "id" => $id
+            "id" => $id,
         ]);
     }
 
@@ -223,16 +241,12 @@ class CreateController extends AbstractController
         $id = $data->id - 1;
         $questions = $request->getSession()->get("questions");
         if (isset($questions[$id])) {
-            // Supprimer l'élément avec l'ID spécifié
             unset($questions[$id]);
 
-            // Mettre à jour la session avec la nouvelle liste de questions
             $request->getSession()->set("questions", $questions);
 
-            // Retourner une réponse JSON indiquant que la suppression a réussi
             return new JsonResponse(['success' => true]);
         } else {
-            // Retourner une réponse JSON indiquant que l'ID n'a pas été trouvé
             return new JsonResponse(['success' => false, 'message' => 'ID not found'], 400);
         }
     }
@@ -317,26 +331,22 @@ class CreateController extends AbstractController
         $quiz = $request->getSession()->get("quiz");
         $questions = $request->getSession()->get("questions");
 
-        // Check if the quiz already exists in the database
         if ($quiz->getId()) {
-            // If the quiz exists, fetch it from the database to ensure we have the latest version
+
             $existingQuiz = $em->getRepository(Quiz::class)->find($quiz->getId());
 
             if (!$existingQuiz || $existingQuiz->getUser() !== $this->getUser()) {
                 throw $this->createNotFoundException('Quiz not found or unauthorized access');
             }
 
-            // Update the existing quiz with the modified details
             $existingQuiz->setTitle($quiz->getTitle());
-            // ... update other fields as needed
 
-            // Remove all existing questions associated with the quiz
             foreach ($existingQuiz->getQuestions() as $question) {
                 $em->remove($question);
             }
 
-            // Add the modified questions to the existing quiz
             foreach ($questions as $question) {
+
                 $question->setQuiz($existingQuiz);
                 $em->persist($question);
             }
@@ -348,7 +358,6 @@ class CreateController extends AbstractController
 
             return new JsonResponse(["success" => true]);
         } else {
-            // If the quiz doesn't have an ID, it means it's a new quiz, so proceed as before
             $quiz->setCreatedDate(new DateTime());
             $user = $em->getRepository(User::class)->find($this->getUser()->getId());
             $quiz->setUser($user);
@@ -395,18 +404,15 @@ class CreateController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $quiz = $em->getRepository(Quiz::class)->find($id);
+        $quiz = $em->getRepository(Quiz::class)->findById($id);
 
-        if (!$quiz || $quiz->getUser() !== $this->getUser()) {
+        if (!$quiz || $quiz[0]->getUser() !== $this->getUser()) {
             throw $this->createNotFoundException('Quiz not found or unauthorized access');
         }
 
-        // Fetch questions associated with the quiz from the database
-        $questions = $em->getRepository(Question::class)->findBy(['quiz' => $quiz]);
 
-        // Set the quiz and questions in the session
-        $request->getSession()->set('quiz', $quiz);
-        $request->getSession()->set('questions', $questions);
+        $request->getSession()->set('quiz', $quiz[0]);
+        $request->getSession()->set('questions', $quiz[0]->getQuestions());
 
         return $this->dashboard($request);
     }

@@ -16,6 +16,15 @@
     margin: 10px;
 }
 
+.quiz-image {
+    width: 25%;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .card-header,
 .card-footer {
     padding: 10px;
