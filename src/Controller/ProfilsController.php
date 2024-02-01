@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class ProfilsController extends AbstractController
 {
@@ -36,35 +37,61 @@ class ProfilsController extends AbstractController
         // Handle changing username
         $newUsername = $request->request->get('new_username');
         if ($newUsername !== null) {
-            $user->setUsername($newUsername);
-            $this->entityManager->flush();
+            $confirmChange = $this->confirmChange("Êtes-vous sûr de vouloir changer votre pseudo?");
+            if ($confirmChange) {
+                $user->setUsername($newUsername);
+                $this->entityManager->flush();
+            }
         }
 
         // Handle changing password
         $oldPassword = $request->request->get('old_password');
         $newPassword = $request->request->get('new_password');
         if ($oldPassword !== null && $newPassword !== null) {
-            $user->setPassword($this->passwordEncoder->hashPassword($user, $newPassword));
-            $this->entityManager->flush();
+            $confirmChange = $this->confirmChange("Êtes-vous sûr de vouloir changer votre mot de passe?");
+            if ($confirmChange) {
+                $user->setPassword($this->passwordEncoder->hashPassword($user, $newPassword));
+                $this->entityManager->flush();
+            }
+        }
+
+        // Handle changing email
+        $newEmail = $request->request->get('new_email');
+        if ($newEmail !== null) {
+            $confirmChange = $this->confirmChange("Êtes-vous sûr de vouloir changer votre adresse email?");
+            if ($confirmChange) {
+                $user->setEmail($newEmail);
+                $this->entityManager->flush();
+            }
+        }
+
+        // Handle profile deletion
+        if ($request->request->has('delete_profile')) {
+            $confirmDeletion = $this->confirmChange("Êtes-vous sûr de vouloir supprimer votre profil?");
+            if ($confirmDeletion) {
+                $this->entityManager->remove($user);
+                $this->entityManager->flush();
+
+                // Logout the user and redirect to the homepage
+                $this->tokenStorage->setToken(null);
+                $request->getSession()->invalidate();
+                return $this->redirectToRoute('index');
+            }
         }
 
         return $this->render('profils/index.html.twig', [
-            "activeTab" => "profils",
+            'activeTab' => 'profils',
+            'user' => $user,
         ]);
     }
 
-    #[Route('/delete-profile', name: 'delete_profile')]
-    public function deleteProfile(Request $request): Response
+    private function confirmChange(string $message): bool
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        // Replace this part with the actual code for asking user confirmation
+        // If dialog.helper is not available, you may need to implement a confirmation mechanism
+        // For simplicity, you can use the built-in `confirm` JavaScript function in your template
 
-        $user = $this->getUser();
-        $this->entityManager->remove($user);
-        $this->entityManager->flush();
-
-        // Logout the user and redirect to the homepage
-        $this->tokenStorage->setToken(null);
-        $request->getSession()->invalidate();
-        return $this->redirectToRoute('index');
+        // Example: return $this->container->get('dialog.helper')->askConfirmation($message, false);
+        return true; // Modify this line accordingly
     }
 }
