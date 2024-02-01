@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>Quiz</title>
+
+{% block body %}
+    <!-- lien de retour vers l'accueil admin -->
+    <a href="{{ path('admin') }}">Go back to admin menu</a>
+
+    <h1>Quiz list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Title</th>
+                <th>Created date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizs %}
+        <!-- affichage des informations de chaque quiz -->
+        <tr>
+            <td>{{ quiz.id }}</td>
+            <td>{{ quiz.user_id }}</td>
+            <td>{{ quiz.title }}</td>
+            <td>{{ quiz.created_date }}</td>
+            <td>
+                <a href="">show</a>
+                <a href="">edit</a>
+            </td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="">Create new</a>
+{% endblock %}
+

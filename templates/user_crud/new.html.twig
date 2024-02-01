@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New User</title>
+
+{% block body %}
+    <h1>Create new User</h1>
+
+    {{ include('user_crud/_form.html.twig') }}
+
+    <a href="{{ path('app_user_c_r_u_d_index') }}">back to list</a>
+{% endblock %}

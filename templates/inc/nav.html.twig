@@ -54,8 +54,8 @@
         {#  <p id="welcome_message">{% trans %}Bonjour{% endtrans %} {{ app.user.username }}</p>#}
 
         {# Si l'utilisateur a le rôle admin #}
-        {% if not is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}">Lien vers la page d'administration</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin') }}">Link to administration page</a>{# Lien vers la page d'administration #}
         {% endif %}
 
     </div>

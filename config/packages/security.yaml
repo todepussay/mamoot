@@ -33,7 +33,9 @@ security:
     access_control:
         #- { path: ^/register$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         #- { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+
+        # ici restreindre pour seulement avoir le role admin autorisé à acceder à la page associé
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
     security:
