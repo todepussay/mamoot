@@ -17,7 +17,7 @@ class HistoriqueController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         $repo = $em->getRepository(QuizHistorique::class);
-        $resultat = $repo->findById($this->getUser()->getId());
+        $resultat = $repo->findByUser($this->getUser()->getId());
 
         dump($resultat);
 
