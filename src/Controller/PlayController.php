@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\PlayerHistorique;
 use App\Entity\Quiz;
+use App\Entity\QuizHistorique;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -24,6 +27,7 @@ class PlayController extends AbstractController
         if(!$request->query->get('id_quiz')){
             return $this->redirectToRoute("bibliotheque_index");
         }
+
         return $this->render('play/index.html.twig', [
             "id_quiz" => $request->query->get("id_quiz"),
             "id_user" => $id_user
@@ -33,6 +37,12 @@ class PlayController extends AbstractController
     #[Route("/get_data", name: "get_data")]
     public function getData(EntityManagerInterface $em, Request $request): JsonResponse
     {
+
+        if (!$request->isXmlHttpRequest()) {
+            return $this->redirectToRoute("bibliotheque_index");
+        }
+
+        $request->getSession()->clear();
 
         $data = json_decode($request->getContent());
 
@@ -90,7 +100,60 @@ class PlayController extends AbstractController
         return $this->render("play/kicked.html.twig");
     }
 
-    #[Route("/{code}", name: "play_code")]
+    #[Route("/fini", name: "finish_quiz")]
+    public function finish(EntityManagerInterface $em, Request $request){
+        $quiz = $request->getSession()->get("quiz");
+
+        if(!$quiz){
+            return $this->redirectToRoute("index");
+        }
+
+        if(!$quiz["is_saved"]){
+            $repo = $em->getRepository(Quiz::class);
+            $resultat = $repo->find($quiz["quiz"]["id"]);
+
+            $party = new QuizHistorique();
+
+            $party->setCreatedDate(new DateTime());
+            $party->setQuiz($resultat);
+
+            for($i = 0; $i < count($quiz["players"]); $i++){
+                $player = new PlayerHistorique();
+                $player->setQuiz($party);
+                $player->setScore($quiz["players"][$i]["score"]);
+                $player->setUsername($quiz["players"][$i]["username"]);
+                $party->addPlayer($player);
+            }
+
+            $em->persist($party);
+            $em->flush();
+
+            $quiz['is_saved'] = true;
+            $request->getSession()->set("quiz", $quiz);
+        }
+
+
+        return $this->render("play/finish.html.twig", [
+            "quiz" => $quiz
+        ]);
+    }
+
+    #[Route("/set_session_quiz", name: "set_session_quiz")]
+    public function set_session_quiz(Request $request){
+
+        if (!$request->isXmlHttpRequest()) {
+            return $this->redirectToRoute("join");
+        }
+
+        $data = json_decode($request->getContent(), true);
+        $quiz = $data['resultat'];
+
+        $request->getSession()->set("quiz", $quiz);
+
+        return new JsonResponse(["success" => true]);
+    }
+
+    #[Route("/{code}", name: "play_code", requirements: ["code" => "[1-9]{6}"])]
     public function play_code($code, Request $request){
 
         if(!$request->getSession()->get("username")){

@@ -66,10 +66,11 @@ io.on('connection', (socket) => {
             quiz_player: quiz_player,
             code: code,
             status: "pending",
-            players: []
+            players: [],
+            is_saved: false
         };
 
-        console.log("Création d'une nouvelle room");
+        console.log(`Création d'une nouvelle room par ${id_user}`);
 
         io.to(socket.id).emit("room", { quiz_reponse: quiz, code: code });
     })
@@ -95,8 +96,6 @@ io.on('connection', (socket) => {
             }
         }
 
-        console.log("connexion: ", rooms["6"].players);
-
     })
 
     socket.on("disconnectingUser", ({ code }) => {
@@ -116,8 +115,6 @@ io.on('connection', (socket) => {
             }
         }
 
-        console.log("deconnexion: ", rooms["6"].players);
-
     })
 
     socket.on("kickedPlayer", ({ id, code }) => {
@@ -133,8 +130,6 @@ io.on('connection', (socket) => {
                 }
             }
         }
-
-        console.log("Kicked : ", rooms["6"].players);
 
     })
 
@@ -160,12 +155,15 @@ io.on('connection', (socket) => {
 
         if(reponse !== null) {
             let good = false;
+
             if(rooms[id].quiz.questions[current_question].vraifaux){
                 if(rooms[id].quiz.questions[current_question].valeurvraifaux === reponse){
                     good = true;
                 }
             } else if(rooms[id].quiz.questions[current_question].curseur){
-
+                if(reponse >= rooms[id].quiz.questions[current_question].minimum_valide && reponse <= rooms[id].quiz.questions[current_question].maximum_valide){
+                    good = true;
+                }
             } else {
                 if (rooms[id].quiz.questions[current_question].reponses[reponse].good) {
                     good = true;
@@ -185,7 +183,28 @@ io.on('connection', (socket) => {
         }
     })
 
-    socket.on("afficherResultat", ({ resultat }) => {
+    socket.on("afficherResultat", ({ id, current_question }) => {
+
+        let resultat = [];
+
+        for(let i = 0; i < rooms[id].players.length; i++){
+            resultat.push({
+                id_user: rooms[id].players[i].id,
+                username: rooms[id].players[i].username,
+                score: rooms[id].players[i].score,
+                good: rooms[id].players[i].bonne_reponse.slice(-1)[0] === current_question
+            });
+        }
+
+        resultat.sort((a, b) => {
+            // Trie par score décroissant
+            if (b.score !== a.score) {
+                return b.score - a.score;
+            }
+
+            // Si les scores sont égaux, trie par ordre alphabétique du nom d'utilisateur
+            return a.username.localeCompare(b.username);
+        });
 
         for(let i = 0; i < resultat.length; i++){
             io.to(resultat[i].id_user).emit("resultatJoueur", {
@@ -249,18 +268,24 @@ app.post('/party_exist', (req, res) => {
 app.post("/get_resultat", (req, res) => {
     const { id, current_question } = req.body;
 
-    let resultat = [];
+    let bonne_reponse = 0;
 
     for(let i = 0; i < rooms[id].players.length; i++){
-        resultat.push({
-            id_user: rooms[id].players[i].id,
-            username: rooms[id].players[i].username,
-            score: rooms[id].players[i].score,
-            good: rooms[id].players[i].bonne_reponse.slice(-1)[0] === current_question
-        });
+        if(rooms[id].players[i].bonne_reponse.slice(-1)[0] === current_question){
+            bonne_reponse += 1;
+        }
     }
 
-    resultat.sort((a, b) => {
+    res.send({ bonne_reponse: bonne_reponse })
+
+})
+
+app.post("/get_resultat_finish", (req, res) => {
+    const { id } = req.body;
+
+    let quiz = rooms[id];
+
+    quiz.players.sort((a, b) => {
         // Trie par score décroissant
         if (b.score !== a.score) {
             return b.score - a.score;
@@ -270,9 +295,11 @@ app.post("/get_resultat", (req, res) => {
         return a.username.localeCompare(b.username);
     });
 
-    return res.send({
-        resultat: resultat
-    });
+    for(let i = 0; i <  quiz.players.length; i++){
+        io.to(quiz.players[i].id).emit("endGame");
+    }
+
+    res.send({ resultat: quiz });
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

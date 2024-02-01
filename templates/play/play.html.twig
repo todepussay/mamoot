@@ -57,13 +57,11 @@
         });
 
         socket.on("kicked", () => {
-            console.log("kicked !")
             window.location.href = "{{ path("kicked_player") }}";
         })
 
         socket.on("start", ({ quiz_player, id }) => {
 
-            console.log(quiz_player)
             id_user = id;
 
             quiz = quiz_player;
@@ -87,8 +85,11 @@
         })
 
         socket.on("next", () => {
-            console.log("next")
             newQuestion();
+        })
+
+        socket.on("endGame", () => {
+            window.location.href = "{{ path("end_game") }}"
         })
 
         $(document).ready(function() {
@@ -107,7 +108,6 @@
             $('.pending').hide();
             $('.progress').show();
             current_question++;
-            console.log(current_question);
             $('#timer').text(quiz[current_question -1].temps);
             $('#total_questions').text(quiz.length);
             $('#progression').text(current_question);
@@ -128,12 +128,39 @@
                     .append(
                         $("<p>")
                             .text("Valeur : ")
+                            .append(
+                                $("<span>")
+                                    .attr("id", "valeur")
+                                    .text(quiz[current_question - 1].minimumCurseur)
+                            )
                     )
                     .append(
                         $("<input>")
-                            .attr("min", quiz[current_question].minimumCurseur)
-                            .attr("max", quiz[current_question].maximumCurseur)
-                            .attr("step", quiz[current_question].interval)
+                            .attr("type", "range")
+                            .attr("min", quiz[current_question - 1].minimumCurseur)
+                            .attr("max", quiz[current_question - 1].maximumCurseur)
+                            .attr("step", quiz[current_question - 1].interval)
+                            .on("input", (e) => {
+                                $('#valeur').text(e.target.value);
+                            })
+                    )
+                    .append(
+                        $("<button>")
+                            .text("Envoyer")
+                            .addClass("btn")
+                            .click((e) => {
+                                $('.progress').hide();
+                                $('.pending').show();
+
+                                socket.emit("reponse", {
+                                    current_question: current_question - 1,
+                                    reponse: $("#valeur").text(),
+                                    id: id_user,
+                                    time: countdown
+                                })
+
+                                clearInterval(interval);
+                            })
                     )
             }
 
@@ -151,7 +178,7 @@
                                 let reponse;
 
                                 if(quiz[current_question - 1].type === "vraifaux"){
-                                    reponse = $(e.target).data("n") === "1";
+                                    reponse = $(e.target).data("n") === 0;
                                 } else if(quiz[current_question - 1].type === "quiz"){
                                     reponse = $(e.target).data("n");
                                 } else {

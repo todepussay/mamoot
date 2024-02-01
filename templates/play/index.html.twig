@@ -50,12 +50,23 @@
             </div>
 
             <div class="content-resutlat" style="display: none">
-                <div class="liste">
+
+                <div>
+                    <div id="bonne_reponse"></div>
+                    <div id="mauvaise_reponse"></div>
+                </div>
+
+                <div class="question-content">
+                    <p id="question-resultat"></p>
+                </div>
+
+                <div class="questions-resultat">
 
                 </div>
 
                 <div class="btns">
-                    <button class="btn" onclick="nextQuestion()">Question suivante</button>
+                    <button class="btn" id="nextQuestion" onclick="nextQuestion()">Question suivante</button>
+                    <button class="btn" id="finishQuiz" onclick="finishQuiz()" style="display: none">Finir le Quiz</button>
                 </div>
             </div>
 
@@ -69,19 +80,18 @@
         var current_question = 0;
         var quiz;
         let timer_countdown;
+        let total_participants = 0;
 
         socket.on("room", ({ quiz_reponse, code }) => {
-            console.log("Nouvelle salle créée, code de la salle :", code);
             $('#quiz_name').html(quiz_reponse.title);
             $('#question_number').html(quiz_reponse.questions.length);
             $('#code').html(code);
             codeRoom = code;
             quiz = quiz_reponse;
-            console.log(quiz);
         });
 
         socket.on("newConnected", ({ id, username }) => {
-            console.log("Nouvelle connexion : ", id);
+            total_participants++;
 
             participantsHTML.append($("<li>")
                 .attr("id", id)
@@ -105,7 +115,6 @@
         })
 
         socket.on("newDisconnected", ({ id }) => {
-            console.log("Deconnexion : ", id);
             $("#" + id).remove();
         })
 
@@ -135,7 +144,6 @@
                     "id_quiz": {{ id_quiz }}
                 }),
                 success: function(res){
-                    console.log(res.quiz);
                     socket.emit("createdRoom", {
                         id_user: {{ id_user }},
                         quiz: res.quiz
@@ -177,12 +185,45 @@
             })
         })
 
+        function finishQuiz(){
+
+            $.ajax({
+                url: "http://localhost:5000/get_resultat_finish",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    id: {{ id_user }}
+                }),
+                success: function(res){
+
+                    $.ajax({
+                        url: "{{ path("set_session_quiz") }}",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            resultat: res.resultat
+                        }),
+                        success: function(resultat){
+                            window.location.href = "{{ path("finish_quiz") }}";
+                        }
+                    })
+
+                }
+            })
+
+        }
+
         function nextQuestion(){
             $('.progress').show();
             $('.resultat').hide();
             $('.hidden-resultat').show();
             $('.content-resutlat').hide();
             current_question++;
+
+            if(current_question === quiz.questions.length){
+                $('#nextQuestion').hide();
+                $('#finishQuiz').show();
+            }
 
             if(current_question !== 1){
                 socket.emit("nextQuestion", {
@@ -198,7 +239,7 @@
             $('#question').text(question.label);
             timer_countdown = question.temps;
 
-            console.log(question);
+            $('#question').text(question.label);
 
             $('.questions').html("");
 
@@ -255,49 +296,57 @@
                     id: {{ id_user }}
                 }),
                 success: function(res){
-                    let resultat = res.resultat;
+                    $('#bonne_reponse').text(
+                        `Bonne réponse : ${res.bonne_reponse} ✔️`
+                    )
+                    $("#mauvaise_reponse").text(
+                        `Mauvaise réponse : ${total_participants - res.bonne_reponse} ❌`
+                    )
 
                     socket.emit("afficherResultat", {
-                        resultat: resultat
+                        id: {{ id_user }},
+                        current_question: current_question - 1
                     });
 
-                    $('.liste').html("");
+                    let question = quiz.questions[current_question - 1];
 
-                    let ul = $("<ul>")
-                        .addClass("liste_resultat")
+                    $('.questions-resultat').html("");
 
-                    for(let i = 0; i < resultat.length; i++){
-                        let li = $('<li>')
-                            .addClass("ligne_resultat")
-                            .append(
-                                $("<span>")
-                                    .text(i + 1)
-                            )
-                            .append(
-                                $('<span>')
-                                    .text(" - ")
-                            )
-                            .append(
-                                $('<span>')
-                                    .text(resultat[i].username)
-                            )
-                            .append(
-                                $('<span>')
-                                    .text(" - ")
-                            )
-                            .append(
-                                $('<span>')
-                                    .text(resultat[i].score)
-                            )
-                            .append(
-                                $("<span>")
-                                    .text(resultat[i].good ? "✅" : "❌")
-                            )
+                    $("#question-resultat").text(question.label);
 
-                        ul.append(li);
+                    if(question.vraifaux){
+                        $('.questions-resultat')
+                            .append(
+                                $('<div>')
+                                    .addClass("reponse-resultat")
+                                    .text(`Vrai ${question.valeurvraifaux ? " ✔️" : " ❌"}`)
+                            )
+                            .append(
+                                $("<div>")
+                                    .addClass('reponse')
+                                    .text(`Faux ${question.valeurvraifaux ? " ❌" : " ✔️"}`)
+                            )
+                    } else if(question.curseur){
+                        $('.questions-resultat')
+                            .append(
+                                $("<p>")
+                                    .addClass("reponse-resultat")
+                                    .text(
+                                        question.minimum_valide === question.maximum_valide ?
+                                            `La bonne réponse est ${question.minimum_valide}` :
+                                            `La bonne réponse est comprise entre ${question.minimum_valide} et ${question.maximum_valide}`
+                                    )
+                            )
+                    } else {
+                        for(let i = 0; i < question.reponses.length; i++){
+                            $('.questions-resultat')
+                                .append(
+                                    $('<div>')
+                                        .addClass("reponse-resultat")
+                                        .text(`${question.reponses[i].reponse} ${question.reponses[i].good ? " ✔️" : " ❌"}`)
+                                )
+                        }
                     }
-
-                    $('.liste').append(ul);
                 }
             })
         }
