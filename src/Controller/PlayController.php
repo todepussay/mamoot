@@ -153,11 +153,15 @@ class PlayController extends AbstractController
         return new JsonResponse(["success" => true]);
     }
 
-    #[Route("/{code}", name: "play_code", requirements: ["code" => "[1-9]{6}"])]
+    #[Route("/{code}", name: "play_code")]
     public function play_code($code, Request $request){
 
         if(!$request->getSession()->get("username")){
             return $this->redirectToRoute("join");
+        }
+
+        if(!preg_match("/^[1-9]{6}$/", $code)){
+            $this->redirectToRoute("join");
         }
 
         $username = $request->getSession()->get("username");

@@ -19,6 +19,11 @@ class JoinController extends AbstractController
 
     #[Route("/session", name: "set_session_username_code")]
     public function session(Request $request): JsonResponse {
+
+        if (!$request->isXmlHttpRequest()) {
+            return $this->redirectToRoute("bibliotheque_index");
+        }
+
         $data = json_decode($request->getContent(), true);
         $username = $data['username'];
         $code = $data["code"];
