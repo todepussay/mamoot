@@ -21,6 +21,14 @@ class QuizHistoriqueRepository extends ServiceEntityRepository
         parent::__construct($registry, QuizHistorique::class);
     }
 
+    public function findById(int $id){
+        return $this->createQueryBuilder("q")
+            ->andWhere("q.user_id = :id")
+            ->setParameter("id", $id)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return QuizHistorique[] Returns an array of QuizHistorique objects
 //     */

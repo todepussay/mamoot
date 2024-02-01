@@ -15,6 +15,10 @@ class QuizHistorique
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(targetEntity: "User", inversedBy: "quizHistorique")]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private $user;
+
     #[ORM\ManyToOne(inversedBy : "historiques")]
     #[ORM\JoinColumn(nullable : false)]
     private ?Quiz $quiz = null;
@@ -75,4 +79,22 @@ class QuizHistorique
     {
         $this->getPlayers()->add($player);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
+
 }

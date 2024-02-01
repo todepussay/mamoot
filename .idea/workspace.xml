@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/JoinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JoinController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoriqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoriqueController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PlayController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/QuizHistorique.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/QuizHistorique.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuizHistoriqueRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizHistoriqueRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +153,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v2",
+    "git-widget-placeholder": "Tom",
     "javascript.nodejs.core.library.configured.version": "18.17.1",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
     "last_opened_file_path": "C:/wamp64/www/mamoot",
@@ -204,7 +210,7 @@
       <workItem from="1706623364541" duration="3382000" />
       <workItem from="1706688340330" duration="10111000" />
       <workItem from="1706771475832" duration="12351000" />
-      <workItem from="1706788826331" duration="5694000" />
+      <workItem from="1706788826331" duration="8601000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />

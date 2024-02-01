@@ -116,6 +116,7 @@ class PlayController extends AbstractController
 
             $party->setCreatedDate(new DateTime());
             $party->setQuiz($resultat);
+            $party->setUser($this->getUser());
 
             for($i = 0; $i < count($quiz["players"]); $i++){
                 $player = new PlayerHistorique();
@@ -151,6 +152,11 @@ class PlayController extends AbstractController
         $request->getSession()->set("quiz", $quiz);
 
         return new JsonResponse(["success" => true]);
+    }
+
+    #[Route("/fin", name: "end_game")]
+    public function end(){
+        return $this->render("play/end.html.twig");
     }
 
     #[Route("/{code}", name: "play_code")]
