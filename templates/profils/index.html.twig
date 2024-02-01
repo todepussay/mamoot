@@ -3,13 +3,15 @@
 {% block title %}Profils{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ asset("css/join.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/profils.css") }}">
     <style>
         /* Additional styles specific to this template */
     </style>
 {% endblock %}
 
 {% block main %}
+    <div class="form">
+
     <h2>{% trans %}Profils{% endtrans %}</h2>
 
     <p>Pseudo: {{ user.username }}</p>
@@ -64,4 +66,6 @@
             return confirm("Êtes-vous sûr de vouloir supprimer votre profil?");
         }
     </script>
+    </div>
 {% endblock %}
+
