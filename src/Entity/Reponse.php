@@ -19,7 +19,7 @@ class Reponse
     #[ORM\Column(type: "boolean")]
     private $good;
 
-    #[ORM\ManyToOne(cascade: ["persist"], inversedBy: "reponses")]
+    #[ORM\ManyToOne(cascade: ["persist", "remove"], inversedBy: "reponses")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Question $question = null;
 

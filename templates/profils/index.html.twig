@@ -31,6 +31,11 @@
         <button type="submit" name="change_password">Changer Mot de passe</button>
     </form>
 
+    <h1>Supprimer Profil</h1>
+    <form action="{{ path('delete_profile') }}" method="post" onsubmit="return confirmProfileDeletion();">
+        <button type="submit" name="delete_profile">Supprimer Profil</button>
+    </form>
+
     <script>
         function confirmUsernameChange() {
             return confirm("Êtes-vous sûr de vouloir modifier votre pseudo?");
@@ -39,5 +44,10 @@
         function confirmPasswordChange() {
             return confirm("Êtes-vous sûr de vouloir modifier votre mot de passe?");
         }
+
+        function confirmProfileDeletion() {
+            return confirm("Êtes-vous sûr de vouloir supprimer votre profil? Cette action est irréversible.");
+        }
     </script>
 {% endblock %}
+

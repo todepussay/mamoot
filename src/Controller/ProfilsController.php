@@ -7,18 +7,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; // Import UserPasswordHasherInterface
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ProfilsController extends AbstractController
 {
     private EntityManagerInterface $entityManager;
-    private UserPasswordHasherInterface $passwordEncoder; // Injected UserPasswordHasherInterface
+    private UserPasswordHasherInterface $passwordEncoder;
+    private TokenStorageInterface $tokenStorage;
 
-    // Constructor to inject the EntityManagerInterface and UserPasswordHasherInterface
-    public function __construct(EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordEncoder)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        UserPasswordHasherInterface $passwordEncoder,
+        TokenStorageInterface $tokenStorage
+    ) {
         $this->entityManager = $entityManager;
-        $this->passwordEncoder = $passwordEncoder; // Set the injected UserPasswordHasherInterface
+        $this->passwordEncoder = $passwordEncoder;
+        $this->tokenStorage = $tokenStorage;
     }
 
     #[Route('/profils', name: 'user_profile')]
@@ -32,7 +37,7 @@ class ProfilsController extends AbstractController
         $newUsername = $request->request->get('new_username');
         if ($newUsername !== null) {
             $user->setUsername($newUsername);
-            $this->entityManager->flush(); // Use the injected EntityManagerInterface
+            $this->entityManager->flush();
         }
 
         // Handle changing password
@@ -40,12 +45,26 @@ class ProfilsController extends AbstractController
         $newPassword = $request->request->get('new_password');
         if ($oldPassword !== null && $newPassword !== null) {
             $user->setPassword($this->passwordEncoder->hashPassword($user, $newPassword));
-            $this->entityManager->flush(); // Use the injected EntityManagerInterface
+            $this->entityManager->flush();
         }
 
         return $this->render('profils/index.html.twig', [
             "activeTab" => "profils",
         ]);
     }
-}
 
+    #[Route('/delete-profile', name: 'delete_profile')]
+    public function deleteProfile(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $user = $this->getUser();
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+
+        // Logout the user and redirect to the homepage
+        $this->tokenStorage->setToken(null);
+        $request->getSession()->invalidate();
+        return $this->redirectToRoute('index');
+    }
+}
