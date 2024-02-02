@@ -46,10 +46,16 @@ class QuizRepository extends ServiceEntityRepository
 
     public function findAllQuiz(){
         return $this->createQueryBuilder("q")
+            #questions du quiz
             ->leftJoin('q.questions', 'question')
             ->addSelect('question')
+
+            #reponses des questions
             ->leftJoin("question.reponses", "reponse")
             ->addSelect("reponse")
+            #utilisateurs
+            ->leftJoin("q.user", "user")
+            ->addSelect("user")
             ->getQuery()
             ->getResult();
     }

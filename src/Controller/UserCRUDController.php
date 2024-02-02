@@ -78,4 +78,25 @@ class UserCRUDController extends AbstractController
 
         return $this->redirectToRoute('app_user_c_r_u_d_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/toggle-role/{id}', name: 'app_user_toggle_role', methods: ['POST'])]
+    public function toggleRole(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
+    {
+        $userId = $request->get('id');
+        $user = $userRepository->find($userId);
+
+        if (!$user) {
+            throw $this->createNotFoundException('User not found');
+        }
+
+        // Alterner entre les rôles d'utilisateur et d'administrateur
+        $roles = $user->getRoles();
+        $newRole = in_array('ROLE_ADMIN', $roles) ? ['ROLE_USER'] : ['ROLE_ADMIN'];
+        $user->setRoles($newRole);
+
+        // Enregistrement en base de données
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user_c_r_u_d_index');
+    }
 }

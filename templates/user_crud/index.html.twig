@@ -16,6 +16,7 @@
                 <th>Email</th>
                 <th>Password</th>
                 <th>DateCreated</th>
+                <th>Role</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,9 +28,19 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.dateCreated ? user.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.roles[0] }}</td>
                 <td>
                     <a href="{{ path('app_user_c_r_u_d_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_user_c_r_u_d_edit', {'id': user.id}) }}">edit</a>
+                </td>
+                <td>
+                    <!-- alterner le role d'un user -->
+                    {{ include('user_crud/_role_form.html.twig') }}
+
+                </td>
+                <td>
+                    <!-- suppression d'un user -->
+                    {{ include('user_crud/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -39,6 +50,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_user_c_r_u_d_new') }}">Create new</a>
 {% endblock %}
