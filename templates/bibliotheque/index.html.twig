@@ -13,9 +13,8 @@
 {% block main %}
     <div class="card-container">
         {% set displayedCount = 0 %}
-        {% set sortedListe = liste|sort((a, b) => b.created.timestamp() - a.created.timestamp()) %}
-        {% for quiz in sortedListe %}
-            {% if displayedCount < 20 %}
+        {% for quiz in pagination %}
+            {% if displayedCount < 15 %}
                 <div class="card">
                     <div class="card-header">
                         <h3 class="date">{{ quiz.created|date('d/m/Y') }}</h3>
@@ -38,7 +37,7 @@
         {% endfor %}
     </div>
 
-    {% if liste|length > 15 and displayedCount == 15 %}
-        <button id="afficher-plus" class="afficher-plus">Afficher plus</button>
-    {% endif %}
+    <div class="pagination">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

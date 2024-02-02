@@ -9,6 +9,7 @@
         "ext-iconv": "*",
         "doctrine/doctrine-migrations-bundle": "*",
         "doctrine/orm": "*",
+        "knplabs/knp-paginator-bundle": "^6.3",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "6.3.*",

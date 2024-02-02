@@ -29,7 +29,7 @@ class QuizType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'required' => false,
-                'label' => 'Quiz Image',
+                'label' => 'Image',
             ])
             ->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit']);
         ;
