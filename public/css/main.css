@@ -10,6 +10,17 @@
     font-family: "Roboto Slab", sans-serif;
     color: black;
 }
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+}
+
 .ionicon {
     width: 40px;
     color: white;
@@ -62,6 +73,15 @@ nav {
     padding: 60px 30px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+.hide-nav {
+    animation: hide-nav 1.3s forwards;
+}
+
+.show-nav {
+    animation: show-nav 1.3s forwards;
 }
 
 nav .background-nav {
@@ -171,7 +191,8 @@ nav ul li:last-child a:hover {
 .circles {
     position: absolute;
     z-index: -1;
-    width: calc(100vw - 250px);
+    left: 0;
+    width: 100vw;
     height: 100%;
     overflow: hidden;
     opacity: 0.5;
@@ -231,6 +252,34 @@ nav ul li:last-child a:hover {
 .circle:nth-child(8){
     top: 60%;
     left: 30%;
+}
+
+
+
+@-webkit-keyframes hide-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+        width: 300px;
+    }
+    100%{
+        -webkit-transform:translateX(-300px);
+        transform: translateX(-300px);
+        width: 0px;
+    }
+}
+
+@-webkit-keyframes show-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+        width: 0px;
+    }
+    100%{
+        -webkit-transform:translateX(+300px);
+        transform: translateX(+300px);
+        width: 300px;
+    }
 }
 
 @-webkit-keyframes slide-tr{
