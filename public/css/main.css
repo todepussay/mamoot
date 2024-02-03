@@ -7,6 +7,7 @@
     --light-green: #00bc13;
     --medium-green: #1f5f1f;
     --dark-green: #163315;
+    --white-background: rgba(176, 181, 176);
     font-family: "Roboto Slab", sans-serif;
     color: black;
 }
@@ -82,6 +83,30 @@ nav {
 
 .show-nav {
     animation: show-nav 1.3s forwards;
+}
+
+@-webkit-keyframes hide-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+    }
+    100%{
+        -webkit-transform:translateX(-300px);
+        transform: translateX(-300px);
+    }
+}
+
+@-webkit-keyframes show-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+        width: 0px;
+    }
+    100%{
+        -webkit-transform:translateX(+300px);
+        transform: translateX(+300px);
+        width: 300px;
+    }
 }
 
 nav .background-nav {
@@ -252,34 +277,6 @@ nav ul li:last-child a:hover {
 .circle:nth-child(8){
     top: 60%;
     left: 30%;
-}
-
-
-
-@-webkit-keyframes hide-nav {
-    0%{
-        -webkit-transform:translateX(0);
-        transform: translateX(0);
-        width: 300px;
-    }
-    100%{
-        -webkit-transform:translateX(-300px);
-        transform: translateX(-300px);
-        width: 0px;
-    }
-}
-
-@-webkit-keyframes show-nav {
-    0%{
-        -webkit-transform:translateX(0);
-        transform: translateX(0);
-        width: 0px;
-    }
-    100%{
-        -webkit-transform:translateX(+300px);
-        transform: translateX(+300px);
-        width: 300px;
-    }
 }
 
 @-webkit-keyframes slide-tr{

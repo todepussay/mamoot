@@ -7,9 +7,10 @@
 {% block main %}
 
     <div class="rejoindre">
-        <h2>{% trans %}Rejoindre{% endtrans %}</h2>
 
         <form id="form" action="/">
+            <h2>{% trans %}Rejoindre{% endtrans %}</h2>
+
             <div class="input-group">
                 <label for="username">Pseudonyme</label>
                 <input type="text" id="username" name="username">
@@ -24,7 +25,7 @@
                 <p id="error-message"></p>
             </div>
 
-            <input type="submit" value="Rejoindre">
+            <input class="btn" type="submit" value="Rejoindre">
         </form>
     </div>
 

@@ -23,13 +23,14 @@
                 <div class="bar11"></div>
                 <div class="bar12"></div>
             </div>
-            <h2>En attente de l'hôte</h2>
-            <p id="resultat"></p>
+            <p>En attente de l'hôte</p>
+            <p id="resultat" style="display: none"></p>
         </div>
 
         <div class="progress" style="display: none">
             <div class="header">
                 <span id="timer">30</span>
+                <span id="score">0</span>
                 <span><span id="progression">30</span>/<span id="total_questions"></span></span>
             </div>
 
@@ -76,6 +77,7 @@
         })
 
         socket.on("resultatJoueur", ({ position, derriere, score }) => {
+            $('#score').text(score)
             $("#resultat").show();
             let place = position === 1 ? "1er" : position + "ème";
 
@@ -93,6 +95,11 @@
         })
 
         $(document).ready(function() {
+
+            $(".nav").addClass("hide-nav");
+            $('.nav').on("animationend", function(){
+                $('.nav').hide();
+            })
 
             $(window).on('beforeunload', function () {
                 socket.emit("disconnectingUser", {
@@ -126,74 +133,104 @@
             if(quiz[current_question - 1].type === "curseur"){
                 $(".reponses")
                     .append(
-                        $("<p>")
-                            .text("Valeur : ")
+                        $('<div>')
+                            .addClass("reponse-curseur")
                             .append(
-                                $("<span>")
-                                    .attr("id", "valeur")
-                                    .text(quiz[current_question - 1].minimumCurseur)
+                                $("<p>")
+                                    .text("Valeur : ")
+                                    .append(
+                                        $("<span>")
+                                            .attr("id", "valeur")
+                                            .text(quiz[current_question - 1].minimumCurseur)
+                                    )
                             )
-                    )
-                    .append(
-                        $("<input>")
-                            .attr("type", "range")
-                            .attr("min", quiz[current_question - 1].minimumCurseur)
-                            .attr("max", quiz[current_question - 1].maximumCurseur)
-                            .attr("step", quiz[current_question - 1].interval)
-                            .on("input", (e) => {
-                                $('#valeur').text(e.target.value);
-                            })
-                    )
-                    .append(
-                        $("<button>")
-                            .text("Envoyer")
-                            .addClass("btn")
-                            .click((e) => {
-                                $('.progress').hide();
-                                $('.pending').show();
+                            .append(
+                                $("<input>")
+                                    .attr("type", "range")
+                                    .attr("min", quiz[current_question - 1].minimumCurseur)
+                                    .attr("max", quiz[current_question -  1].maximumCurseur)
+                                    .attr("step", quiz[current_question - 1].interval)
+                                    .on("input", (e) => {
+                                        $('#valeur').text(e.target.value);
+                                    })
+                            )
+                            .append(
+                                $("<button>")
+                                    .text("Envoyer")
+                                    .addClass("btn")
+                                    .attr("id", "envoyer-curseur")
+                                    .click((e) => {
+                                        $('.progress').hide();
+                                        $('.pending').show();
 
-                                socket.emit("reponse", {
-                                    current_question: current_question - 1,
-                                    reponse: $("#valeur").text(),
-                                    id: id_user,
-                                    time: countdown
-                                })
+                                        socket.emit("reponse", {
+                                            current_question: current_question - 1,
+                                            reponse: $("#valeur").text(),
+                                            id: id_user,
+                                            time: countdown
+                                        })
 
-                                clearInterval(interval);
-                            })
+                                        clearInterval(interval);
+                                    })
+                            )
                     )
             }
 
             if(quiz[current_question - 1].type !== "curseur"){
                 for(let i = 0; i < number_reponse; i++){
                     $('.reponses').append(
-                        $('<button>')
-                            .addClass('reponse')
-                            .data("n", i)
-                            .text(i + 1)
-                            .click((e) => {
-                                $('.progress').hide();
-                                $('.pending').show();
+                        $('<div>')
+                            .addClass('reponse-content')
+                            .append(
+                                $('<button>')
+                                    .addClass(`reponse ${
+                                        i === 0 ? "cat" :
+                                            i === 1 ? "dove" :
+                                                i === 2 ? "fish" :
+                                                    i === 3 ? "frog" :
+                                                        i === 4 ? "dog" :
+                                                            i === 5 ? "spider" :
+                                                                i === 6 ? "shrimp" :
+                                                                    "horse"
+                                    }`)
+                                    .data("n", i)
+                                    .append(
+                                        $("<i>")
+                                            .addClass(`fa-solid fa-${
+                                                i === 0 ? "cat" :
+                                                    i === 1 ? "dove" :
+                                                        i === 2 ? "fish" :
+                                                            i === 3 ? "frog" :
+                                                                i === 4 ? "dog" :
+                                                                    i === 5 ? "spider" :
+                                                                        i === 6 ? "shrimp" :
+                                                                            "horse"
+                                            }`)
+                                    )
+                                    .click((e) => {
+                                        $('.progress').hide();
+                                        $('.pending').show();
 
-                                let reponse;
+                                        let reponse;
 
-                                if(quiz[current_question - 1].type === "vraifaux"){
-                                    reponse = $(e.target).data("n") === 0;
-                                } else if(quiz[current_question - 1].type === "quiz"){
-                                    reponse = $(e.target).data("n");
-                                } else {
+                                        if(quiz[current_question - 1].type === "vraifaux"){
+                                            reponse = $(e.target).data("n") === 0;
+                                        } else if(quiz[current_question - 1].type === "quiz"){
+                                            reponse = $(e.target).data("n");
+                                        } else {
 
-                                }
+                                        }
 
-                                socket.emit("reponse", {
-                                    current_question: current_question - 1,
-                                    reponse: reponse,
-                                    id: id_user,
-                                    time: countdown
-                                })
+                                        socket.emit("reponse", {
+                                            current_question: current_question - 1,
+                                            reponse: reponse,
+                                            id: id_user,
+                                            time: countdown
+                                        })
 
-                                clearInterval(interval);
-                            })
+                                        clearInterval(interval);
+                                    })
+                            )
                     );
                 }
             }

@@ -30,19 +30,22 @@
         <div class="progress" style="display: none">
             <div class="header">
                 <span id="timer">30</span>
+                <button class="btn" id="next">Passer la question</button>
                 <span><span id="progression">30</span>/<span id="total_questions"></span></span>
             </div>
 
             <div class="question-content">
-                <p id="question"></p>
+                <p class="question"></p>
+            </div>
+
+            <div class="media" style="display: none">
+                <!-- <img src="https://cdn.paris.fr/paris/2021/10/04/huge-0155e58a77df359c58c437e521a2ed43.jpg" alt=""> -->
+                <!-- <audio src="" controls autoplay></audio> -->
+                <!-- <video src="" controls autoplay></video> -->
             </div>
 
             <div class="questions">
 
-            </div>
-
-            <div class="btns">
-                <button class="btn" id="next">Passer la question</button>
             </div>
         </div>
 
@@ -51,25 +54,36 @@
                 <button class="btn" id="afficher_resultat">Afficher les resultats</button>
             </div>
 
-            <div class="content-resutlat" style="display: none">
+            <div class="content-resutlat">
 
-                <div>
-                    <div id="bonne_reponse"></div>
-                    <div id="mauvaise_reponse"></div>
-                </div>
-
-                <div class="question-content">
-                    <p id="question-resultat"></p>
-                </div>
-
-                <div class="questions-resultat">
-
-                </div>
-
-                <div class="btns">
+                <div class="header header-resultat">
                     <button class="btn" id="nextQuestion" onclick="nextQuestion()">Question suivante</button>
                     <button class="btn" id="finishQuiz" onclick="finishQuiz()" style="display: none">Finir le Quiz</button>
                 </div>
+
+                <div class="bonne-reponse-container">
+
+                    <p id="bonne-reponse"></p>
+                    <div class="bonne-reponse-progressbar">
+                        <div class="bonne-reponse-progress"></div>
+                    </div>
+                </div>
+
+                <div class="question-content">
+                    <p class="question"></p>
+                </div>
+
+                <div class="media" style="display: none">
+                    <!-- <img src="https://cdn.paris.fr/paris/2021/10/04/huge-0155e58a77df359c58c437e521a2ed43.jpg" alt=""> -->
+                    <!-- <audio src="" controls autoplay></audio> -->
+                    <!-- <video src="" controls autoplay></video> -->
+                </div>
+
+                <div class="questions">
+
+                </div>
+
+
             </div>
 
         </div>
@@ -83,6 +97,7 @@
         var quiz;
         let timer_countdown;
         let total_participants = 0;
+        let pourcentage = 0;
 
         socket.on("room", ({ quiz_reponse, code }) => {
             $('#quiz_name').html(quiz_reponse.title);
@@ -162,10 +177,8 @@
             $('#start').click(function(){
 
                 $(".nav").addClass("hide-nav");
-                $('#ul-nav').addClass("hide-nav");
-                $('#welcome_message').addClass("hide-nav");
-                $('.nav').on("animatedend", function(){
-                    $(".nav").css("padding", "0");
+                $('.nav').on("animationend", function(){
+                    $('.nav').hide();
                 })
 
 
@@ -173,7 +186,7 @@
 
                 $('.timer-start').show();
 
-                let countdown = 0; // TEST 4
+                let countdown = 4;
 
                 function updateCountdown() {
 
@@ -198,6 +211,7 @@
             $('#afficher_resultat').click(function(){
                 $('.hidden-resultat').hide();
                 $('.content-resutlat').show();
+                $('.bonne-reponse-progress').css("width", `${pourcentage}%`);
             })
         })
 
@@ -230,6 +244,7 @@
         }
 
         function nextQuestion(){
+            $('.bonne-reponse-progress').css("width", `0`);
             $('.progress').show();
             $('.resultat').hide();
             $('.hidden-resultat').show();
@@ -254,7 +269,7 @@
             $('#progression').text(current_question);
             timer_countdown = question.temps;
 
-            $('#question').text(question.label);
+            $('.question').text(question.label);
 
             $('.questions').html("");
 
@@ -328,37 +343,6 @@
 
                         )
                 }
-                for(let i = 4; i < (question.reponses.length * 2); i++){ // TEST
-                    $('.questions')
-                        .append(
-                            $('<div>')
-                                .addClass("reponse")
-                                .append(
-                                    $('<div>')
-                                        .addClass("reponse-content")
-                                        .append(
-                                            $("<i>")
-                                                .addClass(`fa-solid fa-${
-                                                    i === 0 ? "cat" :
-                                                        i === 1 ? "dove" :
-                                                            i === 2 ? "fish" :
-                                                                i === 3 ? "frog" :
-                                                                    i === 4 ? "dog" :
-                                                                        i === 5 ? "spider" :
-                                                                            i === 6 ? "shrimp" :
-                                                                                "horse"
-                                                }`)
-                                        )
-                                        .append(
-                                            $("<span>")
-                                                .text(question.reponses[i - 4].reponse)
-                                        )
-                                )
-
-
-
-                        )
-                }
             }
 
             function updateCountdown() {
@@ -370,7 +354,7 @@
                     $('.progress').hide();
                     afficherResultat();
                 } else {
-                    // timer_countdown--; // TEST
+                    timer_countdown--;
                 }
             }
 
@@ -389,12 +373,6 @@
                     id: {{ id_user }}
                 }),
                 success: function(res){
-                    $('#bonne_reponse').text(
-                        `Bonne réponse : ${res.bonne_reponse} ✔️`
-                    )
-                    $("#mauvaise_reponse").text(
-                        `Mauvaise réponse : ${total_participants - res.bonne_reponse} ❌`
-                    )
 
                     socket.emit("afficherResultat", {
                         id: {{ id_user }},
@@ -403,27 +381,67 @@
 
                     let question = quiz.questions[current_question - 1];
 
-                    $('.questions-resultat').html("");
+                    $('.questions').html("");
 
-                    $("#question-resultat").text(question.label);
+                    $(".question").text(question.label);
+
+                    pourcentage = Math.floor((res.bonne_reponse / total_participants) * 100);
+
+                    var texte;
+
+                    if(res.bonne_reponse === 0){
+                        texte = `Personne n'a trouvé la réponse`;
+                    } else if(res.bonne_reponse === total_participants){
+                        texte = `Tout le monde a trouvé la bonne réponse`;
+                    } else if(res.bonne_reponse === 1){
+                        texte = `Une seule personne a trouvé la bonne réponse`;
+                    } else if(res.bonne_reponse > 1){
+                        texte = `${res.bonne_reponse} ont trouvé la bonne réponse`;
+                    }
+
+                    $('#bonne-reponse').text(texte);
 
                     if(question.vraifaux){
-                        $('.questions-resultat')
+                        $('.questions')
                             .append(
                                 $('<div>')
-                                    .addClass("reponse-resultat")
-                                    .text(`Vrai ${question.valeurvraifaux ? " ✔️" : " ❌"}`)
+                                    .addClass("reponse")
+                                    .append(
+                                        $('<div>')
+                                            .addClass(`reponse-content ${question.valeurvraifaux ? "reponse-content-bonne" : ""}`)
+                                            .append(
+                                                $('<i>')
+                                                    .addClass("fa-solid fa-cat")
+                                            )
+                                            .append(
+                                                $('<span>')
+                                                    .text("Vrai")
+                                            )
+                                    )
+
                             )
                             .append(
                                 $("<div>")
                                     .addClass('reponse')
-                                    .text(`Faux ${question.valeurvraifaux ? " ❌" : " ✔️"}`)
+                                    .append(
+                                        $("<div>")
+                                            .addClass(`reponse-content ${question.valeurvraifaux ? "" : "reponse-content-bonne"}`)
+                                            .append(
+                                                $('<i>')
+                                                    .addClass("fa-solid fa-dove")
+                                            )
+                                            .append(
+                                                $('<span>')
+                                                    .text("Faux")
+                                            )
+                                    )
+
                             )
                     } else if(question.curseur){
-                        $('.questions-resultat')
+                        $('.questions')
                             .append(
                                 $("<p>")
-                                    .addClass("reponse-resultat")
+                                    .addClass("curseur")
                                     .text(
                                         question.minimum_valide === question.maximum_valide ?
                                             `La bonne réponse est ${question.minimum_valide}` :
@@ -432,17 +450,41 @@
                             )
                     } else {
                         for(let i = 0; i < question.reponses.length; i++){
-                            $('.questions-resultat')
+                            $('.questions')
                                 .append(
                                     $('<div>')
-                                        .addClass("reponse-resultat")
-                                        .text(`${question.reponses[i].reponse} ${question.reponses[i].good ? " ✔️" : " ❌"}`)
+                                        .addClass("reponse")
+                                        .append(
+                                            $('<div>')
+                                                .addClass(`reponse-content ${question.reponses[i].good ? "reponse-content-bonne" : ""}`)
+                                                .append(
+                                                    $("<i>")
+                                                        .addClass(`fa-solid fa-${
+                                                            i === 0 ? "cat" :
+                                                                i === 1 ? "dove" :
+                                                                    i === 2 ? "fish" :
+                                                                        i === 3 ? "frog" :
+                                                                            i === 4 ? "dog" :
+                                                                                i === 5 ? "spider" :
+                                                                                    i === 6 ? "shrimp" :
+                                                                                        "horse"
+                                                        }`)
+                                                )
+                                                .append(
+                                                    $("<span>")
+                                                        .text(question.reponses[i].reponse)
+                                                )
+                                        )
+
+
+
                                 )
                         }
                     }
                 }
             })
         }
+
     </script>
 
 {% endblock %}
