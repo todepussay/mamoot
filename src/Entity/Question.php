@@ -49,7 +49,7 @@ class Question
     #[ORM\JoinColumn(nullable : false)]
     private ?Quiz $quiz = null;
 
-    #[ORM\OneToMany(mappedBy : "question", targetEntity : Reponse::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy : "question", targetEntity : Reponse::class, cascade: ["persist", "remove"])]
     private Collection $reponses;
 
     /**

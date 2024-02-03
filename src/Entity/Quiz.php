@@ -17,14 +17,14 @@ class Quiz
     #[ORM\Column(type: "string", length: 255)]
     private $title;
 
-    #[ORM\OneToMany(mappedBy : "quiz", targetEntity : Question::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy : "quiz", targetEntity : Question::class, cascade: ["persist", "remove"])]
     private Collection $questions;
 
     #[ORM\OneToMany(mappedBy : "quiz", targetEntity : QuizHistorique::class, cascade: ["persist", "remove"])]
     private Collection $historiques;
 
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "quiz")]
-    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "cascade")]
     private $user;
 
     #[ORM\Column(type: "datetime")]

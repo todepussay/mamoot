@@ -33,7 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: "datetime")]
     private $dateCreated;
 
-    #[ORM\OneToMany(targetEntity: "Quiz", mappedBy: "user")]
+    #[ORM\OneToMany(targetEntity: "Quiz", mappedBy: "user", cascade: ["persist", "remove"])]
     private $quiz;
 
     #[ORM\OneToMany(targetEntity: "QuizHistorique", mappedBy: "user")]
