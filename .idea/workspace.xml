@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
-      <change beforePath="$PROJECT_DIR$/public/css/join.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/join.css" afterDir="false" />
-    </list>
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
