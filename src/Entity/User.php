@@ -28,6 +28,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: "string", length: 255)]
     private $password;
 
+
+    #[Column(type: "string", length: 50)]
     private $roles;
 
     #[Column(type: "datetime")]
@@ -97,7 +99,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        return ["ROLE_USER"];
+        return [$this->roles];
+    }
+
+    public function setRoles($roles): void
+    {
+        $this->roles = $roles;
     }
 
     /**

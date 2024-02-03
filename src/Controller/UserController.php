@@ -26,6 +26,9 @@ class UserController extends AbstractController
         $registerForm = $this->createForm(RegisterType::class, $user);
         $registerForm->handleRequest($request);
 
+        //mettre le role user par défaut
+        $user->setRoles("ROLE_USER");
+
         if($registerForm->isSubmitted() && $registerForm->isValid()){
             $hashed = $encoder->hashPassword($user, $user->getPassword());
             $user->setPassword($hashed);

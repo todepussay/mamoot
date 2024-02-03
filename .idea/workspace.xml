@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
-      <change afterPath="$PROJECT_DIR$/public/css/profils.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/new.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_crud/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

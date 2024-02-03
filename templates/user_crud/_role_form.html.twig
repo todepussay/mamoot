@@ -1,0 +1,5 @@
+<!-- alterne entre le rôle de user et admin de la ligne id -->
+<form method="post" action="{{ path('app_user_toggle_role', {'id': user.id}) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token('toggle_role' ~ user.id) }}">
+    <button type="submit">Switch role</button>
+</form>
