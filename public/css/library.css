@@ -29,7 +29,6 @@
 }
 
 .title {
-    font-size: 1.2em;
     color: var(--medium-green);
     text-align: center;
 }
@@ -41,11 +40,6 @@
 
 .edit-link, .play-link, .delete-link {
     color: black;
-}
-
-svg {
-    width: 30px;
-    height: 30px;
 }
 
 .card:hover {

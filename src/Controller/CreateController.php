@@ -76,8 +76,6 @@ class CreateController extends AbstractController
 
     public function dashboard(Request $request){
         $questions = $request->getSession()->get('questions', []);
-        dump($request->getSession()->get("quiz"));
-        dump($request->getSession()->get("questions"));
         return $this->render("create/dashboard.html.twig", [
             "quiz" => $this->quiz,
             "questions" => $questions
