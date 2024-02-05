@@ -32,6 +32,34 @@ class QuizRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findById(int $id){
+        return $this->createQueryBuilder("q")
+            ->leftJoin('q.questions', 'question')
+            ->addSelect('question')
+            ->leftJoin("question.reponses", "reponse")
+            ->addSelect("reponse")
+            ->andWhere("q.id = :id")
+            ->setParameter("id", $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllQuiz(){
+        return $this->createQueryBuilder("q")
+            #questions du quiz
+            ->leftJoin('q.questions', 'question')
+            ->addSelect('question')
+
+            #reponses des questions
+            ->leftJoin("question.reponses", "reponse")
+            ->addSelect("reponse")
+            #utilisateurs
+            ->leftJoin("q.user", "user")
+            ->addSelect("user")
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Quiz[] Returns an array of Quiz objects
 //     */

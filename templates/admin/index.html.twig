@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- lien de retour vers la page d'accueil -->
+<a href="{{ path('index') }}">Go back to website's lobby</a>
+
+<title>Hello AdminController!</title>
+
+{% block body %}
+    <h1>Hello Administrator!</h1>
+    <div>
+        <!-- liste des liens de crud à mettre en include sur le dessous par rapport a la sélection-->
+        <h1>CRUD</h1>
+
+        <!-- lien utilisateurs -->
+        <a href="{{ path('app_user_c_r_u_d_index') }}">User</a>
+
+        <!-- lien quiz -->
+        <a href="{{ path('app_quiz_c_r_u_d_index') }}">Quiz</a>
+    </div>
+
+{% endblock %}

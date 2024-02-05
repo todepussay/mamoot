@@ -15,7 +15,7 @@ class Question
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: "string", length: 255)]
+    #[ORM\Column(type: "string", length: 128)]
     private $label;
 
     #[ORM\Column(type: "boolean")]
@@ -49,7 +49,7 @@ class Question
     #[ORM\JoinColumn(nullable : false)]
     private ?Quiz $quiz = null;
 
-    #[ORM\OneToMany(mappedBy : "question", targetEntity : Reponse::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy : "question", targetEntity : Reponse::class, cascade: ["persist", "remove"])]
     private Collection $reponses;
 
     /**

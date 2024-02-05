@@ -26,6 +26,9 @@ class UserController extends AbstractController
         $registerForm = $this->createForm(RegisterType::class, $user);
         $registerForm->handleRequest($request);
 
+        //mettre le role user par défaut
+        $user->setRoles("ROLE_USER");
+
         if($registerForm->isSubmitted() && $registerForm->isValid()){
             $hashed = $encoder->hashPassword($user, $user->getPassword());
             $user->setPassword($hashed);
@@ -42,12 +45,7 @@ class UserController extends AbstractController
 
     #[Route("/login", name: "login")]
     public function login(){
-
-
-
-        return $this->render("user/login.html.twig", [
-
-        ]);
+        return $this->render("user/login.html.twig");
     }
 
     #[Route("logout", name: "logout")]

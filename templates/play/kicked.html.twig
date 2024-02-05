@@ -1,0 +1,16 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/play.css") }}">{% endblock %}
+
+{% block main %}
+
+
+    <div class="end">
+        <p>Vous avez été virer de la partie par l'hôte</p>
+
+        <a href="{{ path("index") }}" class="btn">Retour au menu</a>
+    </div>
+
+{% endblock %}

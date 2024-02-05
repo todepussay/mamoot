@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<title>Quiz index</title>
+
+{% block body %}
+    <!-- lien de retour vers l'accueil admin -->
+    <a href="{{ path('admin') }}">Go back to admin menu</a>
+
+    <h1>Quiz index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Creator</th>
+            <th>CreatedDate</th>
+            <th>Numbers of questions</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizs %}
+            <tr>
+                <td>{{ quiz.id }}</td>
+                <td>{{ quiz.title }}</td>
+                <td>{{ quiz.user.username }}</td>
+                <td>{{ quiz.createdDate ? quiz.createdDate|date('Y-m-d') : '' }}</td>
+                <td>{{ quiz.questions|length }}</td>
+                <td>
+                    <a href="{{ path('app_quiz_c_r_u_d_show', {'id': quiz.id}) }}">show</a>
+                    <a href="">history</a><!-- historique a mettre en place -->
+                </td>
+                <td>{{ include('quiz_crud/_delete_form.html.twig') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_quiz_c_r_u_d_new') }}">Create new</a>
+{% endblock %}
