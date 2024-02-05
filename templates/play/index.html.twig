@@ -90,7 +90,7 @@
     </div>
 
     <script>
-        var socket = io("http://localhost:5000");
+        var socket = io("https://node.tomdepussay.fr:5000");
         var participantsHTML = $('#participants');
         var codeRoom = 0;
         var current_question = 0;
@@ -218,7 +218,7 @@
         function finishQuiz(){
 
             $.ajax({
-                url: "http://localhost:5000/get_resultat_finish",
+                url: "https://node.tomdepussay.fr:5000/get_resultat_finish",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({
@@ -365,7 +365,7 @@
             $('.resultat').show();
 
             $.ajax({
-                url: "http://localhost:5000/get_resultat",
+                url: "https://node.tomdepussay.fr:5000/get_resultat",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({

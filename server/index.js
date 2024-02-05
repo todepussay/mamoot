@@ -1,6 +1,5 @@
 const express = require('express');
-const http = require('http');
-// const http = require("https");
+const http = require("https");
 const socketIo = require('socket.io');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -16,13 +15,12 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const credentials = {
-//     key: fs.readFileSync("privkey.pem"),
-//     cert: fs.readFileSync("fullchain.pem")
-// };
+const credentials = {
+    key: fs.readFileSync("privkey.pem"),
+    cert: fs.readFileSync("fullchain.pem")
+};
 
-const server = http.createServer(app);
-// const server = http.createServer(credentials, app);
+const server = http.createServer(credentials, app);
 const io = socketIo(server, {
     cors: {
         origin: "*",
