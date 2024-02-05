@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const app = express();
 const port = 5000;
-// TEst
+// TEst test
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST"],
