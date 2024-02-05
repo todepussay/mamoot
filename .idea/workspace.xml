@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
-      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user_crud/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +147,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v2",
+    "git-widget-placeholder": "434e05d8",
     "javascript.nodejs.core.library.configured.version": "18.17.1",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
     "last_opened_file_path": "C:/wamp64/www/mamoot",
