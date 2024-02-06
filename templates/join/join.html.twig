@@ -48,7 +48,7 @@
                         var playCodeUrl = "{{ path("play_code", { "code": "__code_placeholder__" }) }}"
 
                         $.ajax({
-                            url: "https://node.tomdepussay.fr:5000/party_exist",
+                            url: "https://api.tomdepussay.fr:5000/party_exist",
                             type: "POST",
                             contentType: "application/json",
                             data: JSON.stringify({
