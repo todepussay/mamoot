@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu" />
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/join/join.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/join/join.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/play/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/play/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/play/play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/play/play.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
