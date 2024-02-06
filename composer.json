@@ -29,8 +29,7 @@
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "wisembly/elephant.io": "^2.0",
-        "": ""
+        "wisembly/elephant.io": "^2.0"
     },
     "require-dev": {
         "symfony/debug": "*",

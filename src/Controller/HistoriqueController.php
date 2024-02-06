@@ -19,8 +19,6 @@ class HistoriqueController extends AbstractController
         $repo = $em->getRepository(QuizHistorique::class);
         $resultat = $repo->findByUser($this->getUser()->getId());
 
-        dump($resultat);
-
         return $this->render('historique/index.html.twig', [
             "activeTab" => "historique"
         ]);

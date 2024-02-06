@@ -337,12 +337,6 @@ class CreateController extends AbstractController
                     return new JsonResponse(["success" => false, "message" => $translation->trans("La question ") . ($i + 1) . $translation->trans(" n'est pas valide")]);
                 }
 
-                if($question->getReponses()){
-                    for($j = count($question->getReponses()) - 1; $j >= 0; $j--){
-                        $em->persist($question->getReponses()[$j]);
-                    }
-                }
-
                 $em->persist($question);
             }
         }

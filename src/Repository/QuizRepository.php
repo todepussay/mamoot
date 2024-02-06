@@ -40,6 +40,7 @@ class QuizRepository extends ServiceEntityRepository
             ->addSelect("reponse")
             ->andWhere("q.id = :id")
             ->setParameter("id", $id)
+            ->orderBy("reponse.id", "DESC")
             ->getQuery()
             ->getResult();
     }
