@@ -141,6 +141,10 @@
             $("#" + id).remove();
         })
 
+        socket.on("allPlayerResponse", () => {
+            timer_countdown = 1;
+        })
+
         $(document).ready(function(){
 
             $('#next').click(function(){

@@ -36,15 +36,15 @@ io.on('connection', (socket) => {
 
         let quiz_player = [];
 
-        for(let i = 0; i < quiz.questions.length; i++){
+        for(let i = 0; i < quiz.questions.length; i++) {
             let question = quiz.questions[i];
 
-            if(question.vraifaux){
+            if (question.vraifaux) {
                 quiz_player.push({
                     temps: question.temps,
                     type: "vraifaux"
                 });
-            } else if(question.curseur){
+            } else if (question.curseur) {
                 quiz_player.push({
                     temps: question.temps,
                     type: "curseur",
@@ -68,7 +68,8 @@ io.on('connection', (socket) => {
             code: code,
             status: "pending",
             players: [],
-            is_saved: false
+            is_saved: false,
+            number_player_finish: {}
         };
 
         console.log(`Création d'une nouvelle room par ${id_user}`);
@@ -171,6 +172,12 @@ io.on('connection', (socket) => {
                 }
             }
 
+            if(!rooms[id].number_player_finish[current_question]){
+                rooms[id].number_player_finish[current_question] = 1;
+            } else {
+                rooms[id].number_player_finish[current_question] = rooms[id].number_player_finish[current_question] + 1;
+            }
+
             if(good){
                 let score = Math.round(100 * (time / rooms[id].quiz.questions[current_question].temps));
                 for(let i = 0; i < rooms[id].players.length; i++){
@@ -179,6 +186,10 @@ io.on('connection', (socket) => {
                         rooms[id].players[i].bonne_reponse.push(current_question);
                     }
                 }
+            }
+
+            if(rooms[id].number_player_finish[current_question] === rooms[id].players.length){
+                io.to(rooms[id].id).emit("allPlayerResponse");
             }
 
         }
