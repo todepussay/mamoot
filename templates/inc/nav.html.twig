@@ -65,7 +65,11 @@
         {% endif %}
 
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}">Link to administration page</a>{# Lien vers la page d'administration #}
+            <a href="{{ path('admin') }}">
+                <button>
+                    Link to administration page
+                </button>
+            </a>{# Lien vers la page d'administration #}
         {% endif %}
 
     </div>

@@ -1,4 +1,9 @@
+{% block css %}<link rel="stylesheet" href="{{ asset("css/admin.css") }}">{% endblock %}
+
 <!DOCTYPE html>
+
+<a href="{{ path('app_quiz_c_r_u_d_index') }}"><button class="adminSection">back to list</button></a>
+<a href=""><button class="adminSection">history</button></a>
 
 <title>Quiz</title>
 
@@ -26,13 +31,14 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_quiz_c_r_u_d_index') }}">back to list</a>
 
     {{ include('quiz_crud/_delete_form.html.twig') }}
 
+
+
     <!-- récupérer les questions du quiz associé a cette id -->
     <h2>Quiz questions</h2>
-    <table>
+    <table class="table">
         {% for question in quiz.questions %}
             {% if question.quiz.id == quiz.id %}
                 <tr>

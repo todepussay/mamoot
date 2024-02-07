@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+{% block css %}<link rel="stylesheet" href="{{ asset("css/admin.css") }}">{% endblock %}
+
+<title>Administration</title>
+
 <!-- lien de retour vers la page d'accueil -->
-<a href="{{ path('index') }}">Go back to website's lobby</a>
+<a href="{{ path('index') }}" class="goBack"><button>Go back to website's lobby</button></a>
 
-<title>Hello AdminController!</title>
+<h1>Hello Administrator!</h1>
+<div>
+    <h1>CRUD</h1>
+    <div class="listeNav">
+        <table>
+            <tr>
+                <!-- lien utilisateurs -->
 
-{% block body %}
-    <h1>Hello Administrator!</h1>
-    <div>
-        <!-- liste des liens de crud à mettre en include sur le dessous par rapport a la sélection-->
-        <h1>CRUD</h1>
+                <td><a href="{{ path('app_user_c_r_u_d_index') }}"><button>User</button></a></td>
 
-        <!-- lien utilisateurs -->
-        <a href="{{ path('app_user_c_r_u_d_index') }}">User</a>
-
-        <!-- lien quiz -->
-        <a href="{{ path('app_quiz_c_r_u_d_index') }}">Quiz</a>
+                <!-- lien quiz -->
+                <td><a href="{{ path('app_quiz_c_r_u_d_index') }}"><button>Quiz</button></a></td>
+            </tr>
+        </table>
     </div>
 
-{% endblock %}
+</div>
