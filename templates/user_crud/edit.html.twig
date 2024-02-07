@@ -1,4 +1,9 @@
+{% block css %}<link rel="stylesheet" href="{{ asset("css/admin.css") }}">{% endblock %}
+
 <!DOCTYPE html>
+
+<a href="{{ path('app_user_c_r_u_d_index') }}"><button>back to list</button></a>
+<a href="{{ path('app_user_c_r_u_d_show', {'id': user.id}) }}"><button class="adminSection">show</button></a>
 
 <title>Edit User</title>
 
@@ -7,7 +12,6 @@
 
     {{ include('user_crud/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_user_c_r_u_d_index') }}">back to list</a>
-
     {{ include('user_crud/_delete_form.html.twig') }}
+
 {% endblock %}

@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: black;
+
+    /* couleur du texte par défaut */
+    color: white;
+}
+
+.goBack{
+    text-decoration-line: underline;
+    color: deepskyblue;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #31ff00;
+    background: none;
+}
+
+a:hover {
+    color: #e6ff00;
+}
+
+h1, h2 {
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.listeNav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.listeNav table {
+    border-collapse: collapse;
+    width: 15%;
+    text-align: center;
+}
+
+.listeNav table td {
+    border: none;
+    padding: 10px;
+    background: none;
+}
+
+table > *{
+
+    color: #ffffff;
+}
+
+/* table pour la liste des utilisateurs quiz ... */
+.table {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    border : 2px solid #ff8000;
+}
+
+.table th {
+    background: #ff8000;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.table td {
+    font-size: 1em;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+form > div > div {
+    display: flex;
+    align-items: center;
+}
+form > div > div > label {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    min-height: 50px;
+    min-width: 100px;
+    font-size: 1.2em;
+    color: #ffffff;
+}
+form > div > div > input {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid #ff8000;
+    min-height: 50px;
+    min-width: 100px;
+    font-size: 1em;
+}
+form > div > div > div > div > select {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ffc183;
+    min-height: 50px;
+    min-width: 100px;
+    font-size: 1em;
+    color: #ffffff;
+    background: #000000;
+}
+
+.password {/*réduit la longueur d'affichage du mot de passe*/
+    color: #ee0000;
+    /* réduire la quantité de texte */
+    overflow: hidden;
+    max-width: 200px;
+}
+
+button {
+    background: #00a9c7;
+    color: #ffffff;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    min-height: 50px;
+    min-width: 100px;
+    border: none;
+    font-size: 1em;
+}
+
+.delete {
+    background: red;
+}
+
+.deleteForm { /* le formulaire ne prend pas de place */
+    margin: 0;
+    padding: 0;
+    background: black;
+}

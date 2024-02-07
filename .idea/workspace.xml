@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="ajout route admin">
+      <change afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/QuizCRUDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/QuizCRUDController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserCRUDController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserCRUDController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Quiz.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Quiz.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +197,8 @@
       <workItem from="1706270517703" duration="10928000" />
       <workItem from="1706284299183" duration="3000" />
       <workItem from="1706702890652" duration="21662000" />
-      <workItem from="1706781565149" duration="19857000" />
+      <workItem from="1706781565149" duration="27222000" />
+      <workItem from="1707305988422" duration="10866000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du formulaire dans rejoindre">
       <option name="closed" value="true" />
