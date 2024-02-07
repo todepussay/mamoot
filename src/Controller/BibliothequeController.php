@@ -6,6 +6,7 @@ use App\Entity\Quiz;
 use App\Form\QuizType;
 use App\Repository\QuizRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BibliothequeController extends AbstractController
 {
     #[Route('/', name: 'bibliotheque_index')]
-    public function index(EntityManagerInterface $em): Response
+    public function index(EntityManagerInterface $em, Request $request, PaginatorInterface $paginator): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
@@ -30,13 +31,14 @@ class BibliothequeController extends AbstractController
                 "id" => $item->getId(),
                 "title" => $item->getTitle(),
                 "number" => count($item->getQuestions()),
-                "created" => $item->getCreatedDate()
+                "created" => $item->getCreatedDate(),
+                "image" => $item->getImage() ? $item->getImage() : "logo.png",
             ];
         }
 
         return $this->render('bibliotheque/index.html.twig', [
             "activeTab" => "bibliotheque",
-            "liste" => $liste
+            "pagination" => $paginator->paginate($liste, $request->query->getInt('page', 1), 15)
         ]);
     }
 

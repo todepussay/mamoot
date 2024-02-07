@@ -30,6 +30,9 @@ class Quiz
     #[ORM\Column(type: "datetime")]
     private $createdDate;
 
+    #[ORM\Column(type: "string", nullable: true)]
+    private $image;
+
     /**
      * @return mixed
      */
@@ -93,6 +96,20 @@ class Quiz
         $this->user = $user;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 
 }

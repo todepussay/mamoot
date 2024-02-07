@@ -300,3 +300,28 @@ nav ul li:last-child a:hover {
         transform:translateY(-50px) translateX(0px)
     }
 }
+
+.explosion {
+    animation: rotate 2s ease-in-out, explode 0.5s both;
+    position: absolute;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
