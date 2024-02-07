@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
-      <change afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/new.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
