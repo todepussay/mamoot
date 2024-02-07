@@ -1,0 +1,104 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    background-color: #dedfde;
+    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    color: var(--medium-green);
+    width: 250px;
+    margin: 10px;
+}
+
+.card-header,
+.card-footer {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer button, .modal-historique button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.title {
+    color: var(--medium-green);
+    text-align: center;
+}
+
+.date, .number {
+    font-size: 0.9em;
+    color: var(--medium-green);
+}
+
+.edit-link, .play-link, .delete-link {
+    color: black;
+}
+
+.card:hover {
+    background-color: #d3d3d3;
+    transition: background-color 0.2s;
+    transform: scale(1.05);
+}
+
+.afficher-plus {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #dedfde;
+    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    color: var(--medium-green);
+    width: 250px;
+    border: none;
+    font-size: 1.2em;
+}
+
+.afficher-plus:hover {
+    background-color: #c3c3c3;
+    transition: background-color 0.2s;
+}
+
+.modal-historique {
+    z-index: 10;
+    background-color: var(--white-background);
+    position: absolute;
+    top: 10%;
+    width: 30%;
+    left: 50%;
+    padding: 20px;
+    border-radius: 20px;
+    transform: translateX(calc(-50% + 150px));
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 400px;
+}
+
+.modal-historique ul {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal-historique ul li {
+    font-size: 25px;
+    color: var(--medium-green);
+    font-weight: bold;
+}
