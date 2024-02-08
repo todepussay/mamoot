@@ -47,7 +47,6 @@
         <p id="error"></p>
     </div>
 
-
     <div class="btns">
         <button id="btn_annuler" class="btn">{% trans %}Annuler{% endtrans %}</button>
         <button id="btn_appliquer" class="btn">{% trans %}Appliquer les changements{% endtrans %}</button>
@@ -114,6 +113,7 @@
         $('#btn_appliquer').click(function(){
             var label = $('#label').val();
             var category = "";
+
 
             if({{ question.vraifaux }}){
                 category = "vraifaux";
@@ -183,6 +183,7 @@
                     maxi: maxi
                 };
 
+
             } else {
 
                 if(label === "") {
@@ -196,7 +197,7 @@
                     id: {{ id }},
                     label: label,
                     category: category,
-                    vrai: $('#vrai').prop('checked')
+                    valeurvraifaux: $('#vrai').prop("checked")
                 };
             }
 

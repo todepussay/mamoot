@@ -2,12 +2,8 @@ const easterEggCombination = ['b', 'e', 'a', 'u', 'j', 'o', 'i', 'n'];
 
 let userInput = [];
 
-function playSound() {
-    const audio = new Audio('../img/beaujoin.mp3');
-    audio.addEventListener('ended', function() {
-        this.currentTime = 0;
-        this.play();
-    }, false);
+function playSound(sound) {
+    const audio = new Audio(`../img/beaujoin.mp3`);
     audio.play();
 }
 

@@ -49,6 +49,9 @@ class Question
     #[ORM\JoinColumn(nullable : false)]
     private ?Quiz $quiz = null;
 
+    #[ORM\Column(type: "string", nullable: true)]
+    private $image;
+
     #[ORM\OneToMany(mappedBy : "question", targetEntity : Reponse::class, cascade: ["persist", "remove"])]
     private Collection $reponses;
 
@@ -266,5 +269,20 @@ class Question
             "\n-Interval : " . $this->interval_curseur;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getImage(): mixed
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 
 }

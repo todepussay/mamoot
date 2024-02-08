@@ -13,7 +13,8 @@
 {% block main %}
     <div class="card-container">
         {% set displayedCount = 0 %}
-        {% for quiz in pagination %}
+        {% set sortedQuizzes = pagination|sort((a, b) => b.created.timestamp() - a.created.timestamp()) %}
+        {% for quiz in sortedQuizzes %}
             {% if displayedCount < 15 %}
                 <div class="card">
                     <div class="card-header">

@@ -4,20 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="fix d'un probleme lors de l'edition des questions">
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="ajout des page d'erreurs">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeception.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeception.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/mamoot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mamoot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.override.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.override.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/library.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/library.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BibliothequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BibliothequeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/QuizRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/library.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CreateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CreateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/QuestionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/QuestionType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create/detail_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/detail_question.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +138,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/sendgrid-mailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/google-mailer" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -144,11 +158,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;steven&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/steven/mamoot_project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/steven/mamoot_project/public/img&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -158,7 +173,11 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\steven\mamoot_project\public\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\steven\mamoot_project\public\img" />
       <recent name="C:\wamp64\www\steven\mamoot_project\public\img\quiz" />
       <recent name="C:\wamp64\www\mamoot\public\img\drapeau" />
       <recent name="C:\wamp64\www\mamoot\templates\bibliotheque" />
@@ -199,7 +218,8 @@
       <workItem from="1706189889228" duration="1742000" />
       <workItem from="1706270743509" duration="13378000" />
       <workItem from="1706702677623" duration="14948000" />
-      <workItem from="1706771706534" duration="28410000" />
+      <workItem from="1706771706534" duration="40553000" />
+      <workItem from="1707307349822" duration="89812000" />
     </task>
     <task id="LOCAL-00001" summary="ajout de la suppresion en cascade">
       <option name="closed" value="true" />
@@ -241,7 +261,39 @@
       <option name="project" value="LOCAL" />
       <updated>1706797383522</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajout d'un systeme de page sur la bibliotheque">
+      <option name="closed" value="true" />
+      <created>1706876135605</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706876135605</updated>
+    </task>
+    <task id="LOCAL-00007" summary="création d'un easter eggs">
+      <option name="closed" value="true" />
+      <created>1707319063930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707319063930</updated>
+    </task>
+    <task id="LOCAL-00008" summary="création d'un easter eggs">
+      <option name="closed" value="true" />
+      <created>1707320172120</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707320172120</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ajout des page d'erreurs">
+      <option name="closed" value="true" />
+      <created>1707389968169</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707389968169</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +304,9 @@
     <MESSAGE value="fix d'un probleme de changement de font" />
     <MESSAGE value="Ajout de la possibilité de modifier un quizz" />
     <MESSAGE value="fix d'un probleme lors de l'edition des questions" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix d'un probleme lors de l'edition des questions" />
+    <MESSAGE value="Ajout d'un systeme de page sur la bibliotheque" />
+    <MESSAGE value="création d'un easter eggs" />
+    <MESSAGE value="ajout des page d'erreurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout des page d'erreurs" />
   </component>
 </project>

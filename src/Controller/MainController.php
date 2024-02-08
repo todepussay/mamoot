@@ -23,4 +23,10 @@ class MainController extends AbstractController
 
         return $this->redirect($request->headers->get("referer"));
     }
+
+    #[Route("/simulate-error-500", name: "simulate_error_500")]
+    public function simulateError500(): Response
+    {
+        throw new \Exception('Erreur interne du serveur simulée.');
+    }
 }
