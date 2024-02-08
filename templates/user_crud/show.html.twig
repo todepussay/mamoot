@@ -12,22 +12,22 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>DateCreated</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>DateCreated</th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td class="password">{{ user.password }}</td>
-                <td>{{ user.dateCreated ? user.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td class="password">{{ user.password }}</td>
+            <td>{{ user.dateCreated ? user.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
         </tbody>
     </table>
 

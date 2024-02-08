@@ -6,19 +6,102 @@
 
 {% block main %}
 
-    <h2>{% trans %}Rejoindre{% endtrans %}</h2>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {# code de la session à indiquer #}
-    <label for="sessionCode">Code de la session</label>
-    <input type="text" name="sessionCode" placeholder="Code de la session">
+    <div class="rejoindre">
 
-    <br>
+        <form id="form" action="/">
+            <h2>{% trans %}Rejoindre{% endtrans %}</h2>
 
-    {# Bouton envoyer #}
-    <button type="submit">Join</button>
+            <div class="input-group">
+                <label for="username">Pseudonyme</label>
+                <input type="text" id="username" name="username">
+            </div>
 
+            <div class="input-group">
+                <label for="code">Code du jeu</label>
+                <input type="number" id="code" name="code">
+            </div>
 
-    {{ form_end(form) }}
+            <div class="error" style="display: none">
+                <p id="error-message"></p>
+            </div>
+
+            <input class="btn" type="submit" value="Rejoindre">
+        </form>
+    </div>
+
+    <script>
+
+        $('#form').submit(function(e) {
+            e.preventDefault();
+
+            disableError();
+
+            let username = $('#username').val();
+            let code = $('#code').val();
+
+            if(username){
+                if(code){
+                    if(code.length === 6){
+
+                        // Si tous les champs sont bons :
+
+                        var playCodeUrl = "{{ path("play_code", { "code": "__code_placeholder__" }) }}"
+
+                        $.ajax({
+                            url: "http://localhost:5000/party_exist",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                code: code
+                            }),
+                            success: function(res){
+                                if(res.exist){
+
+                                    console.log(username)
+
+                                    $.ajax({
+                                        url: "{{ path("set_session_username_code") }}",
+                                        type: "POST",
+                                        contentType: "application/json",
+                                        data: JSON.stringify({
+                                            username: username,
+                                            code: code
+                                        }),
+                                        success: function(){
+                                            window.location.href = playCodeUrl.replace("__code_placeholder__", code);
+                                        }
+                                    })
+
+                                } else {
+                                    setError(res.message);
+                                }
+                            },
+                            error: function(res){
+                                console.log("erreur", res);
+                            }
+                        })
+
+                    } else {
+                        setError("Le code de la partie doit avoir 6 chiffres");
+                    }
+                } else {
+                    setError("Vous devez renseigner le code de la partie");
+                }
+            } else {
+                setError("Vous devez mettre un nom d'utilisateur");
+            }
+        })
+
+        function setError(message){
+            $('.error').show();
+            $('#error-message').html(message);
+        }
+
+        function disableError(){
+            $('.error').hide();
+            $('#error-message').html();
+        }
+
+    </script>
 
 {% endblock %}

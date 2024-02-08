@@ -16,6 +16,15 @@
     margin: 10px;
 }
 
+.quiz-image {
+    width: 25%;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .card-header,
 .card-footer {
     padding: 10px;
@@ -29,7 +38,6 @@
 }
 
 .title {
-    font-size: 1.2em;
     color: var(--medium-green);
     text-align: center;
 }
@@ -43,10 +51,6 @@
     color: black;
 }
 
-svg {
-    width: 30px;
-    height: 30px;
-}
 
 .card:hover {
     background-color: #d3d3d3;
@@ -54,21 +58,42 @@ svg {
     transform: scale(1.05);
 }
 
-.afficher-plus {
-    display: block;
-    margin: auto;
-    padding: 10px 20px;
-    background-color: #dedfde;
-    box-shadow: 0px 11px 0px 0px #126606, inset 0px 10px 15px -3px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    color: var(--medium-green);
-    width: 250px;
-    border: none;
-    font-size: 1.2em;
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed */
 }
 
-.afficher-plus:hover {
-    background-color: #c3c3c3;
+.pagination a {
+    display: inline-flex; /* Changed from flex to inline-flex */
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #dedfde;
+    color: var(--medium-green);
+    margin: 0 5px;
+    text-decoration: none; /* Optional, to remove underline from links */
+}
+
+.pagination a:hover {
+    background-color: var(--medium-green);
+    color: #FFF;
     transition: background-color 0.2s;
 }
 
+.pagination span.current {
+    background-color: var(--medium-green);
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none; /* Optional, to remove underline from links */
+    display: inline-flex; /* Changed from flex to inline-flex */
+    justify-content: center;
+    align-items: center;
+
+}

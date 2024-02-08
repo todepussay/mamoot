@@ -22,11 +22,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: "string", length: 50)]
     private $username;
 
-    #[Column(type: "string", length: 255)]
+    #[Column(type: "string", length: 255, unique: true)]
     private $email;
 
     #[Column(type: "string", length: 255)]
     private $password;
+
 
     #[Column(type: "string", length: 50)]
     private $roles;
@@ -34,8 +35,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: "datetime")]
     private $dateCreated;
 
-    #[ORM\OneToMany(targetEntity: "Quiz", mappedBy: "user")]
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: "Quiz")]
     private $quiz;
+
+    #[ORM\OneToMany(targetEntity: "QuizHistorique", mappedBy: "user")]
+    private $quizHistorique;
 
     public function __construct()
     {
@@ -100,7 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setRoles($roles): void
     {
-        $this->roles = $roles[0];
+        $this->roles = $roles;
     }
 
     /**

@@ -24,7 +24,7 @@ class QuizRepository extends ServiceEntityRepository
         parent::__construct($registry, Quiz::class);
     }
 
-    public function findByUser(int $id){
+    public function findByUser(int $id, $limit = null, $offset = null){
         return $this->createQueryBuilder("q")
             ->andWhere("q.user = :val")
             ->setParameter("val", $id)
@@ -40,6 +40,7 @@ class QuizRepository extends ServiceEntityRepository
             ->addSelect("reponse")
             ->andWhere("q.id = :id")
             ->setParameter("id", $id)
+            ->orderBy("reponse.id", "DESC")
             ->getQuery()
             ->getResult();
     }

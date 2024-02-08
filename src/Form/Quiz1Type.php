@@ -18,7 +18,7 @@ class Quiz1Type extends AbstractType
             ->add('createdDate')
             ->add('user', EntityType::class, [
                 'class' => User::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
         ;
     }

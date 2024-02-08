@@ -25,11 +25,12 @@ class CreateController extends AbstractController
 {
 
     public $quiz;
+
     #[Route('/', name: 'create')]
     public function index(Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
-        if($request->getSession()->get("quiz") !== null){
+        if ($request->getSession()->get("quiz") !== null) {
             $this->quiz = $request->getSession()->get("quiz");
             return $this->dashboard($request);
         } else {
@@ -40,31 +41,35 @@ class CreateController extends AbstractController
     }
 
     #[Route("/quitter", name: "quitter_quiz_modal")]
-    public function quitter(Request $request){
-        if(!$request->isXmlHttpRequest()){
+    public function quitter(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute("index");
         }
         return $this->render("create/modal_quitter.html.twig");
     }
 
     #[Route("/quitter_oui", name: "quitter_quiz")]
-    public function quitterOui(Request $request){
+    public function quitterOui(Request $request)
+    {
         $request->getSession()->remove("quiz");
         $request->getSession()->remove("questions");
         return $this->redirectToRoute("index");
     }
 
     #[Route("/quitter_non", name: "pas_quitter_quiz")]
-    public function quitterNon(Request $request){
+    public function quitterNon(Request $request)
+    {
         return $this->dashboard($request);
     }
 
-    public function change_title(Request $request){
+    public function change_title(Request $request)
+    {
 
         $quizForm = $this->createForm(QuizType::class, $this->quiz);
         $quizForm->handleRequest($request);
 
-        if($quizForm->isSubmitted() && $quizForm->isValid()){
+        if ($quizForm->isSubmitted() && $quizForm->isValid()) {
             $request->getSession()->set('quiz', $this->quiz);
             return $this->dashboard($request);
         }
@@ -74,10 +79,9 @@ class CreateController extends AbstractController
         ]);
     }
 
-    public function dashboard(Request $request){
+    public function dashboard(Request $request)
+    {
         $questions = $request->getSession()->get('questions', []);
-        dump($request->getSession()->get("quiz"));
-        dump($request->getSession()->get("questions"));
         return $this->render("create/dashboard.html.twig", [
             "quiz" => $this->quiz,
             "questions" => $questions
@@ -85,8 +89,9 @@ class CreateController extends AbstractController
     }
 
     #[Route("/add_question_modal", name: "add_question_modal")]
-    public function add_question_modal(Request $request){
-        if($request->isXmlHttpRequest()) {
+    public function add_question_modal(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
             return $this->render("create/add_question.html.twig", [
             ]);
         } else {
@@ -152,6 +157,24 @@ class CreateController extends AbstractController
         $questions = $request->getSession()->get("questions");
         $question = $questions[$id];
 
+        if ($question->getVraifaux() == false) {
+            $question->setVraifaux(0);
+        } else {
+            $question->setVraifaux(1);
+        }
+
+        if ($question->getCurseur() == false) {
+            $question->setCurseur(0);
+        } else {
+            $question->setCurseur(1);
+        }
+
+        if ($question->getValeurvraifaux() == false) {
+            $question->setValeurvraifaux(0);
+        } else {
+            $question->setValeurvraifaux(1);
+        }
+
         return $this->render("create/detail_question.html.twig", [
             "question" => $question,
             "id" => $id
@@ -202,7 +225,7 @@ class CreateController extends AbstractController
         $data = json_decode($request->getContent());
         $id = $data->id - 1;
         $questions = $request->getSession()->get("questions");
-        if(isset($questions[$id]) && $id > 0){
+        if (isset($questions[$id]) && $id > 0) {
             $question = clone $questions[$id];
             unset($questions[$id]);
             array_splice($questions, $id - 1, 0, [$question]);
@@ -224,16 +247,14 @@ class CreateController extends AbstractController
         $id = $data->id - 1;
         $questions = $request->getSession()->get("questions");
         if (isset($questions[$id])) {
-            // Supprimer l'élément avec l'ID spécifié
+
             unset($questions[$id]);
 
-            // Mettre à jour la session avec la nouvelle liste de questions
             $request->getSession()->set("questions", $questions);
 
-            // Retourner une réponse JSON indiquant que la suppression a réussi
             return new JsonResponse(['success' => true]);
         } else {
-            // Retourner une réponse JSON indiquant que l'ID n'a pas été trouvé
+
             return new JsonResponse(['success' => false, 'message' => 'ID not found'], 400);
         }
     }
@@ -254,20 +275,20 @@ class CreateController extends AbstractController
 
         $question->setLabel($label);
 
-        switch($category){
+        switch ($category) {
             case "quiz":
                 $reponses = $data->reponses;
                 $count = $question->getReponses()->count();
 
-                if($count > count($reponses)){
-                    for($i = 0; $i < $count - count($reponses); $i++){
+                if ($count > count($reponses)) {
+                    for ($i = 0; $i < $count - count($reponses); $i++) {
                         $question->removeReponse();
                     }
                 }
 
-                for($i = 0; $i < count($reponses); $i++){
+                for ($i = 0; $i < count($reponses); $i++) {
 
-                    if($i < $count){
+                    if ($i < $count) {
                         $reponse = $question->getReponses()[$i];
                     } else {
                         $reponse = new Reponse();
@@ -277,7 +298,7 @@ class CreateController extends AbstractController
                     $reponse->setGood($reponses[$i]->good);
                     $reponse->setQuestion($question);
 
-                    if($i >= $count){
+                    if ($i >= $count) {
                         $question->addReponse($reponse);
                     }
                 }
@@ -316,46 +337,92 @@ class CreateController extends AbstractController
         }
 
         $quiz = $request->getSession()->get("quiz");
-        $quiz->setCreatedDate(new DateTime());
         $questions = $request->getSession()->get("questions");
 
-        $user = $em->getRepository(User::class)->find($this->getUser()->getId());
-        $quiz->setUser($user);
+        if ($quiz->getId()) {
 
-        if($quiz->getTitle() == ""){
-            return new JsonResponse(["success" => false, "message" => $translation->trans("Le titre du quiz ne peut pas être vide")]);
-        } else {
-            for($i = count($questions) - 1; $i >= 0; $i--){
-                $question = $questions[$i];
-                if($question->getLabel() == ""){
-                    return new JsonResponse(["success" => false, "message" => $translation->trans("La question ") . ($i + 1) . $translation->trans(" n'est pas valide")]);
-                }
+            $existingQuiz = $em->getRepository(Quiz::class)->find($quiz->getId());
 
-                if($question->getCurseur() &&
-                    $question->getMinimumCurseur() == "" &&
-                    $question->getMaximumCurseur() == "" &&
-                    $question->getMinimumValide() == "" &&
-                    $question->getMaximumValide() == ""){
-                    return new JsonResponse(["success" => false, "message" => $translation->trans("La question ") . ($i + 1) . $translation->trans(" n'est pas valide")]);
-                }
+            if (!$existingQuiz || $existingQuiz->getUser() !== $this->getUser()) {
+                throw $this->createNotFoundException('Quiz not found or unauthorized access');
+            }
 
-                if($question->getReponses()){
-                    for($j = count($question->getReponses()) - 1; $j >= 0; $j--){
-                        $em->persist($question->getReponses()[$j]);
-                    }
-                }
+            $existingQuiz->setTitle($quiz->getTitle());
 
+            foreach ($existingQuiz->getQuestions() as $question) {
+                $em->remove($question);
+            }
+
+            foreach ($questions as $question) {
+                $question->setQuiz($existingQuiz);
                 $em->persist($question);
             }
+
+            $em->flush();
+
+            $request->getSession()->remove("quiz");
+            $request->getSession()->remove("questions");
+
+            return new JsonResponse(["success" => true]);
+        } else {
+
+            $quiz->setCreatedDate(new DateTime());
+            $user = $em->getRepository(User::class)->find($this->getUser()->getId());
+            $quiz->setUser($user);
+
+            if ($quiz->getTitle() == "") {
+                return new JsonResponse(["success" => false, "message" => $translation->trans("Le titre du quiz ne peut pas être vide")]);
+            } else {
+                foreach ($questions as $question) {
+                    if ($question->getLabel() == "") {
+                        return new JsonResponse(["success" => false, "message" => $translation->trans("La question n'est pas valide")]);
+                    }
+
+                    if ($question->getCurseur() &&
+                        $question->getMinimumCurseur() == "" &&
+                        $question->getMaximumCurseur() == "" &&
+                        $question->getMinimumValide() == "" &&
+                        $question->getMaximumValide() == "") {
+                        return new JsonResponse(["success" => false, "message" => $translation->trans("La question n'est pas valide")]);
+                    }
+
+                    if ($question->getReponses()) {
+                        foreach ($question->getReponses() as $reponse) {
+                            $em->persist($reponse);
+                        }
+                    }
+
+                    $em->persist($question);
+                }
+            }
+
+            $em->persist($quiz);
+
+            $em->flush();
+
+            $request->getSession()->remove("quiz");
+            $request->getSession()->remove("questions");
+
+            return new JsonResponse(["success" => true]);
+        }
+    }
+
+    #[Route("/edit/{id}", name: "edit_quiz")]
+    public function edit(Request $request, int $id, EntityManagerInterface $em)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $quiz = $em->getRepository(Quiz::class)->find($id);
+
+        if (!$quiz || $quiz->getUser() !== $this->getUser()) {
+            throw $this->createNotFoundException('Quiz not found or unauthorized access');
         }
 
-        $em->persist($quiz);
+        $questions = $em->getRepository(Question::class)->findBy(['quiz' => $quiz]);
 
-        $em->flush();
+        $request->getSession()->set('quiz', $quiz);
+        $request->getSession()->set('questions', $questions);
 
-        $request->getSession()->remove("quiz");
-        $request->getSession()->remove("questions");
-
-        return new JsonResponse(["success" => true]);
+        return $this->dashboard($request);
     }
 }

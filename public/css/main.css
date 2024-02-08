@@ -7,9 +7,21 @@
     --light-green: #00bc13;
     --medium-green: #1f5f1f;
     --dark-green: #163315;
+    --white-background: rgba(176, 181, 176);
     font-family: "Roboto Slab", sans-serif;
     color: black;
 }
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+}
+
 .ionicon {
     width: 40px;
     color: white;
@@ -18,7 +30,12 @@
 body {
     max-width: 100vw;
     background-color: var(--dark-green);
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.footer {
+    position: absolute;
 }
 
 main {
@@ -62,6 +79,39 @@ nav {
     padding: 60px 30px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+.hide-nav {
+    animation: hide-nav 1.3s forwards;
+}
+
+.show-nav {
+    animation: show-nav 1.3s forwards;
+}
+
+@-webkit-keyframes hide-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+    }
+    100%{
+        -webkit-transform:translateX(-300px);
+        transform: translateX(-300px);
+    }
+}
+
+@-webkit-keyframes show-nav {
+    0%{
+        -webkit-transform:translateX(0);
+        transform: translateX(0);
+        width: 0px;
+    }
+    100%{
+        -webkit-transform:translateX(+300px);
+        transform: translateX(+300px);
+        width: 300px;
+    }
 }
 
 nav .background-nav {
@@ -147,6 +197,7 @@ nav ul li:last-child {
 #welcome_message {
     text-align: center;
     margin-top: 20px;
+    margin-left: -20px;
     font-size: 25px;
     color: white;
 }
@@ -170,7 +221,8 @@ nav ul li:last-child a:hover {
 .circles {
     position: absolute;
     z-index: -1;
-    width: calc(100vw - 250px);
+    left: 0;
+    width: 100vw;
     height: 100%;
     overflow: hidden;
     opacity: 0.5;
@@ -251,5 +303,30 @@ nav ul li:last-child a:hover {
     100%{
         -webkit-transform:translateY(-50px) translateX(0px);
         transform:translateY(-50px) translateX(0px)
+    }
+}
+
+.explosion {
+    animation: rotate 2s ease-in-out, explode 0.5s both;
+    position: absolute;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
     }
 }

@@ -12,22 +12,22 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ quiz.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ quiz.title }}</td>
-            </tr>
-            <tr>
-                <th>Creator</th>
-                <td>{{ quiz.user.username }}</td>
-            </tr>
-            <tr>
-                <th>CreatedDate</th>
-                <td>{{ quiz.createdDate ? quiz.createdDate|date('Y-m-d') : '' }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ quiz.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ quiz.title }}</td>
+        </tr>
+        <tr>
+            <th>Creator</th>
+            <td>{{ quiz.user.username }}</td>
+        </tr>
+        <tr>
+            <th>CreatedDate</th>
+            <td>{{ quiz.createdDate ? quiz.createdDate|date('Y-m-d') : '' }}</td>
+        </tr>
         </tbody>
     </table>
 

@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="ajout route admin">
-      <change afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
+    <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inc/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inc/nav.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/new.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quiz_crud/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/_role_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_crud/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_crud/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +24,26 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;todepussay&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="12810ea3-4852-4d67-8320-2ab7bc4a0dc8" />
+        <option name="url" value="https://github.com/todepussay/mamoot.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -127,6 +132,11 @@
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/wisembly/elephant.io" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -138,36 +148,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Ethan&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/mamoot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "v2",
+    "javascript.nodejs.core.library.configured.version": "16.13.2",
+    "javascript.nodejs.core.library.typings.version": "16.18.79",
+    "last_opened_file_path": "C:/wamp64/www/mamoot/public/img",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\mamoot\public\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\mamoot\templates\quiz_crud" />
+      <recent name="C:\wamp64\www\mamoot\public\img" />
+      <recent name="C:\wamp64\www\mamoot\public\img\quiz" />
       <recent name="C:\wamp64\www\mamoot\public\img\drapeau" />
       <recent name="C:\wamp64\www\mamoot\templates\bibliotheque" />
       <recent name="C:\wamp64\www\mamoot\public\css" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -192,47 +207,130 @@
       <workItem from="1703142686029" duration="10642000" />
       <workItem from="1704901361767" duration="10000" />
       <workItem from="1704957568918" duration="10327000" />
-      <workItem from="1706101786141" duration="6669000" />
-      <workItem from="1706189569302" duration="637000" />
-      <workItem from="1706270517703" duration="10928000" />
-      <workItem from="1706284299183" duration="3000" />
-      <workItem from="1706702890652" duration="21662000" />
-      <workItem from="1706781565149" duration="27222000" />
-      <workItem from="1707305988422" duration="10866000" />
+      <workItem from="1706102022558" duration="11596000" />
+      <workItem from="1706166954933" duration="13803000" />
+      <workItem from="1706270488364" duration="13515000" />
+      <workItem from="1706520599179" duration="5201000" />
+      <workItem from="1706530448862" duration="8786000" />
+      <workItem from="1706606318653" duration="6060000" />
+      <workItem from="1706623364541" duration="3382000" />
+      <workItem from="1706688340330" duration="10111000" />
+      <workItem from="1706771475832" duration="12351000" />
+      <workItem from="1706788826331" duration="11069000" />
+      <workItem from="1706874971619" duration="13927000" />
+      <workItem from="1707043142044" duration="1248000" />
+      <workItem from="1707059060284" duration="625000" />
+      <workItem from="1707064352702" duration="2522000" />
+      <workItem from="1707161239300" duration="60000" />
     </task>
-    <task id="LOCAL-00001" summary="ajout du formulaire dans rejoindre">
+    <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
-      <created>1706109563813</created>
+      <created>1706102912112</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1706109563813</updated>
+      <updated>1706102912112</updated>
     </task>
-    <task id="LOCAL-00002" summary="ajout du formulaire dans rejoindre">
+    <task id="LOCAL-00002" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
-      <created>1706109816707</created>
+      <created>1706102990406</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1706109816707</updated>
+      <updated>1706102990406</updated>
     </task>
-    <task id="LOCAL-00003" summary="ajout route admin">
+    <task id="LOCAL-00003" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
-      <created>1706280857478</created>
+      <created>1706103050019</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1706280857478</updated>
+      <updated>1706103050019</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Changement navbar message &quot;Bonjour user&quot;">
+      <option name="closed" value="true" />
+      <created>1706103078905</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706103078905</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Ajout d'un double slider dans detail_question.html.twig">
+      <option name="closed" value="true" />
+      <created>1706107429888</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706107429888</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajout d'un double slider dans detail_question.html.twig">
+      <option name="closed" value="true" />
+      <created>1706107446831</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706107446831</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Debug detail_question.html.twig et liste.html.twig">
+      <option name="closed" value="true" />
+      <created>1706110582368</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706110582368</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Debug detail_question.html.twig et liste.html.twig">
+      <option name="closed" value="true" />
+      <created>1706110591680</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706110591680</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Récupération des données du quiz">
+      <option name="closed" value="true" />
+      <created>1706276116608</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706276116608</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Page création du jeu">
+      <option name="closed" value="true" />
+      <created>1706284160254</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706284160254</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ajout du formulaire dans rejoindre" />
-    <MESSAGE value="ajout route admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout route admin" />
+    <MESSAGE value="init" />
+    <MESSAGE value="Changement navbar message &quot;Bonjour user&quot;" />
+    <MESSAGE value="Ajout d'un double slider dans detail_question.html.twig" />
+    <MESSAGE value="Debug detail_question.html.twig et liste.html.twig" />
+    <MESSAGE value="Récupération des données du quiz" />
+    <MESSAGE value="Page création du jeu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page création du jeu" />
   </component>
 </project>

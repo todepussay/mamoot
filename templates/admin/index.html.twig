@@ -2,23 +2,23 @@
 
 <title>Administration</title>
 
-    <!-- lien de retour vers la page d'accueil -->
-    <a href="{{ path('index') }}" class="goBack"><button>Go back to website's lobby</button></a>
+<!-- lien de retour vers la page d'accueil -->
+<a href="{{ path('index') }}" class="goBack"><button>Go back to website's lobby</button></a>
 
-    <h1>Hello Administrator!</h1>
-    <div>
-        <h1>CRUD</h1>
-        <div class="listeNav">
-            <table>
-                <tr>
-                    <!-- lien utilisateurs -->
+<h1>Hello Administrator!</h1>
+<div>
+    <h1>CRUD</h1>
+    <div class="listeNav">
+        <table>
+            <tr>
+                <!-- lien utilisateurs -->
 
-                    <td><a href="{{ path('app_user_c_r_u_d_index') }}"><button>User</button></a></td>
+                <td><a href="{{ path('app_user_c_r_u_d_index') }}"><button>User</button></a></td>
 
-                    <!-- lien quiz -->
-                    <td><a href="{{ path('app_quiz_c_r_u_d_index') }}"><button>Quiz</button></a></td>
-                </tr>
-            </table>
-        </div>
-
+                <!-- lien quiz -->
+                <td><a href="{{ path('app_quiz_c_r_u_d_index') }}"><button>Quiz</button></a></td>
+            </tr>
+        </table>
     </div>
+
+</div>

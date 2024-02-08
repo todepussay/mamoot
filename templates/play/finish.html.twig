@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block css %}<link rel="stylesheet" href="{{ asset("css/play.css") }}">{% endblock %}
+
+{% block main %}
+
+    <div class="finish">
+        <div class="header">
+            <p>{{ quiz.quiz.title }}</p>
+            <a href="{{ path("index") }}" class="btn">Retour au menu</a>
+        </div>
+
+        <h2>Classement</h2>
+
+        <ul class="classement">
+            {% for player in quiz.players %}
+
+                <li>
+                    <p>#{{ loop.index }} - {{ player.username }} - {{ player.score }}</p>
+                </li>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}
