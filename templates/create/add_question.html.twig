@@ -37,13 +37,13 @@
         <input type="checkbox" name="advanced" id="advanced">
 
         <div id="advanced-content">
+            <div class="temps-aff">
             <label for="isTemps">{% trans %}Temps{% endtrans %}</label>
             <input type="checkbox" name="isTemps" id="isTemps">
-
             <div id="advanced-temps">
-                <input type="range" name="temps" id="temps" min="10" max="60" value="30">
+                <input type="range" name="temps" id="temps" min="10" max="60" value="30" style=" width: 90%;">
                 <span id="temps-affichage">0:30</span>
-            </div>
+            </div></div>
         </div>
 
         <div>
@@ -51,8 +51,8 @@
         </div>
 
         <div class="btns">
-            <button id="close_modal_add_question" class="btn">{% trans %}Annuler{% endtrans %}</button>
-            <button id="btn_add_question" class="btn">{% trans %}Ajouter{% endtrans %}</button>
+            <button id="close_modal_add_question" class="btn" style="background-color: lightgrey;">{% trans %}Annuler{% endtrans %}</button>
+            <button id="btn_add_question" class="btn" >{% trans %}Ajouter{% endtrans %}</button>
         </div>
     </div>
 </div>

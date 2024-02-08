@@ -1,5 +1,5 @@
-<div class="content-modal" id="content">
-    <input type="text" name="label" id="label" value="{{ question.label }}" }>
+
+    <input class="content-modal-titre"type="text" name="label" id="label" value="{{ question.label }}" } placeholder="Entrez un titre pour votre question">
 
     {# MEDIA #}
 
@@ -8,12 +8,13 @@
             <span id="valeur">{% trans %}La valeur sera bonne entre : {% endtrans %}
                 <span id="valeur-minimum">{{ question.minimumValide }}</span>
                 {% trans %} et {% endtrans %}
-                <span id="valeur-maximum">{{ question.maximumValide }}</span>
+    /*           <span id="valeur-maximum">{{ question.maximumValide }}</span>
             </span>
 
             <div id="slider"></div>
         </div>
     {% elseif question.vraifaux == 1 %}
+    <div class="content-modal" id="content">
         <div class="reponses">
             <div class="reponse" id="vrai-reponse">
                 <span>{% trans %}Vrai{% endtrans %}</span>
@@ -24,7 +25,7 @@
                 <input type="radio" name="vrai" id="faux" {% if not(question.valeurvraifaux) %}checked{% endif %}>
             </div>
         </div>
-    {% else %}
+14rt(    {% else %}
         <div class="reponses">
             {% set i = 0 %}
             {% for reponse in question.reponses %}

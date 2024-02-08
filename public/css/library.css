@@ -28,7 +28,7 @@
     padding: 20px;
 }
 
-.title {
+.titleQuiz {
     font-size: 1.2em;
     color: var(--medium-green);
     text-align: center;
@@ -43,10 +43,6 @@
     color: black;
 }
 
-svg {
-    width: 30px;
-    height: 30px;
-}
 
 .card:hover {
     background-color: #d3d3d3;
