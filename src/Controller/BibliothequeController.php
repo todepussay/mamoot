@@ -19,7 +19,9 @@ class BibliothequeController extends AbstractController
     #[Route('/', name: 'bibliotheque_index')]
     public function index(EntityManagerInterface $em, Request $request, PaginatorInterface $paginator): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $repo = $em->getRepository(Quiz::class);
         $resultat = $repo->findByUser($this->getUser()->getId());
@@ -45,7 +47,9 @@ class BibliothequeController extends AbstractController
     #[Route('/quiz/{id}', name: 'delete_quiz')]
     public function deleteQuiz(EntityManagerInterface $em, QuizRepository $repo, $id): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $quiz = $repo->find($id);
 

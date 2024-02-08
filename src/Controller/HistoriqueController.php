@@ -14,7 +14,9 @@ class HistoriqueController extends AbstractController
     #[Route('/', name: 'historique_index')]
     public function index(EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $repo = $em->getRepository(QuizHistorique::class);
         $resultat = $repo->findByUser($this->getUser()->getId());
@@ -46,7 +48,9 @@ class HistoriqueController extends AbstractController
 
     #[Route("/delete/{id}", name: "delete-historique")]
     public function delete(EntityManagerInterface $em, $id){
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $repo = $em->getRepository(QuizHistorique::class);
         $quiz = $repo->find($id);

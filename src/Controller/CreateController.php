@@ -29,7 +29,9 @@ class CreateController extends AbstractController
     #[Route('/', name: 'create')]
     public function index(Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
         if ($request->getSession()->get("quiz") !== null) {
             $this->quiz = $request->getSession()->get("quiz");
             return $this->dashboard($request);
@@ -410,7 +412,9 @@ class CreateController extends AbstractController
     #[Route("/edit/{id}", name: "edit_quiz")]
     public function edit(Request $request, int $id, EntityManagerInterface $em)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $quiz = $em->getRepository(Quiz::class)->find($id);
 

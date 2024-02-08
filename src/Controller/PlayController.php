@@ -20,7 +20,9 @@ class PlayController extends AbstractController
     #[Route('/', name: 'play')]
     public function index(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')) {
+            $this->denyAccessUnlessGranted('ROLE_USER');
+        }
 
         $id_user = $request->query->get('id_user');
 
