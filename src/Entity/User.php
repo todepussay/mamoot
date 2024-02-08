@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Column(type: "string", length: 50)]
     private $username;
 
-    #[Column(type: "string", length: 255, unique: true)]
+    #[Column(type: "string", length: 255)]#, unique: true
     private $email;
 
     #[Column(type: "string", length: 255)]
@@ -104,7 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setRoles($roles): void
     {
-        $this->roles = $roles;
+        $this->roles = $roles[0];
     }
 
     /**
