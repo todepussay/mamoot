@@ -14,7 +14,7 @@ class Reponse
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: "string", length: 255)]
+    #[ORM\Column(type: "string", length: 128)]
     private $reponse;
 
     #[ORM\Column(type: "boolean")]

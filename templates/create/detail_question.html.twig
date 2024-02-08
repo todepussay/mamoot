@@ -146,6 +146,18 @@
                 for(let i = 0; i < length; i++){
                     var reponse = {};
 
+                    var reponse_label = $("#reponse-" + i + " .reponse_input").val();
+
+                    if(reponse_label === ""){
+                        $('#error').text("La réponse ne peut pas être vide");
+                        return;
+                    } else if(reponse_label.length >= 128){
+                        $('#error').text("La réponse doit faire moins de 128 caractères");
+                        return;
+                    } else {
+                        $('#error').text();
+                    }
+
                     reponse["label"] = $("#reponse-" + i + " .reponse_input").val();
                     reponse["good"] = $('#reponse-' + i + " .good").prop("checked");
                     if(reponse.good){
@@ -156,6 +168,9 @@
 
                 if(label === "") {
                     $('#error').text({% trans %}"La question ne peux pas être vide"{% endtrans %});
+                    return;
+                } else if(label.length >= 128) {
+                    $('#error').text("La question ne doit pas dépasser 128 caractères");
                     return;
                 } else {
                     if(count === 0){
