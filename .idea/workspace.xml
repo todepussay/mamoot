@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/QuizHistoriqueRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/QuizHistoriqueRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bibliotheque/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/play/play.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/play/play.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create/detail_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/detail_question.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,30 +147,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Tom",
-    "javascript.nodejs.core.library.configured.version": "16.13.2",
-    "javascript.nodejs.core.library.typings.version": "16.18.79",
-    "last_opened_file_path": "C:/wamp64/www/mamoot/public/img",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Tom&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;16.13.2&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;16.18.79&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/wamp64/www/mamoot/public/img&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\mamoot\public\img" />
