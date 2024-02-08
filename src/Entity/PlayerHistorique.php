@@ -6,6 +6,7 @@ use App\Repository\PlayerHistoriqueRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlayerHistoriqueRepository::class)]
+#[ORM\Table(name: '`mamoot_player_historique`')]
 class PlayerHistorique
 {
     #[ORM\Id]

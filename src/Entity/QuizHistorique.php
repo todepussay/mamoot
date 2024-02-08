@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuizHistoriqueRepository::class)]
+#[ORM\Table(name: '`mamoot_quiz_historique`')]
 class QuizHistorique
 {
     #[ORM\Id]

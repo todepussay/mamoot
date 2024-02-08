@@ -6,6 +6,7 @@ use App\Repository\ReponseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
+#[ORM\Table(name: '`mamoot_reponse`')]
 class Reponse
 {
     #[ORM\Id]

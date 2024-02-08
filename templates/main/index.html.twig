@@ -6,7 +6,7 @@
 
     <div class="btns">
 
-        {% if is_granted('ROLE_USER') or is_granted("ROLE_ADMIN) %}
+        {% if is_granted('ROLE_USER') or is_granted("ROLE_ADMIN") %}
             <a href="{{ path("create") }}" class="btn">
                 <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                     <path fill="#1f5f1f" stroke="#1f5f1f" stroke-linecap="round" stroke-linejoin="round" stroke-width="50" d="M256 112v288M400 256H112"/>
