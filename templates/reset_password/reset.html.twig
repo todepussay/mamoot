@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css/forgot.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="email_container">
+    <div class="reset-password-wrapper">
+        <h1 class="reset-password-title">Réinitialiser votre mot de passe</h1>
+
+        <div>
+            <small class="reset-password-instruction">
+                Entrez votre nouveau mot de passe
+            </small>
+        </div>
+
+        {{ form_start(resetForm, {'class': 'reset-password-form'}) }}
+        {{ form_row(resetForm.plainPassword) }}
+
+        <button class="btn btn-primary btn-reset-password">Changer le mot de passe</button>
+    {{ form_end(resetForm) }}
+    </div>
+</div>
+{% endblock %}

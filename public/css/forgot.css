@@ -1,0 +1,123 @@
+.reset_container {
+    width: 50%; /* ou une largeur spécifique */
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff; /* Couleur de fond du conteneur */
+    border-radius: 8px; /* Arrondit les coins */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ajoute une ombre pour du relief */
+    text-align: center; /* Centre le texte à l'intérieur du conteneur */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 10%;
+}
+
+/* forgot.css */
+.email_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This ensures that the container is center-aligned vertically in the viewport */
+}
+
+.reset-password-wrapper {
+    width: 100%; /* Adjust width as needed */
+    max-width: 800px; /* Adjust maximum width as needed */
+    padding: 1rem;
+    margin: auto;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for better visibility */
+}
+
+.reset-password-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.reset-password-email {
+    margin-bottom: 1rem; /* Spacing between input and button */
+    border-radius: 5px; /* Optional: adds rounded corners to input */
+    padding: 0.5rem; /* Optional: adds padding to input */
+    font-size: 1rem; /* Optional: adjusts font size */
+}
+
+.reset-password-instruction {
+    margin-bottom: 1rem; /* Spacing between input and button */
+    font-size: 1rem; /* Optional: adjusts font size */
+    padding: 0.5rem; /* Optional: adds padding to input */
+
+}
+
+.btn-reset-password {
+    margin-top: 10px;
+    padding: 0.5rem 1rem; /* Adjust button padding as needed */
+    font-size: 1rem; /* Adjust font size as needed */
+    background: #1f5f1f;
+    color: #fff; /* Optional: changes button text color */
+    border: none; /* Optional: removes button border */
+    border-radius: 5px; /* Optional: adds rounded corners to button */
+}
+
+.btn-reset-password:hover {
+    background: #1f5f1f; /* Optional: changes button background color on hover */
+    cursor: pointer; /* Optional: adds pointer cursor on hover */
+}
+
+.reset-password-email {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style pour les instructions d'email de réinitialisation */
+.reset-email-instructions {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.reset-email-instructions p {
+    margin: 0;
+    color: #333;
+}
+
+/* Style pour le dépannage d'email de réinitialisation */
+.reset-email-troubleshooting {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.reset-email-troubleshooting p {
+    margin: 0;
+    color: #666;
+}
+
+/* Style pour le lien de nouvelle tentative */
+.retry-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.retry-link:hover {
+    text-decoration: underline;
+}
+
+input[type="password" i] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+
+{# Link to the stylesheet for this specific page #}
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('css/forgot.css') }}">
+{% endblock %}
+
+{# Main content block #}
+{% block main %}
+    <div class="reset_container">
+        <section class="reset-email-instructions">
+            <p>
+                Si un compte est associé à cette adresse email, un email vous sera envoyé avec un lien pour réinitialiser votre mot de passe.
+                Ce lien va expirer dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+            </p>
+        </section>
+
+        <section class="reset-email-troubleshooting">
+            <p>
+                Si vous n'avez pas reçu d'email, veuillez vérifier votre dossier de courrier indésirable ou
+                <a href="{{ path('app_forgot_password_request') }}" class="retry-link">réessayer</a>.
+            </p>
+        </section>
+    </div>
+{% endblock %}

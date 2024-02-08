@@ -1,0 +1,51 @@
+<style>
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
+    .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        color: #333;
+    }
+    a {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    a:hover {
+        background-color: #0056b3;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+    .footer {
+        font-size: 0.8em;
+        text-align: center;
+        color: #666;
+    }
+</style>
+
+<div class="email-container">
+    <h1>Réinitialisation de votre mot de passe</h1>
+    <p>Bonjour,</p>
+    <p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien ci-dessous :</p>
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}" target="_blank">Réinitialiser mon mot de passe</a>
+    <p>Si vous n'avez pas demandé à réinitialiser votre mot de passe, veuillez ignorer cet e-mail ou nous contacter.</p>
+    <p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+    <div class="footer">
+        <p>Cordialement,</p>
+        <p>Votre équipe de support</p>
+    </div>
+</div>
