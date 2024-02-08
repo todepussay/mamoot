@@ -1,7 +1,7 @@
 <div class="content-modal" id="content">
     <input type="text" name="label" id="label" value="{{ question.label }}" }>
 
-    {# MEDIA #}
+    <input type="file" id="file" name="file">
 
     {% if question.curseur == 1 %}
         <div class="reponses">
@@ -227,17 +227,31 @@
                 };
             }
 
+            let fileInput = $("#file")[0];
+            let file = fileInput.files[0]
+
+            let formData = new FormData();
+            formData.append('file', file);
+            formData.append("data", JSON.stringify(data));
+
+
+            console.log("data: ", formData);
+
             $.ajax({
                 url: "{{ path("change_question") }}",
                 method: "POST",
-                contentType: "application/javascript",
-                data: JSON.stringify(data),
-                success: function(){
-                    showFlashMessage({% trans %}"La question a bien été modifiée", "success"{% endtrans %});
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    showFlashMessage("{% trans %}La question a bien été modifiée{% endtrans %}", "success");
                     reloadListe();
                     $('#modal').html("");
+                },
+                error: function (error) {
+                    console.error("Erreur lors de l'envoi du fichier :", error);
                 }
-            })
+            });
         })
     })
 

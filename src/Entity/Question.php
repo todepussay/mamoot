@@ -19,6 +19,9 @@ class Question
     #[ORM\Column(type: "string", length: 128)]
     private $label;
 
+    #[ORM\Column(type: "string")]
+    private $image;
+
     #[ORM\Column(type: "boolean")]
     private $vraifaux;
 

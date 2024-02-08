@@ -268,7 +268,7 @@ class CreateController extends AbstractController
             return $this->redirectToRoute("create");
         }
 
-        $data = json_decode($request->getContent());
+        $data = json_decode($request->request->get("data"));
         $id = $data->id;
         $label = $data->label;
         $category = $data->category;
@@ -276,6 +276,19 @@ class CreateController extends AbstractController
         $question = $questions[$id];
 
         $question->setLabel($label);
+
+        // $file = $request->files->get('file');
+
+        // if($file){
+
+        //     $fileName = time() . '_' . $file->getClientOriginalName();
+
+        //         $file->move(
+        //             'img/questions',
+        //             $fileName
+        //         );
+
+        // }
 
         switch ($category) {
             case "quiz":
