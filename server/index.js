@@ -79,6 +79,8 @@ io.on('connection', (socket) => {
 
     socket.on("connectedUser", ({ username, code }) => {
 
+        console.log("username : ", username);
+
         let quiz;
         for(let room in rooms){
             if(rooms[room].code === code){

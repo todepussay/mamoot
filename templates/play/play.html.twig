@@ -53,7 +53,7 @@
         var id_user;
 
         socket.emit("connectedUser", {
-            username: "{{ username }}",
+            username: "{{ username|raw }}",
             code: "{{ code }}"
         });
 

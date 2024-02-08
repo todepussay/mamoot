@@ -30,6 +30,7 @@ class QuizHistoriqueRepository extends ServiceEntityRepository
             ->andWhere("q.user = :val")
             ->setParameter("val", $id)
             ->orderBy("players.score", "DESC")
+            ->orderBy("q.createdDate", "DESC")
             ->getQuery()
             ->getResult();
     }
