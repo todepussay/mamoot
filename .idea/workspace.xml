@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/QuizType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/QuizType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/create/add_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/add_question.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/create/detail_question.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create/detail_question.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

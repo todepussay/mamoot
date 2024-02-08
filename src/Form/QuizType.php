@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Validator\Constraints\Length;
 
 class QuizType extends AbstractType
 {
@@ -25,7 +26,13 @@ class QuizType extends AbstractType
     {
         $builder
             ->add("title", TextType::class, [
-                "label" => $this->translator->trans("Titre du quiz")
+                "label" => $this->translator->trans("Titre du quiz"),
+                "constraints" => [
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Le titre du quiz ne peut pas dépasser {{ limit }} caractères.',
+                    ]),
+                ],
             ])
             ->add('image', FileType::class, [
                 'required' => false,

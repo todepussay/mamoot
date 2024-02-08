@@ -126,14 +126,6 @@
             }
         })
 
-        $('#mini').on("input", function(){
-            $('#valeur').text({% trans %}"La valeur sera bonne entre : "{% endtrans %} + $('#mini').val() + " - " + $('#maxi').val());
-        })
-
-        $('#maxi').on("input", function(){
-            $('#valeur').text({% trans %}"La valeur sera bonne entre : "{% endtrans %} + $('#mini').val() + " - " + $('#maxi').val());
-        })
-
         $('#btn_appliquer').click(function(){
             var label = $('#label').val();
             var category = "";

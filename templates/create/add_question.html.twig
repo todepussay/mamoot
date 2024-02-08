@@ -124,7 +124,7 @@
                         } else {
                             $('#error').text("");
 
-                            if(min >= max || min + interval >= max){
+                            if(min >= max || (parseInt(min) + parseInt(interval)) >= max){
                                 $("#error").text({% trans %}"La valeur minimum ne peut pas être plus grande que le maximum"{% endtrans %});
                             } else {
                                 $('#error').text("");
