@@ -72,7 +72,9 @@ class PlayController extends AbstractController
                "maximum_curseur" => $question_data->getMaximumCurseur(),
                "interval_curseur" => $question_data->getIntervalCurseur(),
                "minimum_valide" => $question_data->getMinimumValide(),
-               "maximum_valide" => $question_data->getMaximumValide()
+               "maximum_valide" => $question_data->getMaximumValide(),
+               "file" => $question_data->getFile(),
+               "file_type" => $question_data->getFileType()
            ];
 
            if(count($question_data->getReponses()) !== 0){

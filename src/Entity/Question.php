@@ -20,7 +20,10 @@ class Question
     private $label;
 
     #[ORM\Column(type: "string")]
-    private $image;
+    private $file;
+
+    #[ORM\Column(type: "string")]
+    private $file_type;
 
     #[ORM\Column(type: "boolean")]
     private $vraifaux;
@@ -260,6 +263,38 @@ class Question
         $this->maximum_valide = $maximum_valide;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file): void
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFileType()
+    {
+        return $this->file_type;
+    }
+
+    /**
+     * @param mixed $file_type
+     */
+    public function setFileType($file_type): void
+    {
+        $this->file_type = $file_type;
+    }
+
 
 
     public function __toString(): string
@@ -269,6 +304,7 @@ class Question
             $this->maximum_curseur . "\n-Minimum Curseur : " . $this->minimum_curseur .
             "\n-Interval : " . $this->interval_curseur;
     }
+
 
 
 }

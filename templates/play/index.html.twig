@@ -34,14 +34,11 @@
                 <span><span id="progression">30</span>/<span id="total_questions"></span></span>
             </div>
 
-            <div class="question-content">
-                <p class="question"></p>
+            <div class="media" style="display: none">
             </div>
 
-            <div class="media" style="display: none">
-                <!-- <img src="https://cdn.paris.fr/paris/2021/10/04/huge-0155e58a77df359c58c437e521a2ed43.jpg" alt=""> -->
-                <!-- <audio src="" controls autoplay></audio> -->
-                <!-- <video src="" controls autoplay></video> -->
+            <div class="question-content">
+                <p class="question"></p>
             </div>
 
             <div class="questions">
@@ -74,9 +71,6 @@
                 </div>
 
                 <div class="media" style="display: none">
-                    <!-- <img src="https://cdn.paris.fr/paris/2021/10/04/huge-0155e58a77df359c58c437e521a2ed43.jpg" alt=""> -->
-                    <!-- <audio src="" controls autoplay></audio> -->
-                    <!-- <video src="" controls autoplay></video> -->
                 </div>
 
                 <div class="questions">
@@ -274,6 +268,52 @@
             timer_countdown = question.temps;
 
             $('.question').text(question.label);
+            $('.media').html("");
+            $('.media').hide();
+
+            console.log(question);
+
+            if(question.file !== ""){
+
+                $('.media').show();
+
+                let type = question.file_type.split("/")[0];
+
+                switch(type){
+                    case "image":
+
+                        let img = $('<img>');
+                        img.attr("alt", "image_question");
+                        img.attr("src", `./../../public/img/questions/${question.file}`);
+
+                        $('.media').append(img);
+
+                        break;
+                    case "audio":
+
+                        let audio = $('<audio>');
+                        audio.attr("controls", true);
+                        audio.attr("autoplay", true);
+                        audio.attr("loop", true);
+                        audio.attr("src", `./../../public/img/questions/${question.file}`);
+
+                        $('.media').append(audio);
+
+                        break;
+                    case "video":
+
+                        let video = $('<video>');
+                        video.attr("controls", true);
+                        video.attr("autoplay", true);
+                        video.attr("loop", true);
+                        video.attr("src", `./../../public/img/questions/${question.file}`);
+
+                        $('.media').append(video);
+
+                        break;
+                }
+
+            }
 
             $('.questions').html("");
 

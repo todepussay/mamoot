@@ -12,6 +12,7 @@ use App\Form\RegisterType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,6 +57,7 @@ class CreateController extends AbstractController
     {
         $request->getSession()->remove("quiz");
         $request->getSession()->remove("questions");
+        $request->getSession()->remove("files");
         return $this->redirectToRoute("index");
     }
 
@@ -277,18 +279,36 @@ class CreateController extends AbstractController
 
         $question->setLabel($label);
 
-        // $file = $request->files->get('file');
+        $file = $request->files->get('file');
 
-        // if($file){
+        if($file){
 
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
 
-        //         $file->move(
-        //             'img/questions',
-        //             $fileName
-        //         );
+            $file->move(
+                'img/questions',
+                $fileName
+            );
 
-        // }
+            $files = $request->getSession()->get("files", []);
+
+            if(array_key_exists($id, $files)){
+                $fileSystem = new Filesystem();
+                $filePath = 'img/questions/' . $files[$id];
+
+                if ($fileSystem->exists($filePath)) {
+                    $fileSystem->remove($filePath);
+                }
+            }
+
+            $files[$id] = $fileName;
+
+            $question->setFile($fileName);
+            $question->setFileType($file->getClientMimeType());
+
+            $request->getSession()->set("files", $files);
+
+        }
 
         switch ($category) {
             case "quiz":

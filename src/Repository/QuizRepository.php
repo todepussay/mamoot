@@ -28,6 +28,7 @@ class QuizRepository extends ServiceEntityRepository
         return $this->createQueryBuilder("q")
             ->andWhere("q.user = :val")
             ->setParameter("val", $id)
+            ->orderBy("q.createdDate", "DESC")
             ->getQuery()
             ->getResult();
     }

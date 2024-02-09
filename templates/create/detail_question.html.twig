@@ -227,15 +227,24 @@
                 };
             }
 
-            let fileInput = $("#file")[0];
-            let file = fileInput.files[0]
-
             let formData = new FormData();
-            formData.append('file', file);
+
+            let fileInput = $("#file")[0];
+
+            if(fileInput.files[0]){
+                let file = fileInput.files[0]
+
+                if(file.size > 8300000) {
+                    $('#error').text("Le fichier doit faire moins de 8,3Mo  ");
+                    return;
+                } else {
+                    $('#error').text();
+                }
+
+                formData.append('file', file);
+            }
+
             formData.append("data", JSON.stringify(data));
-
-
-            console.log("data: ", formData);
 
             $.ajax({
                 url: "{{ path("change_question") }}",
