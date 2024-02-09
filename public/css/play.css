@@ -737,21 +737,25 @@ input[type="range"]::-moz-range-thumb {
     font-size: 40px;
     font-weight: bold;
     color: var(--medium-green);
+    display: none;
 }
 
 .classement li:first-child p {
     font-size: 55px;
     color: #fdd600;
+    display: none;
 }
 
 .classement li:nth-child(2) p {
     font-size: 50px;
     color: #636363;
+    display: none;
 }
 
 .classement li:nth-child(3) p {
     font-size: 45px;
     color: saddlebrown;
+    display: none;
 }
 
 .end {
@@ -772,3 +776,23 @@ input[type="range"]::-moz-range-thumb {
     color: var(--medium-green);
 }
 
+.classement {
+    min-height: 100px;
+}
+
+/*Confetti*/
+
+canvas {
+    display: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    /* ne dois pas avoir de collision*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* n'est pas cliquable */
+    pointer-events: none;
+}

@@ -18,12 +18,16 @@
             {% for player in quiz.players %}
 
                 <li>
-                    <p>#{{ loop.index }} - {{ player.username }} - {{ player.score }}</p>
+                    <p id="{{ loop.index }}" class="joueur">#{{ loop.index }} - {{ player.username }} - {{ player.score }}</p>
                 </li>
 
             {% endfor %}
         </ul>
 
+        <canvas id="canvas"></canvas>
     </div>
+
+    <!-- script pour le podium -->
+    <script src="{{ asset("js/endgame.js") }}"></script>
 
 {% endblock %}
