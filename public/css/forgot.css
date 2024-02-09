@@ -121,3 +121,16 @@ input[type="password" i] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    right: 25%;
+}
