@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b21e98aa-4e16-45ca-b9c2-c7d55a6cd27b" name="Changes" comment="Page création du jeu">
-      <change afterPath="$PROJECT_DIR$/public/js/endgame.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/confetti.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/fireworks.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/first_place.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/second_place.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/third_place.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/validation.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/son/validation2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/error.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/bundles/TwigBundle/Exception/error.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/play.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/play.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/play/finish.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/play/finish.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/library.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/library.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -171,7 +164,7 @@
     "git-widget-placeholder": "Tom",
     "javascript.nodejs.core.library.configured.version": "18.17.1",
     "javascript.nodejs.core.library.typings.version": "18.17.1",
-    "last_opened_file_path": "C:/wamp64/www/mamoot/public/js",
+    "last_opened_file_path": "C:/wamp64/www/mamoot/public/img",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -189,8 +182,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\mamoot\public\js" />
       <recent name="C:\wamp64\www\mamoot\public\img" />
+      <recent name="C:\wamp64\www\mamoot\public\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\mamoot\public\son" />
@@ -238,7 +231,7 @@
       <workItem from="1707059060284" duration="625000" />
       <workItem from="1707064352702" duration="2522000" />
       <workItem from="1707161239300" duration="60000" />
-      <workItem from="1707480107086" duration="11030000" />
+      <workItem from="1707480107086" duration="11535000" />
     </task>
     <task id="LOCAL-00001" summary="Changement navbar message &quot;Bonjour user&quot;">
       <option name="closed" value="true" />
